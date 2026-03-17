@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Financeira</title>
+</head>
+<style>
+    #logo {
+        width: 400px;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <img src="logo.png" alt="Logo" id="logo">
+        <h1>Impacto Financeiro</h2>
+        <h4>Descubra quanto dinheiro deixa de ser "jogado fora" com monitoramento ponta a ponta.</h4>
+
+        <div>
+            <span>Doses Fabricadas/ano</span>
+            <input type="number" id="id_doses" value="100000">
+        </div>
+
+        <div>
+            <span>Custo médio por dose (R$)</span>
+            <input type="number" id="id_custo" value="50">
+        </div>
+
+        <div>
+            <span>Taxa de perda física atual das doses (%)</span>
+            <input type="number" id="id_perda" value="10">
+        </div>
+
+        <br>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <br><br>
+
+        <div>
+            <span id="id_total"></span>
+            <h5 id="id_obs" style="color: #666; margin: 6px 0;"></h5>
+        </div>
+    </div>
+</body>
+<script>
+    function calcular() {
+        let doses = Number(id_doses.value);
+        let custo = Number(id_custo.value);
+        let perdaFisica = Number(id_perda.value) / 100;
+
+        // Assumindo a eficácia da ThermoChain em 75% (OMS diz que um dos principais requisitos para diminuir problemas na cadeia de frio é o monitoramento continuo)
+        let eficacia = 0.75; 
+
+        let perdasPorTemperatura = 0.50 // A OMS estima que 50% das perdas são devidas as falhas no processo da cadeia de frio (Transporte e armazenamento)
+
+        // custo total das doses transportadas
+        let custoTotal = doses * custo;
+        // total de doses perdidas em unidade
+        let dosesPerdidas = doses * perdaFisica;
+        // custo total das dozes perdidas
+        let prejuizoAtual = dosesPerdidas * custo;
+
+        // Economia que a ThermoChain tras para as empresas parceiras
+        let economia = prejuizoAtual * perdasPorTemperatura * eficacia;
+        // Doses que a ThermoChain pode salvar diminuindo as perdas por temperatura
+        let dosesSalvas = dosesPerdidas * perdasPorTemperatura * eficacia;
+
+        // Mostrando resultado na tela
+        id_total.innerHTML = `Custo total das doses fabricadas: <b>${(custoTotal).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b>`;
+        id_total.innerHTML += `<br>Atualmente a empresa perde <b>${dosesPerdidas.toLocaleString()}</b> doses, gerando um prejuízo de: <b>${prejuizoAtual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b> por ano.</b>`;
+        id_total.innerHTML += `<br><br><b>Com a ThermoChain:</b>`;
+        id_total.innerHTML += `<br>Economia Anual Estimada: <b>${economia.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b>`;
+        id_total.innerHTML += `<br>Isso representa evitar o descarte de <b>${dosesSalvas.toLocaleString()} doses no ano.</b>`;
+        id_total.innerHTML += `<br><br>Segundo a OMS, <b>50% das perdas das vacinas são devidas as falhas do controle de temperatura</b>, e também eles dizem que o principal fator é justamente o <b>monitoramento contínuo da temperatura</b>, com esses dados temos a projeção de eficacia da ThermoChain de 75% `;
+        id_total.innerHTML += `<br>Fonte: <a href='https://elbermedical.com.br/vacinas/cadeia-frio-vacinas/'>Estudo da OMS</a>`
+    }
+
+    // Inicializa o cálculo
+    // calcular();
+</script>
+
+</html>
