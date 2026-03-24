@@ -1,12 +1,69 @@
+<!-- TODO: Terminar logica, fazer CSS, Farmar Aura -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThermoChain - Login</title>
-    <link rel="stylesheet" href="style.css">k
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <!-- <div>
+        <div>
+            <a href="">voltar</a>
+            <h3>ThermoChain</h3>
+            <div>
+                <p>Controle Térmico de ponta a ponta</p>
+            </div>
+        </div>
+
+        <div>
+            <label>email</label><br>
+            <div>
+                <img src="" alt="Icone email">
+                <input type="text" id="ipt_email" placeholder="Exemplo@exemplo.com">
+            </div>
+            <div>
+                <span>senha</span><br>
+                <a href="">recuperar senha</a>
+                <div>
+                    <img src="" alt="Icone senha">
+                    <input type="text" id="ipt_senha" placeholder="Digite sua senha">
+                    <span>Olho visibilidade</span>
+                </div>
+            </div>
+
+            <input type="checkbox">
+            <label for="">lembrar de mim</label><br>
+
+            <button>Entrar</button>
+
+            <div>
+                <span>Ainda nao tem uma conta! </span>
+                <a href="">solicite acesso</a>
+            </div>
+        </div>
+    </div> -->
+    <label for="ipt_email">Email</label>
+    <input type="text" id="ipt_email"><br>
+
+    <label for="ipt_senha">Senha</label>
+    <input type="text" id="ipt_senha"><br>
+
+    <button onclick="entrar()">Entrar</button>
+    <div id="div_resultado"></div>
 </body>
 </html>
+<script>
+    let emailsCad = ['enzoquinalha@gmail.com','carloschaves@gmail.com','matheusjacob@yahoo.com']
+    let senhasCad = ['enzo123','carlos123','jacob123']
+    function entrar(){
+        let email = ipt_email.value
+        let senha = ipt_senha.value
+
+
+    }
+</script>
