@@ -1,0 +1,36 @@
+.form {
+    background-color: aqua;
+}
+.backg{
+    margin: 0;
+    height: 100vh; /*Ocupa 100% da altura da tela*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; USAR EM OUTRA OCASIAO */
+    background-image: linear-gradient(135deg, rgba(0, 86, 178, 1), rgba(121,169,194,1));
+}
+.janela{
+    background-color: rgba(248,250,252,1);
+    padding: 2%;
+    border-radius: 12px;
+    box-shadow: 0px 25px 50px #00000040;
+}
+.chevron{
+    width: 40px;
+    height: 40px;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+}
+.headerVoltar{
+    display: flex;
+    justify-content: center;
+}
+.subtext{
+    background-color: #0056B23B;
+    border-radius: 10px;
+    margin: 0px;
+    padding: 0px;
+}

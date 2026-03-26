@@ -7,29 +7,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThermoChain - Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleLogin.css">
 </head>
 
-<body>
-    <!-- <div>
-        <div>
-            <a href="">voltar</a>
-            <h3>ThermoChain</h3>
-            <div>
+<body class="backg">
+    <div class="janela">
+        <div class="header">
+            <div class="headerVoltar">
+                <a href=""><img src="img/chevronLeft.png" alt="Voltar" class="chevron"></a>
+                <img src="img/logo.png" alt="ThermoChain" class="logo">
+            </div>
+            <div class="subtext">
                 <p>Controle Térmico de ponta a ponta</p>
             </div>
         </div>
 
         <div>
             <label>email</label><br>
-            <div>
+            <div class="form">
                 <img src="" alt="Icone email">
                 <input type="text" id="ipt_email" placeholder="Exemplo@exemplo.com">
             </div>
             <div>
                 <span>senha</span><br>
                 <a href="">recuperar senha</a>
-                <div>
+                <div class="form">
                     <img src="" alt="Icone senha">
                     <input type="text" id="ipt_senha" placeholder="Digite sua senha">
                     <span>Olho visibilidade</span>
@@ -39,22 +41,23 @@
             <input type="checkbox">
             <label for="">lembrar de mim</label><br>
 
-            <button>Entrar</button>
+            <button onclick="entrar()">Entrar</button>
 
             <div>
                 <span>Ainda nao tem uma conta! </span>
                 <a href="">solicite acesso</a>
             </div>
         </div>
-    </div> -->
-    <label for="ipt_email">Email</label>
+    </div>
+    <div id="div_resultado"></div>
+    <!-- <label for="ipt_email">Email</label>
     <input type="text" id="ipt_email"><br>
 
     <label for="ipt_senha">Senha</label>
     <input type="text" id="ipt_senha"><br>
 
     <button onclick="entrar()">Entrar</button>
-    <div id="div_resultado"></div>
+    <div id="div_resultado"></div> -->
 </body>
 </html>
 <script>
@@ -65,7 +68,7 @@
         verificarLogin(email, senha)
     }
     // 1. Seu "dicionário" de usuários (Logins e Senhas)
-const bancoDeDados = {
+let bancoDeDados = {
   "enzoquinalha@gmail.com": "enzo123",
   "carloschaves@gmail.com": "carlos123",
   "matheusjacob@yahoo.com": "jacob123"
