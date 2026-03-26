@@ -19,15 +19,15 @@ function verificarLogin(usuario, senha) {
     
     // Se existir, verifica se a senha associada a essa chave é a correta
     if (bancoDeDados[usuario] === senha) {
-      div_resultado.innerHTML = "Acesso concedido! Bem-vindo."
+      console.log("Acesso concedido! Bem-vindo.")
       return true;
     } else {
-      div_resultado.innerHTML = "Senha incorreta."
+      console.log("Senha incorreta.")
       return false;
     }
     
   } else {
-    div_resultado.innerHTML = "Usuário não encontrado."
+    console.log("Usuário não encontrado.")
     return false;
   }
 }

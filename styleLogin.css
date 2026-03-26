@@ -16,11 +16,10 @@ a:visited {
 
 .backg{
     margin: 0;
-    height: 100vh; /*Ocupa 100% da altura da tela*/
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* text-align: center; USAR EM OUTRA OCASIAO */
     background-image: linear-gradient(135deg, rgba(0, 86, 178, 1), rgba(121,169,194,1));
 }
 .janela{
@@ -35,7 +34,6 @@ a:visited {
     width: 40px;
     height: 40px;
 }
-
 .header{
     display: flex;
     flex-direction: column;
@@ -113,6 +111,9 @@ a:visited {
     color: #fff;
     border-radius: 8px;
     border: 0px;
+}
+.botao:hover {
+    cursor: pointer;
 }
 .footer{
     display: flex;
