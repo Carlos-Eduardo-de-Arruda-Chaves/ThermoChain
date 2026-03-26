@@ -119,3 +119,6 @@ a:visited {
     display: flex;
     justify-content: space-between;
 }
+.erro{
+    color: red;
+}

@@ -13,6 +13,8 @@ let bancoDeDados = {
 
 // 3. Função para validar o acesso
 function verificarLogin(usuario, senha) {
+  div_emailErro.innerHTML = ``
+  div_senhaErro.innerHTML = ``
 
   // Verifica se a chave (login) existe no objeto
   if (bancoDeDados.hasOwnProperty(usuario)) {
@@ -23,11 +25,13 @@ function verificarLogin(usuario, senha) {
       return true;
     } else {
       console.log("Senha incorreta.")
+      div_senhaErro.innerHTML = `Senha Incorreta`
       return false;
     }
     
   } else {
     console.log("Usuário não encontrado.")
+    div_emailErro.innerHTML = `Usuário não encontrado`
     return false;
   }
 }
