@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThermoChain - Login</title>
     <link rel="stylesheet" href="styleLogin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
 <body class="backg">
@@ -18,34 +21,40 @@
                 <img src="img/logo.png" alt="ThermoChain" class="logo">
             </div>
             <div class="subtext">
-                <p>Controle Térmico de ponta a ponta</p>
+                <img src="img/check.png" alt="check" class="check">
+                <span>Controle Térmico de ponta a ponta</span>
             </div>
         </div>
 
+
         <div>
-            <label>email</label><br>
-            <div class="form">
-                <img src="" alt="Icone email">
-                <input type="text" id="ipt_email" placeholder="Exemplo@exemplo.com">
-            </div>
-            <div>
-                <span>senha</span><br>
-                <a href="">recuperar senha</a>
-                <div class="form">
-                    <img src="" alt="Icone senha">
-                    <input type="text" id="ipt_senha" placeholder="Digite sua senha">
-                    <span>Olho visibilidade</span>
+            <div class="container">
+                <label>email</label><br>
+                <div>
+                    <input type="text" id="ipt_email" placeholder="Exemplo@exemplo.com" class="input email">
                 </div>
+
+                <div>
+                    <div class="senhaTitle">
+                        <span>senha</span>
+                        <a href="">Recuperar senha</a>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="password" id="ipt_senha" class="input senha" placeholder="Digite sua senha">
+                        <img src="img/olhoIcon.png" id="olho" class="olho">
+                    </div>
+                </div>
+
+                <input type="checkbox">
+                <label for="">Lembrar de mim</label><br><br>
+
+                <button onclick="entrar()" class="botao">Entrar</button>
             </div>
 
-            <input type="checkbox">
-            <label for="">lembrar de mim</label><br>
 
-            <button onclick="entrar()">Entrar</button>
-
-            <div>
-                <span>Ainda nao tem uma conta! </span>
-                <a href="">solicite acesso</a>
+            <div class="footer">
+                <span>Ainda nao tem uma conta? </span>
+                <a href="">Solicite acesso já!</a>
             </div>
         </div>
     </div>
@@ -94,4 +103,14 @@ function verificarLogin(usuario, senha) {
     return false;
   }
 }
+
+olho.addEventListener('mousedown', function() {
+  ipt_senha.type = 'text';
+});
+olho.addEventListener('mouseup', function() {
+  ipt_senha.type = 'password';
+});
+olho.addEventListener('mousemove', function() {
+  ipt_senha.type = 'password';
+});
 </script>
