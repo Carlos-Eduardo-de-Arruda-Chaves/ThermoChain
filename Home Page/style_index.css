@@ -1,0 +1,80 @@
+
+.logo_imagem{
+    width: 100px; 
+	height: 35px;
+    background-size: cover;
+}
+
+.botao_head{
+    background-color: white;
+    box-shadow: none;
+    border: none;
+    height: 35px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.botoes_cabecario{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.botao_cliente{
+    background-color: darkblue;
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.cabecario{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding-right: 50px;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    padding-top: 20px;
+}
+
+.div_introducao{
+    display: flex;
+    height: 800px; 
+    width: 1380px;
+    justify-content: space-between;
+}
+
+.imagem_predio{
+    width: 600px; 
+	height: 600px; 
+	background-image: url('img/predio.png');
+	background-size: cover;
+    justify-content: flex-end;
+    border-radius: 25px;
+    box-shadow: 5px 5px 20px grey;
+}
+
+.introducao_texto_e_imagem{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.certificacao{
+    display: flex;
+    width: 700px;
+    height: 30px;
+    display: flex;
+    background-color: #0056B23B;
+    border-radius: 10px;
+    margin: 0px;
+    padding-left: 10px;
+    align-items: center;
+    font-style: 700;
+    padding-left: 20px;
+}
+
+
