@@ -1,0 +1,93 @@
+.container {
+
+      text-align: center;
+      color: #000;
+      border: solid 2px #000;
+      border-radius: 20px;
+      padding: 70px;
+      background: rgb(246, 243, 243);
+      width: 290px;
+      align-items: center;
+      margin: auto;
+       border: none;
+      /* centraliza horizontal */
+      justify-content: center;
+}
+.subtitulo{
+       border-radius: 20px;
+     color:rgb(61, 61, 157);
+        background-color: #769eca;
+     justify-content: center;
+      border: solid 1px #000;
+       border: none;
+}
+
+.Title {
+     
+      color: #fcfdfe;
+      text-align: center;
+}
+
+body {
+      height: 130vh;
+      background: linear-gradient(to bottom right, #0056B2, #68829F);
+      align-items: center;
+
+}
+
+.alerta {
+      color: #68829F;
+}
+
+.button button {
+
+      border-radius: 8px;
+      background-color: #0056B2;
+      /* 🔵 azul */
+      color: white;
+      /* texto branco */
+      padding: 12px 80px;
+      font-size: 16px;
+      
+      cursor: pointer;
+      border: none;
+       justify-content: center;
+       
+      appearance: none;
+      transition: 0.3s;
+}
+
+.input-box input {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 12px;
+      width: 100%;
+      /*melhor que 300px */
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      /* espaço entre eles */
+      text-align: left;
+      border: none;
+      
+}
+
+
+
+.campo {
+      margin-bottom: 20px;
+      text-align: left;
+       border: none;
+      
+     
+}
+
+.campo h3 {
+      margin-bottom: 5px;
+      color:rgb(170, 170, 170) ;
+      font-size: 16px;
+       border: none;
+      
+     
+}

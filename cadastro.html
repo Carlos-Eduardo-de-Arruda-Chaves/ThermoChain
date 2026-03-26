@@ -1,12 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <div class="Title">
+
+
+        <div class="container">
+            
+            <div class="header">
+             
+
+                <div class="logo">
+         <h1>    Thermo<span style="color: rgb(62, 0, 169);">Chain</span></h1>
+                </div>
+               <div class="subtitulo"> <h4> ✔O controle Térmico de Ponta a Ponta</h4></div>
+
+                <div class="campo">
+
+                    <h3>Nome</h3>
+                    <div class="input-box">
+                       
+                        <input type="text" id="input_usuario" placeholder="✉️Username">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <h3>E-mail</h3>
+                    <div class="input-box">
+                     
+                        <input type="text" id="input_email" placeholder="✉️exemplo@termochain.com">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <h3>Senha</h3>
+                    <div class="input-box">
+                       
+                        <input type="password" id="input_senha" placeholder="🔒Digite sua senha">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <h3>Confirmar Senha</h3>
+                    <div class="input-box">
+                       
+                        <input type="password" id="input_confsenha" placeholder="🔒Confirma sua Senha">
+                    </div>
+                </div>
+
+
+
+                <div class="button">
+                    <button onclick="Entrar()">ENTRAR</button>
+
+                </div>
+                <div class="alerta">
+                    <div id="alerta"></div>
+
+                    <h4>Já tem uma conta?</h4>
+                </div>
+                <a href="">Faça Login</a>
+            </div>
+        </div>
+
 </body>
+<script>
+    function Entrar() {
+        let Usuario = Number(input_usuario.value);
+        let Email = (input_email.value);
+        let Senha = Number(input_senha.value);
+        let ConfSenha = Number(input_confsenha.value)
+
+
+        if (Usuario == "" || Email == "" || Senha == "" || ConfSenha == "") {
+            alert("Insira todos os campos")
+        }
+        else if (!Email.includes("@")) {
+            alert("Email inválido")
+        }
+
+        // Diferente senhas
+        else if (Senha !== ConfSenha) {
+            alert("Senha não coincidem")
+        }
+
+        else {
+            alerta.innerHTML = `Cadastro Concluído`
+            input_usuario.value = "";
+            input_email.value = "";
+            input_senha.value = "";
+            input_confsenha.value = "";
+        }
+
+
+
+
+
+
+    }
+</script>
+
 </html>
