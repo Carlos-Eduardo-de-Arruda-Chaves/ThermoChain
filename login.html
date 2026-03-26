@@ -29,14 +29,14 @@
 
         <div>
             <div class="container">
-                <label>email</label><br>
+                <label>E-mail</label><br>
                 <div>
                     <input type="text" id="ipt_email" placeholder="Exemplo@exemplo.com" class="input email">
                 </div>
 
                 <div>
                     <div class="senhaTitle">
-                        <span>senha</span>
+                        <span>Senha</span>
                         <a href="">Recuperar senha</a>
                     </div>
                     <div class="inputContainer">
@@ -54,63 +54,9 @@
 
             <div class="footer">
                 <span>Ainda nao tem uma conta? </span>
-                <a href="">Solicite acesso já!</a>
+                <a href="cadastro.html">Solicite acesso já!</a>
             </div>
         </div>
     </div>
-    <div id="div_resultado"></div>
-    <!-- <label for="ipt_email">Email</label>
-    <input type="text" id="ipt_email"><br>
-
-    <label for="ipt_senha">Senha</label>
-    <input type="text" id="ipt_senha"><br>
-
-    <button onclick="entrar()">Entrar</button>
-    <div id="div_resultado"></div> -->
 </body>
 </html>
-<script>
-    function entrar(){
-        let email = ipt_email.value
-        let senha = ipt_senha.value
-
-        verificarLogin(email, senha)
-    }
-    // 1. Seu "dicionário" de usuários (Logins e Senhas)
-let bancoDeDados = {
-  "enzoquinalha@gmail.com": "enzo123",
-  "carloschaves@gmail.com": "carlos123",
-  "matheusjacob@yahoo.com": "jacob123"
-};
-
-// 3. Função para validar o acesso
-function verificarLogin(usuario, senha) {
-
-  // Verifica se a chave (login) existe no objeto
-  if (bancoDeDados.hasOwnProperty(usuario)) {
-    
-    // Se existir, verifica se a senha associada a essa chave é a correta
-    if (bancoDeDados[usuario] === senha) {
-      div_resultado.innerHTML = "Acesso concedido! Bem-vindo."
-      return true;
-    } else {
-      div_resultado.innerHTML = "Senha incorreta."
-      return false;
-    }
-    
-  } else {
-    div_resultado.innerHTML = "Usuário não encontrado."
-    return false;
-  }
-}
-
-olho.addEventListener('mousedown', function() {
-  ipt_senha.type = 'text';
-});
-olho.addEventListener('mouseup', function() {
-  ipt_senha.type = 'password';
-});
-olho.addEventListener('mousemove', function() {
-  ipt_senha.type = 'password';
-});
-</script>
