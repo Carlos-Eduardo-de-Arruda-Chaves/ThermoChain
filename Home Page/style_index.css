@@ -77,6 +77,10 @@
     padding-left: 20px;
 }
 
+.fluxo_ponta_a_ponta{
+    padding-bottom: 50px;
+}
+
 .CorVerdeClarinho{
     color: #10B981;
 
@@ -103,6 +107,7 @@
     width: 1380px;
     height: 224px;
     display: flex;
+    padding-bottom: 100px;
 }
 
 .industria_e_producao{
@@ -120,6 +125,15 @@
 }
 
 .hospitais_e_clínicas{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.monitoramento_avancado{
+    width: 1380px;
+    height: 224px;
     display: inline-block;
     justify-content: center;
     align-items: center;
