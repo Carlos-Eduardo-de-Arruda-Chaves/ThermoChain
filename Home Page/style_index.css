@@ -6,7 +6,7 @@
 }
 
 .botao_head{
-    background-color: white;
+    background-color: #F5F7F8;
     box-shadow: none;
     border: none;
     height: 35px;
@@ -97,4 +97,35 @@
     padding: 4px 8px;
     border-radius: 6px; 
     display: inline-block;
+}
+
+.trajetoria{
+    width: 1380px;
+    height: 224px;
+    display: flex;
+}
+
+.industria_e_producao{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logistica_e_transporte{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hospitais_e_clínicas{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+body{
+    background-color: #F5F7F8;
 }
