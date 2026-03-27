@@ -13,6 +13,11 @@
     width: 60px;
     text-align: center;
     font-weight: bold;
+    border-radius: 10px;
+}
+
+.botao_head:hover{
+    background-color: #dedede;
 }
 
 .botoes_cabecario{
@@ -21,13 +26,30 @@
     gap: 80px;
 }
 
-.botao_cliente{
-    background-color: darkblue;
+.botao_cliente_cadastro:hover{
+    background-color: rgb(3, 3, 194);
+}
+
+.botao_cliente_cadastro{
+    background-color: rgba(0, 86, 178, 1);
     color: white;
     border-radius: 10px;
     width: 200px;
     height: 40px;
     font-weight: bold;
+}
+
+.botao_cliente_login{
+    background-color: white;
+    border: 3px solid rgba(0, 86, 178, 1);
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login:hover{
+    background-color: rgb(221, 221, 221);
 }
 
 .cabecario{
@@ -81,28 +103,6 @@
     padding-bottom: 50px;
 }
 
-.CorVerdeClarinho{
-    color: #10B981;
-
-}
-
-.cardVerde{
-    background-color: #d9efe7; 
-    border: 1px solid #4fbf9f; 
-    color: #2fa37f; 
-    padding: 10px 20px;
-    border-radius: 10px; 
-    font-size: 14px;
-    width: 174px;
-}
-
-.fundinhoBranco{
-    background-color: #F5F7F8; 
-    padding: 4px 8px;
-    border-radius: 6px; 
-    display: inline-block;
-}
-
 .trajetoria{
     width: 1380px;
     height: 224px;
@@ -115,6 +115,12 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.vantagens{
+    width: 1380px;
+    height: 600px;
+    padding-bottom: 150px;
 }
 
 .logistica_e_transporte{
@@ -135,9 +141,66 @@
     width: 1380px;
     height: 224px;
     display: inline-block;
-    justify-content: center;
     align-items: center;
     text-align: center;
+    padding-top: 40px;
+}
+
+.painel_de_vantagens{
+    width: 1380px;
+    height: 320px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.caixas_explicativas{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid rgba(226, 232, 240, 1);
+}
+
+.seguranca_juridica{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px; 
+}
+
+.prevencao{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.imagem_seguranca{
+    padding-top: 48px;
+    padding-left: 48px;
+    padding-bottom: 20px;
+}
+
+.CorVerdeClarinho{
+    color: #10B981;
+
+}
+
+.cardVerde{
+    background-color: #d9efe7; 
+    border: 1px solid #4fbf9f; 
+    color: #2fa37f; 
+    padding: 10px 20px;
+    border-radius: 10px; 
+    font-size: 14px;
+    width: 174px;
+}
+
+.fundinhoBranco{
+    background-color: #F5F7F8; 
+    padding: 4px 8px;
+    border-radius: 6px; 
+    display: inline-block;
 }
 
 body{
