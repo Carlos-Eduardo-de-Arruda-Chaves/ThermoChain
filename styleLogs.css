@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #0056B2, #68829f);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Space Grotesk';
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cardHeader {
+    display: flex;
+}
+
+.back {
+    width: 10px;
+}
+
+.logoArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: -20px;
+}
+
+.logo {
+    width: 25px;
+}
+
+.logotipo {
+    width: 140px;
+}
+
+.sloganArea {
+    display: flex;
+    justify-content: center;
+}
+
+.slogan {
+    width: 200px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.inputGroup {
+    display: flex;
+    gap: 10px;
+}
+
+.full {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #1E63D5;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.inputGroup input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #E2E8F0;
+}
+
+.inputGroup button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #1E63D5;
+    color: white;
+    font-weight: bold;
+}
+
+.logsCard {
+    background-color: #FFFFFF;
+    width: 97%;
+    height: 95%;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.logsHeader {
+    display: flex;
+}
+
+.logsLogo {
+    margin-left: 20px;
+}
+
+.logsLogoTipo {
+    width: 25%;
+    height: 20%;
+    align-self: center;
+}
+
+#LogsTitle {
+    margin-left: 60px;
+    color: #0F172A;
+}
+
+.logsDados {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+
+#LogsRegistros {
+    width: 90%;
+}
+
+.mesTitulo {
+    margin: 20px 0 5px 5px;
+    color: #64748B;
+    font-size: 14px;
+    font-weight: 500;
+    font-weight: bold;
+}
+
+.logLinha {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+
+    border-bottom: none;
+}
+
+.logInfo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.total {
+    font-weight: bold;
+    color: #475569;
+}
+
+.ideal {
+    color: #34D399;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fora {
+    color: #FF5E61;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.botaoExpandir {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0F172A;
+}
+
+.expandDiv {
+    background-color: #000000;
+    width: 98.5%;
+    height: 50%;
+    padding: 0;
+    margin-top: -25px;
+}
+
+.expandDiv {
+    display: none;
+    background: #FFFFFF;
+    padding: 0 12px 10px 12px;
+}
+
+.expandLinha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid #E2E8F0;
+    font-size: 14px;
+    color: #475569;
+    flex-wrap: nowrap;
+    padding: 6px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.expandLinha:last-child {
+    border-bottom: none;
+}
+
+.colData {
+    min-width: 92px;
+    font-weight: bold;
+    color: #334155;
+}
+
+.sep {
+    color: #94A3B8;
+}
+
+.colMedia {
+    min-width: 84px;
+    font-weight: bold;
+    color: #475569;
+}
+
+.colStatus {
+    min-width: 60px;
+    font-weight: bold;
+}
+
+.colAlertas {
+    min-width: 78px;
+    font-weight: bold;
+    color: #475569;
+}
+
+.colTempo {
+    min-width: 95px;
+    font-weight: bold;
+    color: #475569;
+    line-height: 1.1;
+}
+
+.colTempo small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #64748B;
+    margin-top: 2px;
+}
