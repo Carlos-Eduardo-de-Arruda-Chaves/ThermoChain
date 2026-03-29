@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 
 .logo_imagem{
     width: 100px; 
@@ -194,13 +198,22 @@
     border-radius: 10px; 
     font-size: 14px;
     width: 174px;
+    height: 15px;
+    display: flex;
 }
 
 .fundinhoBranco{
     background-color: #F5F7F8; 
-    padding: 4px 8px;
+    padding: 65px 65px 39px 65px;
     border-radius: 6px; 
-    display: inline-block;
+    display: flex;
+    box-shadow: 0px 10px 15px 1px;
+    width: 1480px;
+    border-radius: 10px;
+    flex-direction:row;
+    height: 1232px;
+    justify-content: space-between;
+
 }
 
 body{
@@ -211,4 +224,37 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.ladoDireito{
+    padding: 4px 8px;
+    background-color: green;
+    width: 10vw ;
+    height: 25vh;
+
+}
+
+.ladoEsquerdo{
+    background-color: #F5F7F8;
+    width: 742px ;
+    justify-content: flex-end;   
+
+}
+
+.ContainerTexto{
+    width: 30vw ;
+    height: 26vh;
+}
+
+.ContainnerCalculadora{
+    display: block;
+
+
+}
+
+.ContainerInstituicao{
+    background-color: #FFFFFF;
+    width: 553px;
+    justify-content: flex-end;
+    border-radius: 15px;
 }
