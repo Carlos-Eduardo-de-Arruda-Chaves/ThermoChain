@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ThermoChain- Cadastro</title>
     <link rel="stylesheet" href="stylecadastro.css">
 </head>
 
@@ -12,73 +12,85 @@
 
     <div class="Title">
 
-
         <div class="container">
-            
-            <div class="header">
-             
 
-                <div class="logo">
-         <h1>    Thermo<span style="color: rgb(62, 0, 169);">Chain</span></h1>
+            <body class="backg">
+
+                <div class="header">
+                    <div class="headerVoltar">
+                        <a href=""><img src="img/chevronLeft.png" alt="Voltar" class="chevron"></a>
+                        <img src="img/logo.png" alt="ThermoChain" class="logo">
+                    </div>
+                    <div class="subtext">
+                        <img src="img/check.png" alt="check" class="check">
+                        <span>Controle Térmico de ponta a ponta</span>
+                    </div>
                 </div>
-               <div class="subtitulo"> <h4> ✔O controle Térmico de Ponta a Ponta</h4></div>
 
                 <div class="campo">
-
                     <h3>Nome</h3>
+                    <img src="img/emailIcon.png" class="email">
                     <div class="input-box">
-                       
-                        <input type="text" id="input_usuario" placeholder="✉️Username">
+                        <input type="text" id="input_usuario" placeholder="Username">
                     </div>
                 </div>
 
                 <div class="campo">
                     <h3>E-mail</h3>
+                    <img src="img/emailIcon.png" class="email">
                     <div class="input-box">
-                     
-                        <input type="text" id="input_email" placeholder="✉️exemplo@termochain.com">
+                        <input type="text" id="input_email" placeholder="Exemplo@termochain.com">
                     </div>
                 </div>
 
                 <div class="campo">
                     <h3>Senha</h3>
+                    <img src="img/olhoIcon.png" class="olho" onclick="toggleSenha('input_senha')">
                     <div class="input-box">
-                       
-                        <input type="password" id="input_senha" placeholder="🔒Digite sua senha">
+                        <input type="password" id="input_senha" placeholder="Digite sua senha">
                     </div>
                 </div>
 
                 <div class="campo">
                     <h3>Confirmar Senha</h3>
+                    <img src="img/olhoIcon.png" class="olho" onclick="toggleSenha('input_confsenha')">
                     <div class="input-box">
-                       
-                        <input type="password" id="input_confsenha" placeholder="🔒Confirma sua Senha">
+                        <input type="password" id="input_confsenha" placeholder="Confirma sua Senha">
                     </div>
                 </div>
 
-
-
                 <div class="button">
                     <button onclick="Entrar()">ENTRAR</button>
-
                 </div>
+
                 <div class="alerta">
                     <div id="alerta"></div>
-
                     <h4>Já tem uma conta?</h4>
                 </div>
-                <a href="">Faça Login</a>
-            </div>
+
+                <a href="login.html">Faça Login</a>
+
         </div>
+    </div>
 
 </body>
+
 <script>
+    function toggleSenha(idInput) {
+        const input = document.getElementById(idInput);
+
+        if (input.type === "password") {
+            input.type = "text";
+        } else {
+            input.type = "password";
+        }
+    }
+
     function Entrar() {
         let Usuario = Number(input_usuario.value);
         let Email = (input_email.value);
         let Senha = Number(input_senha.value);
         let ConfSenha = Number(input_confsenha.value)
-
 
         if (Usuario == "" || Email == "" || Senha == "" || ConfSenha == "") {
             alert("Insira todos os campos")
@@ -86,25 +98,17 @@
         else if (!Email.includes("@")) {
             alert("Email inválido")
         }
-
-        // Diferente senhas
         else if (Senha !== ConfSenha) {
             alert("Senha não coincidem")
         }
-
         else {
             alerta.innerHTML = `Cadastro Concluído`
+
             input_usuario.value = "";
             input_email.value = "";
             input_senha.value = "";
             input_confsenha.value = "";
         }
-
-
-
-
-
-
     }
 </script>
 
