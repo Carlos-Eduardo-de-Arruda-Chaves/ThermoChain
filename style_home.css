@@ -56,8 +56,8 @@
     background-color: rgb(221, 221, 221);
 }
 
-.cabecario{
-    height: 50px;
+.cabecalho{
+    height: 80px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
