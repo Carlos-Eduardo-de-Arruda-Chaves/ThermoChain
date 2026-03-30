@@ -17,7 +17,8 @@
         <div class="botoes_cabecario">
             <button class="botao_head">Home</button> <button class="botao_head">Sobre Nós</button> <button
                 class="botao_head" style="width: 80px;">Nossos Resultados</button>
-            <a href="logsMenu.html"><button class="botao_head" style="width: 80px; cursor: pointer;">DashBoard</button></a> <a href="cadastro.html"><button
+            <a href="logsMenu.html"><button class="botao_head"
+                    style="width: 80px; cursor: pointer;">DashBoard</button></a> <a href="cadastro.html"><button
                     class="botao_cliente_cadastro">Quero ser
                     cliente</button></a>
             <a href="login.html"><button class="botao_cliente_login"> Já
@@ -133,33 +134,60 @@
     </div>
     <!-- Calculadora Financeira -->
     <div class="fundinhoBranco">
-
         <div class="ladoEsquerdo">
-            
             <div class="ContainerTexto">
                 <div class="cardVerde">
                     <div>
-                        <span class="CorVerdeClarinho">Simulador Inteligente de Risco</span>
+                        <div class="CorVerdeClarinho">
+                            Simulador Inteligente de Risco
+                        </div>
                     </div>
                 </div>
-
                 <div>
-                    <h1
-                        style="font-size: 48px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-                        Descubra o risco <br> invisível na sua cadeia <br>fria</h1>
-                    <span style="font-size: 20px; color: #0f172aa0;">Estime a exposição financeira e sanitária causada
-                        por
-                        <br>excursões térmicas não detectadas.</span>
-                </div>
+                    <h1 class="Descubra_risco">
+                        Descubra o risco <br> invisível na sua cadeia <br>fria
+                    </h1>
+                    <div class="Estime_esposicao">
+                        Estime a exposição financeira e sanitária causada por <br>
+                        excursões térmicas não detectadas.
+                    </div>
+                </div> 
             </div>
-
             <div class="ContainerInstituicao">
-                <span>teste</span>
+                <div style="font-size: 20px;">
+                    Instituição<br><br><br>
+                </div>
+                <div class="botoes_publico_ou_privado">
+                    <button class="publica_ou_privada"><input type="checkbox" class="marcar_check"> Pública </button>
+                    <button class="publica_ou_privada"><input type="checkbox" class="marcar_check"> Privada </button>
+                </div>
+                <div class="perguntas_calculadora">
+                    <div class="pergunta">
+                        <div class="numero">1</div>
+                        <p style="font-size: 20px; padding-left: 20px;">Doses Fabricadas por ano</p>
+                    </div>
+                    <input class="caixa_input" placeholder="Ex: 200.000">
+                    <div class="pergunta">
+                        <div class="numero">2</div>
+                        <p style="font-size: 20px; padding-left: 20px;">Custo médio por lote (R$)</p>
+                    </div>
+                    <input class="caixa_input" placeholder="Ex: 200.000">
+                    <div class="pergunta">
+                        <div class="numero">3</div>
+                        <p style="font-size: 20px; padding-left: 20px;">Quantidade de doses por lote</p>
+                    </div>
+                    <input class="caixa_input" placeholder="Ex: 200.000">
+                    <div class="pergunta">
+                        <div class="numero">4</div>
+                        <p style="font-size: 20px; padding-left: 20px;">Quantidade de lotes por ano</p>
+                    </div>
+                    <input class="caixa_input" placeholder="Ex: 200.000">
+                </div>
+                <button class="simulador_botao">Simular Exposição ao Risco</button>
             </div>
         </div>
-
-
         <div class="ladoDireito">
+
         </div>
 
         <!-- Fim da calculadora -->

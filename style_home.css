@@ -187,7 +187,7 @@
 
 .CorVerdeClarinho{
     color: #10B981;
-
+    width: 300px;
 }
 
 .cardVerde{
@@ -197,8 +197,8 @@
     padding: 10px 20px;
     border-radius: 10px; 
     font-size: 14px;
-    width: 174px;
-    height: 15px;
+    width: 220px;
+    height: 38px;
     display: flex;
 }
 
@@ -211,7 +211,7 @@
     width: 1480px;
     border-radius: 10px;
     flex-direction:row;
-    height: 1232px;
+    height: 1300px;
     justify-content: space-between;
 
 }
@@ -237,24 +237,109 @@ html{
 .ladoEsquerdo{
     background-color: #F5F7F8;
     width: 742px ;
-    justify-content: flex-end;   
-
+    justify-content: flex-end;  
 }
 
 .ContainerTexto{
-    width: 30vw ;
-    height: 26vh;
+    width: auto ;
+    height: auto;
+    padding-bottom: 20px;
 }
 
 .ContainnerCalculadora{
     display: block;
-
-
 }
 
 .ContainerInstituicao{
     background-color: #FFFFFF;
-    width: 553px;
+    height: auto;
+    width: 630px;
     justify-content: flex-end;
     border-radius: 15px;
+    padding: 40px;
+}
+
+.Descubra_risco{
+    font-size: 48px; 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Estime_esposicao{
+    font-size: 20px;
+    color: #0f172aa0;
+}
+
+.botoes_publico_ou_privado{
+    display: flex;
+    justify-content: space-between;
+    width: 550px;
+    padding-bottom: 20px;
+}
+
+.publica_ou_privada{
+    display: flex;
+    align-items: center;
+    background-color: rgba(13, 27, 46, 1);
+    color: white;
+    height: 60px;
+    width: 270px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.marcar_check{
+    display: flex;
+    width: 25px;
+    height: 25px;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="checkbox"]:checked {
+    appearance: auto;
+}
+
+.caixa_input{
+    width: 550px;
+    height: 60px;
+    border-color: rgba(13, 27, 46, 1);
+    border-radius: 10px;
+    padding-left: 20px;
+    border-width: 3px;
+}
+
+.pergunta{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+}
+
+.perguntas_calculadora{
+    padding-bottom: 60px;
+}
+
+.numero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color:  rgba(13, 27, 46, 1);
+    border-radius: 100px;
+    color: white;
+}
+
+.simulador_botao{
+    background-color: rgba(255, 94, 97, 1);
+    width: 550px;
+    height: 60px;
+    border-radius: 15px;
+    border-color: rgba(255, 94, 97, 1);
+    color: white;
+    font-size: 18px;
 }
