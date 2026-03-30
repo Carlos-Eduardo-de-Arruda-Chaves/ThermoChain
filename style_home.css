@@ -295,6 +295,7 @@ html{
     background-color: transparent;
     border: 2px solid #ccc;
     border-radius: 5px;
+    pointer-events: none;
 }
 
 input[type="checkbox"]:checked {

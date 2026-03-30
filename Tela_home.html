@@ -158,8 +158,8 @@
                     Instituição<br><br><br>
                 </div>
                 <div class="botoes_publico_ou_privado">
-                    <button class="publica_ou_privada"><input type="checkbox" class="marcar_check"> Pública </button>
-                    <button class="publica_ou_privada"><input type="checkbox" class="marcar_check"> Privada </button>
+                    <button class="publica_ou_privada" onclick="marcar_publico()"><input type="checkbox" class="marcar_check" id="checkbox_publica"> Pública </button>
+                    <button class="publica_ou_privada" onclick="marcar_privado()"><input type="checkbox" class="marcar_check" id="checkbox_privado"> Privada </button>
                 </div>
                 <div class="perguntas_calculadora">
                     <div class="pergunta">
@@ -171,17 +171,17 @@
                         <div class="numero">2</div>
                         <p style="font-size: 20px; padding-left: 20px;">Custo médio por lote (R$)</p>
                     </div>
-                    <input class="caixa_input" placeholder="Ex: 200.000">
+                    <input class="caixa_input" placeholder="Ex: 87.500">
                     <div class="pergunta">
                         <div class="numero">3</div>
                         <p style="font-size: 20px; padding-left: 20px;">Quantidade de doses por lote</p>
                     </div>
-                    <input class="caixa_input" placeholder="Ex: 200.000">
+                    <input class="caixa_input" placeholder="Ex: 10.000">
                     <div class="pergunta">
                         <div class="numero">4</div>
                         <p style="font-size: 20px; padding-left: 20px;">Quantidade de lotes por ano</p>
                     </div>
-                    <input class="caixa_input" placeholder="Ex: 200.000">
+                    <input class="caixa_input" placeholder="Ex: 20">
                 </div>
                 <button class="simulador_botao">Simular Exposição ao Risco</button>
             </div>
@@ -192,5 +192,7 @@
 
         <!-- Fim da calculadora -->
 </body>
+
+<script src="script_home.js"></script>
 
 </html>
