@@ -226,14 +226,6 @@ html{
     align-items: center;
 }
 
-.ladoDireito{
-    padding: 4px 8px;
-    background-color: green;
-    width: 10vw ;
-    height: 25vh;
-
-}
-
 .ladoEsquerdo{
     background-color: #F5F7F8;
     width: 742px ;
@@ -343,4 +335,46 @@ input[type="checkbox"]:checked {
     border-color: rgba(255, 94, 97, 1);
     color: white;
     font-size: 18px;
+}
+
+.ladoDireito{
+    padding: 4px 8px;
+    width: 742px;
+    height: 1196px;
+    display: flex;
+    justify-content: end;
+}
+
+.resultado_simulacao{
+    width: 622px;
+    height: 1196px;
+    background-color: white;
+    padding-left: 35px;
+    border-radius: 10px;
+}
+
+.mostrar_resultado{
+    width: 587px;
+    height: 800px;
+}
+
+.caixa_de_resposta{
+    padding-bottom: 20px;
+}
+
+.resposta{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    width: 600px;
+}
+
+.caixa_resultado{
+    width: 550px;
+    height: 60px;
+    border-color: rgba(13, 27, 46, 1);
+    font-size: 35px;
+    font-weight: bold;
+    display: flex;
 }
