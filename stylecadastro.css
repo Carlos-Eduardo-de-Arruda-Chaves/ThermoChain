@@ -86,7 +86,7 @@
 }
 
 body {
-      height: 120vh;
+      height: 100vh;
       background: linear-gradient(to bottom right, #0056B2, #68829F);
       align-items: center;
       font-family: 'Space Grotesk', sans-serif;
@@ -172,4 +172,13 @@ body {
       border: none;
        
 
+}
+
+a:link { 
+    color: #0056B2; 
+    text-decoration: none;
+}
+a:visited { 
+    color: #0056B2; 
+    text-decoration: none;
 }
