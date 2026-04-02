@@ -23,7 +23,7 @@
             type: 'line',
             data: {
                 datasets: [{
-                    label: 'Analogico',
+                    label: 'Temperatura',
                     borderColor: '#63B1BC',
                     backgroundColor: '#ED145B'
                 }]
@@ -44,30 +44,30 @@
             }
         });
 
-        var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Digital',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#0762C8'
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(0-1)'
-                        },
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        // var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
+        //     type: 'line',
+        //     data: {
+        //         datasets: [{
+        //             label: 'Digital',
+        //             borderColor: '#63B1BC',
+        //             backgroundColor: '#0762C8'
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             x: {
+        //                 beginAtZero: true
+        //             },
+        //             y: {
+        //                 title: {
+        //                     display: true,
+        //                     text: '(0-1)'
+        //                 },
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
 
         var paginacao = {};
         var tempo = {};

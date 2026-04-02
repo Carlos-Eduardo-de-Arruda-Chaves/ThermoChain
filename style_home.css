@@ -214,9 +214,9 @@ a:visited {
     padding: 65px 65px 39px 65px;
     border-radius: 6px; 
     display: flex;
-    box-shadow: 0px 10px 15px 1px;
+    box-shadow: #838282b7 0px 10px 8px 0px;
     width: 1480px;
-    border-radius: 10px;
+    border-radius: 32px;
     flex-direction:row;
     height: 1300px;
     justify-content: space-between;
@@ -341,7 +341,8 @@ input[type="checkbox"]:checked {
     border-radius: 15px;
     border-color: rgba(255, 94, 97, 1);
     color: white;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .ladoDireito{
@@ -357,7 +358,9 @@ input[type="checkbox"]:checked {
     height: 1196px;
     background-color: white;
     padding-left: 35px;
-    border-radius: 10px;
+    border-radius: 24px;
+    box-shadow: #838282b7 0px 10px 15px 1px;
+    
 }
 
 .mostrar_resultado{
@@ -384,4 +387,23 @@ input[type="checkbox"]:checked {
     font-size: 35px;
     font-weight: bold;
     display: flex;
+}
+
+.botao_fale_conosco{
+    background-color: #34D399;
+    width: 550px;
+    height: 80px;
+    border-radius: 15px;
+    border-color: #34D399;
+    color: black;
+    font-size: 20px;
+    margin-top: 100px;
+    font-weight: bold;
+    
+}
+
+.empresas_parceiras{
+    width: 1280;
+    height: 256;
+    background-color: #F5F7F8;
 }
