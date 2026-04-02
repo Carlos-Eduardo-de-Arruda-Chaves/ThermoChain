@@ -1,0 +1,977 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+/* Style Home */
+* {
+    box-sizing: border-box;
+}
+a:link { 
+    color: #000000; 
+    text-decoration: none;
+}
+a:visited { 
+    color: #000000; 
+    text-decoration: none;
+}
+
+.logo_imagem{
+    width: 100px; 
+	height: 35px;
+    background-size: cover;
+}
+
+.botao_head{
+    background-color: #F5F7F8;
+    box-shadow: none;
+    border: none;
+    height: 35px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.botao_head:hover{
+    background-color: #dedede;
+}
+
+.botoes_cabecario{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.botao_cliente_cadastro:hover{
+    background-color: rgb(3, 3, 194);
+}
+
+.botao_cliente_cadastro{
+    background-color: rgba(0, 86, 178, 1);
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login{
+    background-color: white;
+    border: 3px solid rgba(0, 86, 178, 1);
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login:hover{
+    background-color: rgb(221, 221, 221);
+}
+
+.cabecalho{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding-right: 50px;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    padding-top: 20px;
+}
+
+.div_introducao{
+    display: flex;
+    height: 800px; 
+    width: 1380px;
+    justify-content: space-between;
+}
+
+.imagem_predio{
+    width: 600px; 
+	height: 600px; 
+	background-image: url('img/predio.png');
+	background-size: cover;
+    justify-content: flex-end;
+    border-radius: 25px;
+    box-shadow: 5px 5px 20px grey;
+}
+
+.introducao_texto_e_imagem{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.certificacao{
+    display: flex;
+    width: 700px;
+    height: 30px;
+    display: flex;
+    background-color: #0056B23B;
+    border-radius: 10px;
+    margin: 0px;
+    padding-left: 10px;
+    align-items: center;
+    font-style: 700;
+    padding-left: 20px;
+}
+
+.fluxo_ponta_a_ponta{
+    padding-bottom: 50px;
+}
+
+.trajetoria{
+    width: 1380px;
+    height: 224px;
+    display: flex;
+    padding-bottom: 100px;
+}
+
+.industria_e_producao{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.vantagens{
+    width: 1380px;
+    height: 600px;
+    padding-bottom: 150px;
+}
+
+.logistica_e_transporte{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hospitais_e_clínicas{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.monitoramento_avancado{
+    width: 1380px;
+    height: 224px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.painel_de_vantagens{
+    width: 1380px;
+    height: 320px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.caixas_explicativas{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid rgba(226, 232, 240, 1);
+}
+
+.seguranca_juridica{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px; 
+}
+
+.prevencao{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.imagem_seguranca{
+    padding-top: 48px;
+    padding-left: 48px;
+    padding-bottom: 20px;
+}
+
+.CorVerdeClarinho{
+    color: #10B981;
+    width: 300px;
+}
+
+.cardVerde{
+    background-color: #d9efe7; 
+    border: 1px solid #4fbf9f; 
+    color: #2fa37f; 
+    padding: 10px 20px;
+    border-radius: 10px; 
+    font-size: 14px;
+    width: 220px;
+    height: 38px;
+    display: flex;
+}
+
+.fundinhoBranco{
+    background-color: #F5F7F8; 
+    padding: 65px 65px 39px 65px;
+    border-radius: 6px; 
+    display: flex;
+    box-shadow: 0px 10px 15px 1px;
+    width: 1480px;
+    border-radius: 10px;
+    flex-direction:row;
+    height: 1300px;
+    justify-content: space-between;
+
+}
+
+.B_Home{
+    background-color: #F5F7F8;
+}
+
+.htmlHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ladoEsquerdo{
+    background-color: #F5F7F8;
+    width: 742px ;
+    justify-content: flex-end;  
+}
+
+.ContainerTexto{
+    width: auto ;
+    height: auto;
+    padding-bottom: 20px;
+}
+
+.ContainnerCalculadora{
+    display: block;
+}
+
+.ContainerInstituicao{
+    background-color: #FFFFFF;
+    height: auto;
+    width: 630px;
+    justify-content: flex-end;
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.Descubra_risco{
+    font-size: 48px; 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Estime_esposicao{
+    font-size: 20px;
+    color: #0f172aa0;
+}
+
+.botoes_publico_ou_privado{
+    display: flex;
+    justify-content: space-between;
+    width: 550px;
+    padding-bottom: 20px;
+}
+
+.publica_ou_privada{
+    display: flex;
+    align-items: center;
+    background-color: rgba(13, 27, 46, 1);
+    color: white;
+    height: 60px;
+    width: 270px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.marcar_check{
+    display: flex;
+    width: 25px;
+    height: 25px;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+input[type="checkbox"]:checked {
+    appearance: auto;
+}
+
+.caixa_input{
+    width: 550px;
+    height: 60px;
+    border-color: rgba(13, 27, 46, 1);
+    border-radius: 10px;
+    padding-left: 20px;
+    border-width: 3px;
+}
+
+.pergunta{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+}
+
+.perguntas_calculadora{
+    padding-bottom: 60px;
+}
+
+.numero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color:  rgba(13, 27, 46, 1);
+    border-radius: 100px;
+    color: white;
+}
+
+.simulador_botao{
+    background-color: rgba(255, 94, 97, 1);
+    width: 550px;
+    height: 60px;
+    border-radius: 15px;
+    border-color: rgba(255, 94, 97, 1);
+    color: white;
+    font-size: 18px;
+}
+
+.ladoDireito{
+    padding: 4px 8px;
+    width: 742px;
+    height: 1196px;
+    display: flex;
+    justify-content: end;
+}
+
+.resultado_simulacao{
+    width: 622px;
+    height: 1196px;
+    background-color: white;
+    padding-left: 35px;
+    border-radius: 10px;
+}
+
+.mostrar_resultado{
+    width: 587px;
+    height: 800px;
+}
+
+.caixa_de_resposta{
+    padding-bottom: 20px;
+}
+
+.resposta{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    width: 600px;
+}
+
+.caixa_resultado{
+    width: 550px;
+    height: 60px;
+    border-color: rgba(13, 27, 46, 1);
+    font-size: 35px;
+    font-weight: bold;
+    display: flex;
+}
+/* ========================= */
+/* Style Cadastro */
+
+.backg {
+      margin: 0;
+      height: 120vh;
+      /*Ocupa 100% da altura da tela*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* text-align: center; USAR EM OUTRA OCASIAO */
+      background-image: linear-gradient(135deg, rgba(0, 86, 178, 1), rgba(121, 169, 194, 1));
+}
+
+.headerVoltar {
+      display: flex;
+      justify-content: center;
+      margin-right: 2px;
+}
+
+.logo {
+      width: 190px;
+      margin-bottom: 20px;
+      align-items: center;
+}
+
+.check {
+      align-items: center;
+      width: 7%;
+
+}
+
+.chevron {
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+
+}
+
+.header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+}
+
+.container {
+
+      text-align: center;
+      color: #000;
+      border: solid 2px #000;
+      border-radius: 20px;
+      padding: 65px;
+      background: rgb(246, 243, 243);
+      width: 290px;
+      align-items: center;
+      margin: auto;
+      border: none;
+      margin-top: 20px;
+      position: relative;
+      flex-direction: column;
+      /* centraliza horizontal */
+      box-shadow: 0px 25px 50px #00000040;
+      justify-content: center;
+
+}
+
+.subtext {
+      border-radius: 60px;
+      background-color: #0056B23B;
+
+      color: #0056B2;
+      border: solid 1px;
+      border: none;
+      padding: 3px 3px;
+      display: flex;
+      text-align: center;
+      font-size: 15px;
+      width: fit-content;
+      margin-bottom: 30px;
+}
+
+.Title {
+
+      color: #fcfdfe;
+      text-align: center;
+}
+
+.B_Cadastro{
+      height: 100vh;
+      background: linear-gradient(to bottom right, #0056B2, #68829F);
+      align-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+
+}
+
+.alerta {
+      color: #2e2d2d;
+      margin-bottom: 10px;
+}
+
+.button button {
+
+      border-radius: 8px;
+      background-color: #0056B2;
+      /* 🔵 azul */
+      color: white;
+      /* texto branco */
+      padding: 12px 90px;
+      font-size: 16px;
+
+      cursor: pointer;
+      border: none;
+      justify-content: center;
+
+      appearance: none;
+      transition: 0.3s;
+}
+
+.input-box input {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 10px;
+      width: 100%;
+      justify-content: center;
+      /*melhor que 300px */
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      /* espaço entre eles */
+
+
+      text-align: left;
+      border: none;
+
+}
+
+.olho {
+       pointer-events: none;
+      position: absolute;
+      right: -9px;
+      width: 20px;
+      top: 37px;
+      pointer-events: auto;
+      z-index: 2;
+}
+
+.email {
+      /* Mantenha suas configurações e adicione: */
+      pointer-events: none;
+      position: absolute;
+      right: -9px;
+      width: 20px;
+      top: 37px;
+      z-index: 2;
+}
+
+.campo {
+      margin-bottom: 25px;
+      text-align: left;
+      border: none;
+      position: relative;
+      /* FUNDAMENTAL: O ícone agora move em relação a esta div */
+          
+
+}
+
+.campo h3 {
+      margin-bottom: 10px;
+      color: rgb(39, 37, 37);
+      font-size: 15px;
+      border: none;
+       
+
+}
+
+a:link { 
+    color: #0056B2; 
+    text-decoration: none;
+}
+a:visited { 
+    color: #0056B2; 
+    text-decoration: none;
+}
+
+/* ================= */
+/* Style login */
+
+.B_Login{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+}
+
+a:link { 
+    color: #0056B2; 
+    text-decoration: none;
+}
+a:visited { 
+    color: #0056B2; 
+    text-decoration: none;
+}
+
+.backg{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(135deg, rgba(0, 86, 178, 1), rgba(121,169,194,1));
+}
+.janela{
+    background-color: rgba(248,250,252,1);
+    padding: 2%;
+    border-radius: 12px;
+    box-shadow: 0px 25px 50px #00000040;
+    width: 350px;
+    height: fit-content;
+}
+.chevron{
+    width: 30px;
+    height: 30px;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.headerVoltar{
+    display: flex;
+    justify-content: center;
+}
+.logo{
+    width: 250px;
+}
+.subtext{
+    background-color: #0056B23B;
+    border-radius: 10px;
+    padding: 2px;
+    padding-top: 4px;
+    display: flex;
+    justify-content: center;
+    color: #0056B2;
+    width: fit-content;
+}
+.check{
+    width: 7%;
+    padding-right: 7px;
+    padding-left: 6px;
+}
+.input{
+    width: 100%;
+    padding: 15px;
+    margin: 11px 0;
+    display: inline-block;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.email{
+    background-image: url('img/emailIcon.png');
+    background-repeat: no-repeat;
+    background-size: 5%;
+    background-position: 10px center;
+    padding-left: 40px;
+}
+.senha{
+    padding-right: 40px;
+    padding-left: 40px;
+    background-image: url('img/senhaIcon.png');
+    background-repeat: no-repeat;
+    background-size: 5%;
+    background-position: 10px center;
+}
+.olho {
+    cursor: pointer;
+    width: 20px;
+    position: absolute;
+    right: 10px;
+}
+.inputContainer{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.senhaTitle{
+    display: flex;
+    justify-content: space-between;
+}
+.container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.botao{
+    width: 100%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-color: #0056B2;
+    color: #fff;
+    border-radius: 8px;
+    border: 0px;
+}
+.botao:hover {
+    cursor: pointer;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+}
+.erro{
+    color: red;
+}
+
+/* ======================== */
+/* Style Logs */
+
+.B_Logs{
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #0056B2, #68829f);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Space Grotesk';
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cardHeader {
+    display: flex;
+}
+
+.back {
+    width: 10px;
+}
+
+.logoArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: -20px;
+}
+
+.logo {
+    width: 25px;
+}
+
+.logotipo {
+    width: 140px;
+}
+
+.sloganArea {
+    display: flex;
+    justify-content: center;
+}
+
+.slogan {
+    width: 200px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.inputGroup {
+    display: flex;
+    gap: 10px;
+}
+
+.full {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #1E63D5;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.inputGroup input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #E2E8F0;
+}
+
+.inputGroup button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #1E63D5;
+    color: white;
+    font-weight: bold;
+}
+
+.logsCard {
+    background-color: #FFFFFF;
+    width: 97%;
+    height: 95%;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.logsHeader {
+    display: flex;
+}
+
+.logsLogo {
+    margin-left: 20px;
+}
+
+.logsLogoTipo {
+    width: 25%;
+    height: 20%;
+    align-self: center;
+}
+
+#LogsTitle {
+    margin-left: 60px;
+    color: #0F172A;
+}
+
+.logsDados {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+
+#LogsRegistros {
+    width: 90%;
+}
+
+.mesTitulo {
+    margin: 20px 0 5px 5px;
+    color: #64748B;
+    font-size: 14px;
+    font-weight: 500;
+    font-weight: bold;
+}
+
+.logLinha {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+
+    border-bottom: none;
+}
+
+.logInfo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.total {
+    font-weight: bold;
+    color: #475569;
+}
+
+.ideal {
+    color: #34D399;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fora {
+    color: #FF5E61;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.botaoExpandir {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0F172A;
+}
+
+.expandDiv {
+    background-color: #000000;
+    width: 98.5%;
+    height: 50%;
+    padding: 0;
+    margin-top: -25px;
+}
+
+.expandDiv {
+    display: none;
+    background: #FFFFFF;
+    padding: 0 12px 10px 12px;
+}
+
+.expandLinha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid #E2E8F0;
+    font-size: 14px;
+    color: #475569;
+    flex-wrap: nowrap;
+    padding: 6px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.expandLinha:last-child {
+    border-bottom: none;
+}
+
+.colData {
+    min-width: 92px;
+    font-weight: bold;
+    color: #334155;
+}
+
+.sep {
+    color: #94A3B8;
+}
+
+.colMedia {
+    min-width: 84px;
+    font-weight: bold;
+    color: #475569;
+}
+
+.colStatus {
+    min-width: 60px;
+    font-weight: bold;
+}
+
+.colAlertas {
+    min-width: 78px;
+    font-weight: bold;
+    color: #475569;
+}
+
+.colTempo {
+    min-width: 95px;
+    font-weight: bold;
+    color: #475569;
+    line-height: 1.1;
+}
+
+.colTempo small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #64748B;
+    margin-top: 2px;
+}
