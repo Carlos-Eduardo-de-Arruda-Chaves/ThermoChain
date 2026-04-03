@@ -315,7 +315,7 @@ input[type="checkbox"]:checked {
     justify-content: start;
     align-items: center;
     text-align: center;
-    width: 300px;
+    width: 400px;
 }
 
 .perguntas_calculadora{
@@ -403,7 +403,7 @@ input[type="checkbox"]:checked {
 }
 
 .empresas_parceiras{
-    width: 1280;
-    height: 256;
+    height: 256px;
     background-color: #F5F7F8;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL42mrniEpTOPUKjZl2Bxzg2i3Qz20MMhPBg&s');
 }

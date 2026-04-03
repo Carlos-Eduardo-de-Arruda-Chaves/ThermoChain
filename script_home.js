@@ -15,3 +15,23 @@
             document.getElementById('checkbox_privado').checked = false;
         }
     }
+
+    function simular(){
+        let doses = Number(id_doses.value);
+        let doses_perdidas = Number(id_doses_perdidas.value);
+        let doses_por_lote = Number(id_doses_por_lote.value);
+        let valor_vacina = Number(id_valor_unitario.value);
+        
+        let porcentagem_perdida = (doses_perdidas / doses) * 100
+        let valor_total = doses * valor_vacina
+        let qtd_lotes = doses / doses_por_lote
+        let valor_lote = valor_vacina * qtd_lotes
+        console.log(porcentagem_perdida);
+
+        porcentagem.innerHTML = `${porcentagem_perdida.toFixed(2)}%`
+        receita_potencial.innerHTML = `${valor_total.toFixed(2)} R$`
+        lotes_totais.innerHTML = `${(qtd_lotes).toFixed(0)}`
+        receita_alcancada.innerHTML = `${(valor_total - (doses_perdidas * valor_vacina)).toFixed(2)} R$`
+        receita_perdida.innerHTML = `${(doses_perdidas * valor_vacina).toFixed(2)} R$`
+        lotes_perdidos.innerHTML = `${(doses_perdidas / doses_por_lote).toFixed(0)}`
+    }
