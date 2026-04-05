@@ -29,9 +29,7 @@
         console.log(porcentagem_perdida);
 
         porcentagem.innerHTML = `${porcentagem_perdida.toFixed(2)}%`
-        receita_potencial.innerHTML = `${valor_total.toFixed(2)} R$`
-        lotes_totais.innerHTML = `${(qtd_lotes).toFixed(0)}`
-        receita_alcancada.innerHTML = `${(valor_total - (doses_perdidas * valor_vacina)).toFixed(2)} R$`
+        receita_alcancada.innerHTML = `De ${valor_total.toFixed(2)} R$, foi alcançado ${(valor_total - (doses_perdidas * valor_vacina)).toFixed(2)} R$`
         receita_perdida.innerHTML = `${(doses_perdidas * valor_vacina).toFixed(2)} R$`
-        lotes_perdidos.innerHTML = `${(doses_perdidas / doses_por_lote).toFixed(0)}`
+        lotes_perdidos.innerHTML = `De ${(qtd_lotes).toFixed(0)} lotes, <span style="color: red; margin-right: 10px; margin-left: 10px"> ${(doses_perdidas / doses_por_lote).toFixed(0)} </span> são perdidos`
     }

@@ -218,9 +218,9 @@ a:visited {
     width: 1480px;
     border-radius: 32px;
     flex-direction:row;
-    height: 1300px;
+    height: 1000px;
     justify-content: space-between;
-
+    transform: scale(0.9);
 }
 
 body{
@@ -243,6 +243,7 @@ html{
     width: auto ;
     height: auto;
     padding-bottom: 20px;
+    padding-left: 50px;
 }
 
 .ContainnerCalculadora{
@@ -355,7 +356,7 @@ input[type="checkbox"]:checked {
 
 .resultado_simulacao{
     width: 622px;
-    height: 1196px;
+    height: 840px;
     background-color: white;
     padding-left: 35px;
     border-radius: 24px;
@@ -368,25 +369,23 @@ input[type="checkbox"]:checked {
     height: 800px;
 }
 
-.caixa_de_resposta{
-    padding-bottom: 20px;
-}
-
 .resposta{
     display: flex;
     justify-content: start;
     align-items: center;
     text-align: center;
     width: 600px;
+    padding-bottom: 25px;
 }
 
 .caixa_resultado{
     width: 550px;
     height: 60px;
     border-color: rgba(13, 27, 46, 1);
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
     display: flex;
+
 }
 
 .botao_fale_conosco{
@@ -397,7 +396,7 @@ input[type="checkbox"]:checked {
     border-color: #34D399;
     color: black;
     font-size: 20px;
-    margin-top: 100px;
+    margin-top: 20px;
     font-weight: bold;
     
 }

@@ -133,26 +133,26 @@
         </div>
     </div>
     <!-- Calculadora Financeira -->
-    <div class="fundinhoBranco">
-        <div class="ladoEsquerdo">
-            <div class="ContainerTexto">
-                <div class="cardVerde">
-                    <div>
-                        <div class="CorVerdeClarinho">
-                            Simulador Inteligente de Risco
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="Descubra_risco">
-                        Descubra o risco <br> invisível na sua cadeia <br>fria
-                    </h1>
-                    <div class="Estime_esposicao">
-                        Estime a exposição financeira e sanitária causada por <br>
-                        excursões térmicas não detectadas.
-                    </div>
+    <div class="ContainerTexto">
+        <div class="cardVerde">
+            <div>
+                <div class="CorVerdeClarinho">
+                    Simulador Inteligente de Risco
                 </div>
             </div>
+        </div>
+        <div>
+            <h1 class="Descubra_risco">
+                Descubra o risco <br> invisível na sua cadeia <br>fria
+            </h1>
+            <div class="Estime_esposicao">
+                Estime a exposição financeira e sanitária causada por <br>
+                excursões térmicas não detectadas.
+            </div>
+        </div>
+    </div>
+    <div class="fundinhoBranco">
+        <div class="ladoEsquerdo">
             <div class="ContainerInstituicao">
                 <div style="font-size: 20px;">
                     Instituição<br><br><br>
@@ -171,17 +171,19 @@
                     <input class="caixa_input" placeholder="Ex: 200.000" id="id_doses">
                     <div class="pergunta">
                         <div class="numero">2</div>
-                        <p style="font-size: 20px; padding-left: 20px; font-weight: bold;">Quantidade de doses perdidas</p>
+                        <p style="font-size: 20px; padding-left: 20px; font-weight: bold;">Quantidade de doses perdidas
+                        </p>
                     </div>
                     <input class="caixa_input" placeholder="Ex: 15000" id="id_doses_perdidas">
                     <div class="pergunta">
                         <div class="numero">3</div>
-                        <p style="font-size: 20px; padding-left: 20px; font-weight: bold;">Quantidade de doses por lote</p>
+                        <p style="font-size: 20px; padding-left: 20px; font-weight: bold;">Quantidade de doses por lote
+                        </p>
                     </div>
                     <input class="caixa_input" placeholder="Ex: 10.000" id="id_doses_por_lote">
                     <div class="pergunta">
                         <div class="numero">4</div>
-                        <p style="font-size: 20px; padding-left: 20px; font-weight: bold;">Valor unitário da vacina</p>
+                        <p style="font-size: 20px; padding-left: 20px; font-weight: bold;">Valor unitário da vacina (R$)</p>
                     </div>
                     <input class="caixa_input" placeholder="Ex: 20" id="id_valor_unitario">
                 </div>
@@ -192,35 +194,20 @@
             <div class="resultado_simulacao">
                 <h1 style="padding-bottom: 40px;">Resultado da Simulação</h1>
                 <div class="mostrar_resultado">
-                    <div class="caixa_de_resposta">
-                        <div class="resposta">
-                            <h3>LOTES TOTAIS</h3>
-                        </div>
-                        <div class="caixa_resultado" id="lotes_totais">
-                        
-                        </div>
-                    </div>
-                    <div class="caixa_de_resposta">
-                        <div class="resposta">
-                            <h3>RECEITA EM POTENCIAL</h3>
-                        </div>
-                        <div class="caixa_resultado" id="receita_potencial">
-                            
-                        </div>
-                    </div>
+                    
                     <div class="caixa_de_resposta">
                         <div class="resposta">
                             <h3>RECEITA ALCANÇADA</h3>
                         </div>
-                        <div class="caixa_resultado"  id="receita_alcancada">
-                        
+                        <div class="caixa_resultado" id="receita_alcancada">
+
                         </div>
                     </div>
                     <div class="caixa_de_resposta">
                         <div class="resposta">
-                            <h3>LOTES PERDIDOS</h3>
+                            <h3>LOTES</h3>
                         </div>
-                        <div style="color: red;" class="caixa_resultado" id="lotes_perdidos">
+                        <div class="caixa_resultado" id="lotes_perdidos">
 
                         </div>
                     </div>
@@ -229,7 +216,7 @@
                             <h3>PERDA MÉDIA MENSAL</h3>
                         </div>
                         <div style="color: red;" class="caixa_resultado" id="porcentagem">
-                            
+
                         </div>
                     </div>
                     <div class="caixa_de_resposta">
@@ -237,18 +224,18 @@
                             <h3>RECEITA PERDIDA</h3>
                         </div>
                         <div style="color: red;" class="caixa_resultado" id="receita_perdida">
-                        
+
                         </div>
                     </div>
                     <button class="botao_fale_conosco">Fale Conosco Para Diagnóstico Técnico</button>
-                    </div>
                 </div>
             </div>
-        </div><br>
-        <!-- Fim da calculadora -->
-        <div class="empresas_parceiras">
-            oi
         </div>
+    </div><br>
+    <!-- Fim da calculadora -->
+    <div class="empresas_parceiras">
+        oi
+    </div>
 </body>
 
 <script src="script_home.js"></script>
