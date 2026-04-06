@@ -403,3 +403,19 @@ input[type="checkbox"]:checked {
     align-items: center;
     flex-direction: column;
 }
+
+.footer{
+    height: 250px;
+    border-top: 2px solid rgb(226, 226, 226);
+    padding-top: 20px;
+    padding-left: 20px;
+    display: flexbox;
+    justify-content: center;
+}
+
+.informacoes_institucionais{
+    height: 250px;
+    width: 420px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
