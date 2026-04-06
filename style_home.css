@@ -379,7 +379,7 @@ input[type="checkbox"]:checked {
     font-size: 25px;
     font-weight: bold;
     display: flex;
-
+    padding-left: 35px;
 }
 
 .botao_fale_conosco{
@@ -424,10 +424,12 @@ input[type="checkbox"]:checked {
     height: 250px;
     padding-left: 30px;
     padding-top: 20px;
+    padding-right: 80px;
 }
 
 .informacoes_institucionais3{
     height: 250px;
     padding-left: 30px;
     padding-top: 20px;
+    padding-right: 80px;
 }
