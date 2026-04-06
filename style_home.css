@@ -10,6 +10,16 @@ a:visited {
     text-decoration: none;
 }
 
+body{
+    background-color: #F5F7F8;
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .logo_imagem{
     width: 100px; 
 	height: 35px;
@@ -226,16 +236,6 @@ a:visited {
     margin: 0 auto;
 }
 
-body{
-    background-color: #F5F7F8;
-}
-
-html{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .ladoEsquerdo{
     background-color: #F5F7F8;
     flex: 1;
@@ -355,7 +355,6 @@ input[type="checkbox"]:checked {
 .resultado_simulacao{
     height: 840px;
     background-color: white;
-    padding-left: 35px;
     border-radius: 24px;
     box-shadow: #838282b7 0px 10px 15px 1px;
     overflow: hidden;
@@ -371,6 +370,7 @@ input[type="checkbox"]:checked {
     align-items: center;
     text-align: center;
     padding-bottom: 25px;
+    padding-left: 35px;
 }
 
 .caixa_resultado{
@@ -385,7 +385,7 @@ input[type="checkbox"]:checked {
 .botao_fale_conosco{
     background-color: #34D399;
     height: 80px;
-    width: 100%;
+    width: 80%;
     border-radius: 15px;
     border-color: #34D399;
     color: black;
@@ -393,10 +393,13 @@ input[type="checkbox"]:checked {
     margin-top: 20px;
     font-weight: bold;
     
+    
 }
 
 .empresas_parceiras{
     height: 256px;
-    background-color: #F5F7F8;
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL42mrniEpTOPUKjZl2Bxzg2i3Qz20MMhPBg&s');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
