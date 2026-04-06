@@ -405,17 +405,29 @@ input[type="checkbox"]:checked {
 }
 
 .footer{
-    height: 250px;
     border-top: 2px solid rgb(226, 226, 226);
-    padding-top: 20px;
-    padding-left: 20px;
-    display: flexbox;
-    justify-content: center;
+    padding-top: 20px; 
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    width: 100%;
+    .logo_imagem{width: 100%;}
 }
 
 .informacoes_institucionais{
     height: 250px;
-    width: 420px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.informacoes_institucionais2{
+    height: 250px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.informacoes_institucionais3{
+    height: 250px;
     padding-left: 30px;
     padding-top: 20px;
 }
