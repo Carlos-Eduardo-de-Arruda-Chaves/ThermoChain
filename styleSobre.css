@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+a:link { 
+    color: #000000; 
+    text-decoration: none;
+}
+a:visited { 
+    color: #000000; 
+    text-decoration: none;
+}
+
+body{
+    background-color: #F5F7F8;
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_imagem{
+    width: 100px; 
+	height: 35px;
+    background-size: cover;
+}
+
+.botao_head{
+    background-color: #F5F7F8;
+    box-shadow: none;
+    border: none;
+    height: 35px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.botao_head:hover{
+    background-color: #dedede;
+}
+
+.botoes_cabecario{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.botao_cliente_cadastro:hover{
+    background-color: rgb(3, 3, 194);
+}
+
+.botao_cliente_cadastro{
+    background-color: rgba(0, 86, 178, 1);
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login{
+    background-color: white;
+    border: 3px solid rgba(0, 86, 178, 1);
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login:hover{
+    background-color: rgb(221, 221, 221);
+}
+
+.cabecalho{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding-right: 50px;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    padding-top: 20px;
+}
+
+.div_introducao{
+    display: flex;
+    height: 800px; 
+    width: 1380px;
+    justify-content: space-between;
+}
+
+.introducao_texto_e_imagem{
+    padding-left: 50px;
+    padding-right: 50px;
+}

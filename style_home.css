@@ -10,6 +10,20 @@ a:visited {
     text-decoration: none;
 }
 
+body{
+    background-color: #F5F7F8;
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="checkbox"]:checked {
+    appearance: auto;
+}
+
 .logo_imagem{
     width: 100px; 
 	height: 35px;
@@ -223,16 +237,6 @@ a:visited {
     transform: scale(0.9);
 }
 
-body{
-    background-color: #F5F7F8;
-}
-
-html{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .ladoEsquerdo{
     background-color: #F5F7F8;
     width: 742px ;
@@ -296,10 +300,6 @@ html{
     border: 2px solid #ccc;
     border-radius: 5px;
     pointer-events: none;
-}
-
-input[type="checkbox"]:checked {
-    appearance: auto;
 }
 
 .caixa_input{
