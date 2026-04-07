@@ -167,10 +167,18 @@ CREATE TABLE alocacao_lote(
 	fk_sensor BIGINT,
     
     -- Início do monitoramento
-	inicio_monitoramento DATETIME NOT NULL,
+	inicio_monitoramento DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     
     -- Fim do monitoramento (pode ser nulo)
-    fim_monitoramento DATETIME DEFAULT NULL
+    fim_monitoramento DATETIME DEFAULT NULL,
+    
+    CONSTRAINT cfk_lote 
+		FOREIGN KEY (fk_lote)
+        REFERENCES lote_vacina (id_lote),
+        
+	CONSTRAINT cfk_sensor
+		FOREIGN KEY (fk_sensor)
+        REFERENCES sensor(id_sensor)
 );
 
 -- TABELA MICROCONTROLADOR
