@@ -283,8 +283,17 @@ CREATE TABLE leitura_temperatura (
         REFERENCES lote_vacina(id_lote)
 );
 
+-- ============================================================
+--  TermoChain – INSERTs e SELECTs de exemplo
+--  Observação: o script de criação foi ajustado (bug da FK
+--  vacina → tipo_vacina e FKs de alocacao_lote adicionadas).
+-- ============================================================
 
+USE TermoChain;
+
+-- ============================================================
 -- 1. EMPRESA
+-- ============================================================
 INSERT INTO empresa
     (razao_social, nome_fantasia, cnpj, telefone, email,
      logradouro, numero, complemento, bairro, cidade, estado, cep, segmento)
@@ -305,8 +314,9 @@ VALUES
      'Farmacêutico');
 
 
-
+-- ============================================================
 -- 2. USUARIO
+-- ============================================================
 INSERT INTO usuario
     (nome, email, senha, cpf, fk_empresa)
 VALUES
@@ -318,7 +328,9 @@ VALUES
     ('Enzo Quinalha',       'roberto.alves@immunocenter.com.br','cialounge(@8794', '65678901234', 3);
 
 
+-- ============================================================
 -- 3. TIPO_VACINA
+-- ============================================================
 INSERT INTO tipo_vacina
     (nome, fabricante, temperatura_min, temperatura_max, fk_empresa)
 VALUES
@@ -329,7 +341,9 @@ VALUES
     ('Influenza Trivalente',	'Sanofi Pasteur',       2.00, 8.00, 3);
 
 
+-- ============================================================
 -- 4. LOTE_VACINA
+-- ============================================================
 INSERT INTO lote_vacina
     (codigo, data_fabricacao, data_validade, peso, volume, quantidade, fk_vacina)
 VALUES
@@ -341,7 +355,9 @@ VALUES
     ('LOTE-FLU-2025-001','2025-05-01', '2025-11-01', 3.80, 1.80,  900, 5);
 
 
+-- ============================================================
 -- 5. MICROCONTROLADOR
+-- ============================================================
 INSERT INTO microcontrolador
     (modelo, fabricante, tipo, numero_serie, local_instalacao, observacao)
 VALUES
@@ -351,7 +367,9 @@ VALUES
     ('ESP32-S3',        'Espressif', 'ESP32', 'SN-ESP32-003', 'Depósito central – ImunoCenter', 'Backup ativo');
 
 
+-- ============================================================
 -- 6. SENSOR
+-- ============================================================
 INSERT INTO sensor
     (modelo, fabricante, tipo, local_instalacao, faixa_min, faixa_max, observacao)
 VALUES
@@ -362,7 +380,10 @@ VALUES
     ('LM35', 'Texas Instruments', 'Temperatura LM35', 'Depósito ImunoCenter',     -55.00, 150.00, NULL);
 
 
+-- ============================================================
 -- 7. ALOCACAO_LOTE
+--    (FKs fk_lote → lote_vacina e fk_sensor → sensor)
+-- ============================================================
 INSERT INTO alocacao_lote
     (fk_lote, fk_sensor, inicio_monitoramento, fim_monitoramento)
 VALUES
@@ -374,7 +395,9 @@ VALUES
     (6, 1, '2025-05-01 08:00:00', NULL);           -- Lote Influenza também no sensor 1
 
 
+-- ============================================================
 -- 8. LEITURA_TEMPERATURA
+-- ============================================================
 INSERT INTO leitura_temperatura
     (temperatura, data_hora, status_temperatura, alerta, tempo_alerta_segundos, fk_sensor, fk_lote)
 VALUES
@@ -404,9 +427,11 @@ VALUES
     ( 9.10, '2025-06-01 11:30:00', 'Alerta',  TRUE,   90, 5, 5);
 
 
+-- ============================================================
 -- SELECTs
+-- ============================================================
 
--- Todos os lotes com o nome da vacina e status
+-- ① Todos os lotes com o nome da vacina e status
 SELECT
     lv.codigo AS lote,
     tv.nome AS vacina,
@@ -420,7 +445,7 @@ JOIN tipo_vacina tv
 ORDER BY lv.data_validade;
 
 
--- Leituras com alerta ou crítico, mostrando vacina e sensor
+-- ② Leituras com alerta ou crítico, mostrando vacina e sensor
 SELECT
     lt.data_hora,
     lt.temperatura,
@@ -438,7 +463,7 @@ WHERE lt.alerta
 ORDER BY lt.data_hora DESC;
 
 
--- Resumo de leituras por lote (min, max, média e total de alertas)
+-- ③ Resumo de leituras por lote (min, max, média e total de alertas)
 SELECT
     lt.data_hora,
     lt.temperatura,
@@ -459,7 +484,7 @@ WHERE lt.alerta
 ORDER BY lt.data_hora DESC;
 
 
--- Lotes atualmente monitorados (alocações sem fim)
+-- ④ Lotes atualmente monitorados (alocações sem fim)
 SELECT
     al.id_alocacao,
     lv.codigo AS lote,
@@ -477,7 +502,7 @@ JOIN sensor s
 WHERE al.fim_monitoramento IS NULL
 ORDER BY al.inicio_monitoramento;
 
--- Usuários por empresa com total de usuários
+-- ⑤ Usuários por empresa com total de usuários
 SELECT
     e.razao_social AS empresa,
     e.segmento,
@@ -489,14 +514,15 @@ GROUP BY e.id_empresa
 ORDER BY total_usuarios DESC;
 
 
--- Lotes vencidos ou próximos do vencimento (próximos 60 dias)
+-- ⑥ Lotes vencidos ou próximos do vencimento (próximos 60 dias)
 SELECT
     lv.codigo,
     tv.nome AS vacina,
     lv.data_validade,
+    DATEDIFF(lv.data_validade, CURDATE()) AS dias_restantes,
     lv.status_lote
 FROM lote_vacina lv
 JOIN tipo_vacina tv 
     ON tv.id_vacina = lv.fk_vacina
-WHERE lv.data_validade <= CURDATE() + 60
+WHERE DATEDIFF(lv.data_validade, CURDATE()) <= 60
 ORDER BY lv.data_validade;

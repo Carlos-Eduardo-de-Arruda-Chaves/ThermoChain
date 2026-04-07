@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     box-sizing: border-box;
 }
@@ -406,3 +407,440 @@ input[type="checkbox"]:checked {
     background-color: #F5F7F8;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL42mrniEpTOPUKjZl2Bxzg2i3Qz20MMhPBg&s');
 }
+=======
+* {
+    box-sizing: border-box;
+}
+a:link { 
+    color: #000000; 
+    text-decoration: none;
+}
+a:visited { 
+    color: #000000; 
+    text-decoration: none;
+}
+
+body{
+    background-color: #F5F7F8;
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_imagem{
+    width: 100px; 
+	height: 35px;
+    background-size: cover;
+}
+
+.botao_head{
+    background-color: #F5F7F8;
+    box-shadow: none;
+    border: none;
+    height: 35px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.botao_head:hover{
+    background-color: #dedede;
+}
+
+.botoes_cabecario{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.botao_cliente_cadastro:hover{
+    background-color: rgb(3, 3, 194);
+}
+
+.botao_cliente_cadastro{
+    background-color: rgba(0, 86, 178, 1);
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login{
+    background-color: white;
+    border: 3px solid rgba(0, 86, 178, 1);
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login:hover{
+    background-color: rgb(221, 221, 221);
+}
+
+.cabecalho{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding-right: 50px;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    padding-top: 20px;
+}
+
+.div_introducao{
+    display: flex;
+    height: 800px; 
+    width: 1380px;
+    justify-content: space-between;
+}
+
+.imagem_predio{
+    width: 600px; 
+	height: 600px; 
+	background-image: url('img/predio.png');
+	background-size: cover;
+    justify-content: flex-end;
+    border-radius: 25px;
+    box-shadow: 5px 5px 20px grey;
+}
+
+.introducao_texto_e_imagem{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.certificacao{
+    display: flex;
+    width: 700px;
+    height: 30px;
+    display: flex;
+    background-color: #0056B23B;
+    border-radius: 10px;
+    margin: 0px;
+    padding-left: 10px;
+    align-items: center;
+    font-style: 700;
+    padding-left: 20px;
+}
+
+.fluxo_ponta_a_ponta{
+    padding-bottom: 50px;
+}
+
+.trajetoria{
+    width: 1380px;
+    height: 224px;
+    display: flex;
+    padding-bottom: 100px;
+}
+
+.industria_e_producao{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.vantagens{
+    width: 1380px;
+    height: 600px;
+    padding-bottom: 150px;
+}
+
+.logistica_e_transporte{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hospitais_e_clínicas{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.monitoramento_avancado{
+    width: 1380px;
+    height: 224px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.painel_de_vantagens{
+    width: 1380px;
+    height: 320px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.caixas_explicativas{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid rgba(226, 232, 240, 1);
+}
+
+.seguranca_juridica{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px; 
+}
+
+.prevencao{
+    width: 414px;
+    height: 320px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.imagem_seguranca{
+    padding-top: 48px;
+    padding-left: 48px;
+    padding-bottom: 20px;
+}
+
+.CorVerdeClarinho{
+    color: #10B981;
+    width: 300px;
+}
+
+.cardVerde{
+    background-color: #d9efe7; 
+    border: 1px solid #4fbf9f; 
+    color: #2fa37f; 
+    padding: 10px 20px;
+    border-radius: 10px; 
+    font-size: 14px;
+    width: 220px;
+    height: 38px;
+    display: flex;
+}
+
+.fundinhoBranco{
+    background-color: #F5F7F8; 
+    padding: 65px 65px 39px 65px;
+    border-radius: 6px; 
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    box-shadow: #838282b7 0px 10px 8px 0px;
+    max-width: 1480px;
+    width: 100vw;
+    border-radius: 32px;
+    flex-direction:row;
+    justify-content: space-between;
+    transform: scale(0.9);
+    margin: 0 auto;
+}
+
+.ladoEsquerdo{
+    background-color: #F5F7F8;
+    flex: 1;
+}
+
+.ContainerTexto{
+    width: auto ;
+    height: auto;
+    padding-bottom: 20px;
+    padding-left: 50px;
+}
+
+.ContainnerCalculadora{
+    display: block;
+}
+
+.ContainerInstituicao{
+    background-color: #FFFFFF;
+    height: auto;
+    justify-content: flex-end;
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.Descubra_risco{
+    font-size: 48px; 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Estime_esposicao{
+    font-size: 20px;
+    color: #0f172aa0;
+}
+
+.botoes_publico_ou_privado{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 20px;
+    gap: 20px;
+}
+
+.publica_ou_privada{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    background-color: rgba(13, 27, 46, 1);
+    color: white;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.marcar_check{
+    display: flex;
+    width: 25px;
+    height: 25px;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+input[type="checkbox"]:checked {
+    appearance: auto;
+}
+
+.caixa_input{
+    width: 100%;
+    height: 60px;
+    border-color: rgba(13, 27, 46, 1);
+    border-radius: 10px;
+    padding-left: 20px;
+    border-width: 3px;
+}
+
+.pergunta{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    width: 400px;
+}
+
+.perguntas_calculadora{
+    padding-bottom: 60px;
+}
+
+.numero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color:  rgba(13, 27, 46, 1);
+    border-radius: 100px;
+    color: white;
+}
+
+.simulador_botao{
+    background-color: rgba(255, 94, 97, 1);
+    width: 100%;
+    height: 60px;
+    border-radius: 15px;
+    border-color: rgba(255, 94, 97, 1);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ladoDireito{
+    flex: 1;
+}
+
+.resultado_simulacao{
+    height: 840px;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: #838282b7 0px 10px 15px 1px;
+    overflow: hidden;
+}
+
+.mostrar_resultado{
+    height: 800px;
+}
+
+.resposta{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 25px;
+    padding-left: 35px;
+}
+
+.caixa_resultado{
+    height: 60px;
+    border-color: rgba(13, 27, 46, 1);
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    padding-left: 35px;
+}
+
+.botao_fale_conosco{
+    background-color: #34D399;
+    height: 80px;
+    width: 80%;
+    border-radius: 15px;
+    border-color: #34D399;
+    color: black;
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    
+    
+}
+
+.empresas_parceiras{
+    height: 256px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer{
+    border-top: 2px solid rgb(226, 226, 226);
+    padding-top: 20px; 
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    width: 100%;
+    .logo_imagem{width: 100%;}
+}
+
+.informacoes_institucionais{
+    height: 250px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.informacoes_institucionais2{
+    height: 250px;
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-right: 80px;
+}
+
+.informacoes_institucionais3{
+    height: 250px;
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-right: 80px;
+}
+>>>>>>> 923f9901afe282dce6fe5c2016abe921bb7cee7c

@@ -1,97 +1,125 @@
-* {
-    box-sizing: border-box;
+/* SOBRE NÓS */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+body {
+  
+    background-size: cover;        /* faz a imagem cobrir toda a tela */
+    background-position: center;   /* centraliza */
+    background-repeat: no-repeat;  /* não repete */
+    background-attachment: fixed;  /* efeito de fundo parado (parallax leve) */
 }
-a:link { 
-    color: #000000; 
-    text-decoration: none;
-}
-a:visited { 
-    color: #000000; 
-    text-decoration: none;
+.sobre-container {
+    width: 100%;
 }
 
-body{
-    background-color: #F5F7F8;
-}
-
-html{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo_imagem{
-    width: 100px; 
-	height: 35px;
-    background-size: cover;
-}
-
-.botao_head{
-    background-color: #F5F7F8;
-    box-shadow: none;
-    border: none;
-    height: 35px;
-    width: 60px;
+/* BANNER */
+.banner {
+    background: linear-gradient(135deg, rgb(43, 87, 131), #196bbd);
+    color: rgb(255, 255, 255);
     text-align: center;
-    font-weight: bold;
-    border-radius: 10px;
+    padding: 80px 20px;
+    border-radius: 20px;
+    margin: 0 50px 40px 50px;
 }
 
-.botao_head:hover{
-    background-color: #dedede;
+.banner h1 {
+    font-size: 40px;
+   
+    margin-bottom: 10px;
 }
 
-.botoes_cabecario{
+.banner p {
+    font-size: 20px;
+}
+
+/* SOBRE */
+.sobre {
+    background: linear-gradient(135deg, rgb(58, 106, 154), #196bbd),rgb(57, 107, 207);
+    border-radius: 15px; 
+    text-align: center;
+    padding: 50px 80px;
+}
+
+.sobre h2 {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.sobre p {
+    font-size: 18px;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(255, 255, 255);
+    line-height: 1.6;
+}
+
+/* MISSÃO VISÃO VALORES */
+.mvv {
     display: flex;
     justify-content: center;
-    gap: 80px;
-}
-
-.botao_cliente_cadastro:hover{
-    background-color: rgb(3, 3, 194);
-}
-
-.botao_cliente_cadastro{
-    background-color: rgba(0, 86, 178, 1);
-    color: white;
-    border-radius: 10px;
-    width: 200px;
-    height: 40px;
-    font-weight: bold;
-}
-
-.botao_cliente_login{
-    background-color: white;
-    border: 3px solid rgba(0, 86, 178, 1);
-    border-radius: 10px;
-    width: 200px;
-    height: 40px;
-    font-weight: bold;
-}
-
-.botao_cliente_login:hover{
-    background-color: rgb(221, 221, 221);
-}
-
-.cabecalho{
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
+    gap: 100px;
+    padding: 20px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
-    padding-right: 50px;
-    border-bottom: 2px solid rgb(226, 226, 226);
-    padding-top: 20px;
 }
 
-.div_introducao{
+.card {
+    background: white;
+    padding: 25px;
+    width: 260px;
+    border-radius: 15px;
+    border: 2px solid rgba(0, 86, 178, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 86, 178, 1);
+}
+
+.card h3 {
+    color: rgba(0, 86, 178, 1);
+}
+
+/* EQUIPE */
+.equipe {
+    text-align: center;
+    padding: 60px;
+    background-color: #F5F7F8;
+}
+
+.equipe h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: rgba(0, 86, 178, 1);
+}
+
+.cards-equipe {
     display: flex;
-    height: 800px; 
-    width: 1380px;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-.introducao_texto_e_imagem{
-    padding-left: 50px;
-    padding-right: 50px;
+.membro {
+    background: white;
+    padding: 20px;
+    width: 200px;
+    border-radius: 15px;
+    border: 2px solid rgba(0, 86, 178, 0.1);
+    transition: 0.3s;
+}
+
+.membro:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 86, 178, 1);
+}
+
+.membro img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 86, 178, 1);
+    object-fit: cover;
+    margin-bottom: 10px;
 }
