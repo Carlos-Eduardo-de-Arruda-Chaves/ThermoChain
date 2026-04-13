@@ -1,307 +1,181 @@
--- Cria o banco de dados chamado TermoChain
-CREATE DATABASE termochain;
+--  TERMOCHAIN — Script de Criação do Banco de Dados
 
--- Seleciona o banco para uso
-USE termochain;
- 
--- TABELA EMPRESA
+CREATE DATABASE thermochain;
+
+USE thermochain;
+
+-- TABELA: empresa
 CREATE TABLE empresa (
-    
-    -- Identificador único da empresa (auto incremento)
-    id_empresa BIGINT AUTO_INCREMENT PRIMARY KEY,
-    
-    -- Nome jurídico da empresa (obrigatório)
-    razao_social VARCHAR(150) NOT NULL,
-    
-    -- Nome fantasia (opcional)
-    nome_fantasia VARCHAR(150),
-    
-    -- CNPJ da empresa (apenas números, único)
-    cnpj CHAR(14) NOT NULL UNIQUE,
-    
-    -- Telefone da empresa
-    telefone VARCHAR(20),
-    
-    -- Email único da empresa
-    email VARCHAR(150) UNIQUE,
-    
-    -- Endereço detalhado
-    logradouro VARCHAR(150) NOT NULL, -- Rua/Avenida
-    numero VARCHAR(10),               -- Número
-    complemento VARCHAR(100),         -- Complemento (apto, sala, etc)
-    bairro VARCHAR(100),              -- Bairro
-    cidade VARCHAR(100) NOT NULL,     -- Cidade obrigatória
-    estado CHAR(2) NOT NULL,          -- UF (ex: SP)
-    cep CHAR(8) NOT NULL,             -- CEP sem máscara
-    
-    -- Segmento da empresa (ex: saúde, logística)
-    segmento VARCHAR(60) NOT NULL,
-    
-    -- Status da empresa (ativo/inativo)
-    status_empresa ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
-    
-    -- Data de cadastro automática
-    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    id_empresa      BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    razao_social    VARCHAR(150)    NOT NULL,
+    nome_fantasia   VARCHAR(150),
+    -- CNPJ armazenado apenas com dígitos numéricos (sem máscara)
+    cnpj            CHAR(14)        NOT NULL UNIQUE,
+    telefone        VARCHAR(20),
+    email           VARCHAR(150)    UNIQUE,
+    -- Endereço completo
+    logradouro      VARCHAR(150)    NOT NULL,
+    numero          VARCHAR(10),
+    complemento     VARCHAR(100),
+    bairro          VARCHAR(100),
+    cidade          VARCHAR(100)    NOT NULL,
+    estado          CHAR(2)         NOT NULL,
+    -- CEP armazenado apenas com dígitos numéricos (sem máscara)
+    cep             CHAR(8)         NOT NULL,
+    segmento        VARCHAR(60)     NOT NULL,
+    status_empresa  ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
+    dt_cadastro     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- TABELA USUARIO
+-- TABELA: usuario
+-- Usuários vinculados a uma empresa
 CREATE TABLE usuario (
-    
-    -- ID único do usuário
-    id_usuario BIGINT AUTO_INCREMENT PRIMARY KEY,
-    
-    -- Nome completo
-    nome VARCHAR(120) NOT NULL,
-    
-    -- Email único para login
-    email VARCHAR(150) NOT NULL UNIQUE,
-    
-    -- Senha (armazenar hash futuramente)
-    senha VARCHAR(255) NOT NULL,
-    
-    -- CPF único (somente números)
-    cpf CHAR(11) NOT NULL UNIQUE,
-    
-    -- Status do usuário
-    status_usuario ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
-    
-    -- Data de registro automática
-    dt_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Chave estrangeira para empresa
-    fk_empresa BIGINT NOT NULL,
-    
-    -- Relacionamento com empresa
+    id_usuario      BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    nome            VARCHAR(120)    NOT NULL,
+    email           VARCHAR(150)    NOT NULL UNIQUE,
+    -- Armazenar sempre como hash (bcrypt)
+    senha           VARCHAR(255)    NOT NULL,
+    -- CPF armazenado apenas com dígitos numéricos (sem máscara)
+    cpf             CHAR(11)        NOT NULL UNIQUE,
+    status_usuario  ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
+    dt_registro     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fk_empresa      BIGINT          NOT NULL,
     CONSTRAINT fk_usuario_empresa
-        FOREIGN KEY (fk_empresa) 
+        FOREIGN KEY (fk_empresa)
         REFERENCES empresa(id_empresa)
 );
 
--- TABELA VACINA
+-- TABELA: tipo_vacina
+-- Catálogo de tipos de vacinas com faixas de temperatura segura
 CREATE TABLE tipo_vacina (
-    
-    -- ID da vacina
-    id_vacina INT AUTO_INCREMENT PRIMARY KEY,
-    
-    -- Nome da vacina
-    nome VARCHAR(120) NOT NULL,
-    
-    -- Fabricante
-    fabricante VARCHAR(120) NOT NULL,
-    
-    -- Temperatura mínima permitida
-    temperatura_min DECIMAL(5,2) NOT NULL,
-    
-    -- Temperatura máxima permitida
-    temperatura_max DECIMAL(5,2) NOT NULL,
-    
-    -- Data de cadastro
-    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Empresa responsável
-    fk_empresa BIGINT NOT NULL,
-    
-    -- Garante que min < max
+    id_vacina           INT             AUTO_INCREMENT PRIMARY KEY,
+    nome                VARCHAR(120)    NOT NULL,
+    fabricante          VARCHAR(120)    NOT NULL,
+    temperatura_min     DECIMAL(5,2)    NOT NULL,
+    temperatura_max     DECIMAL(5,2)    NOT NULL,
+    dt_cadastro         DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fk_empresa          BIGINT          NOT NULL,
+    -- Garante que temperatura mínima é menor que a máxima
     CONSTRAINT chk_temperatura
         CHECK (temperatura_min < temperatura_max),
-    
-    -- Relacionamento com empresa
+
     CONSTRAINT fk_vacina_empresa
         FOREIGN KEY (fk_empresa)
         REFERENCES empresa(id_empresa)
 );
 
--- TABELA LOTE DE VACINA
+
+-- TABELA: lote_vacina
+-- Lotes físicos de vacinas com rastreio completo
 CREATE TABLE lote_vacina (
-    
-    -- ID do lote
-    id_lote BIGINT AUTO_INCREMENT PRIMARY KEY,
-    
-    -- Código único do lote
-    codigo VARCHAR(60) NOT NULL UNIQUE,
-    
-    -- Data de fabricação
-    data_fabricacao DATE,
-    
-    -- Data de validade
-    data_validade DATE NOT NULL,
-    
-    -- Peso do lote
-    peso DECIMAL(10,2),
-    
-    -- Volume do lote
-    volume DECIMAL(10,2),
-    
-    -- Quantidade de doses
-    quantidade INT NOT NULL,
-    
-    -- Status do lote
-    status_lote ENUM('Ativo', 'Vencido', 'Descartado') DEFAULT 'Ativo',
-    
-    -- Data de cadastro
-    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Vacina relacionada
-    fk_vacina INT NOT NULL,
-    
-    -- Validação de datas
+    id_lote             BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    -- Código único do fabricante
+    codigo              VARCHAR(60)     NOT NULL UNIQUE,
+    data_fabricacao     DATE,
+    data_validade       DATE            NOT NULL,
+    peso                DECIMAL(10,2),
+    volume              DECIMAL(10,2),
+    quantidade          INT             NOT NULL,
+    status_lote         ENUM('Ativo', 'Vencido', 'Descartado') DEFAULT 'Ativo',
+    dt_cadastro         DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fk_vacina           INT             NOT NULL,
+    -- Garante que a validade é posterior à fabricação
     CONSTRAINT chk_validade
-        CHECK (data_validade > data_fabricacao),
-    
-    -- Relacionamento com vacina
+        CHECK (data_fabricacao IS NULL OR data_validade > data_fabricacao),
+
     CONSTRAINT fk_lote_vacina
         FOREIGN KEY (fk_vacina)
         REFERENCES tipo_vacina(id_vacina)
 );
 
--- TABELA ALOCAÇÃO DE LOTE
-CREATE TABLE alocacao_lote(
-    
-    -- ID da alocação
-	id_alocacao BIGINT PRIMARY KEY AUTO_INCREMENT,
-    
-    -- Lote monitorado
-    fk_lote  BIGINT,
-    
-    -- Sensor utilizado
-	fk_sensor BIGINT,
-    
-    -- Início do monitoramento
-	inicio_monitoramento DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Fim do monitoramento (pode ser nulo)
-    fim_monitoramento DATETIME DEFAULT NULL,
-    
-    CONSTRAINT cfk_lote 
-		FOREIGN KEY (fk_lote)
-        REFERENCES lote_vacina (id_lote),
-        
-	CONSTRAINT cfk_sensor
-		FOREIGN KEY (fk_sensor)
-        REFERENCES sensor(id_sensor)
-);
-
--- TABELA MICROCONTROLADOR
+-- TABELA: microcontrolador
 CREATE TABLE microcontrolador (
-    
-    -- ID do dispositivo
-    id_micro BIGINT AUTO_INCREMENT PRIMARY KEY,
-    
-    -- Modelo do microcontrolador
-    modelo VARCHAR(100) NOT NULL,
-    
-    -- Fabricante
-    fabricante VARCHAR(100),
-    
-    -- Tipo do dispositivo
-    tipo ENUM('ESP32', 'Arduino', 'Raspberry', 'Outro') NOT NULL,
-    
-    -- Número de série único
-    numero_serie VARCHAR(100) UNIQUE,
-    
-    -- Local onde está instalado
-    local_instalacao VARCHAR(150),
-    
-    -- Status do dispositivo
-    status_micro ENUM('Ativo', 'Inativo', 'Manutencao') DEFAULT 'Ativo',
-    
-    -- Data de instalação
-    dt_instalacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Última manutenção
-    dt_ultima_manutencao DATETIME,
-    
-    -- Observações gerais
-    observacao VARCHAR(255)
+    id_micro                BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    modelo                  VARCHAR(100)    NOT NULL,
+    fabricante              VARCHAR(100),
+    tipo                    ENUM('ESP32', 'Arduino', 'Raspberry', 'Outro') NOT NULL,
+    -- Número de série único do dispositivo
+    numero_serie            VARCHAR(100)    UNIQUE,
+    local_instalacao        VARCHAR(150),
+    status_micro            ENUM('Ativo', 'Inativo', 'Manutencao') DEFAULT 'Ativo',
+    dt_instalacao           DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    dt_ultima_manutencao    DATETIME,
+    observacao              VARCHAR(255)
 );
 
--- TABELA SENSOR
+-- TABELA: sensor
 CREATE TABLE sensor (
-    
-    -- ID do sensor
-    id_sensor BIGINT AUTO_INCREMENT PRIMARY KEY,
-    
-    -- Modelo do sensor
-    modelo VARCHAR(100) NOT NULL,
-    
-    -- Fabricante
-    fabricante VARCHAR(100),
-    
-    -- Tipo do sensor
-    tipo VARCHAR(40) NOT NULL,
-    
-    -- Local de instalação
-    local_instalacao VARCHAR(150),
-    
-    -- Status do sensor
-    status_sensor ENUM('Ativo', 'Inativo', 'Manutencao') DEFAULT 'Ativo',
-    
-    -- Data de instalação
-    dt_instalacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Faixa mínima de operação
-    faixa_min DECIMAL(5,2),
-    
-    -- Faixa máxima de operação
-    faixa_max DECIMAL(5,2),
-    
-    -- Observações
-    observacao VARCHAR(255),
-    
-    -- Validação da faixa
+    id_sensor           BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    modelo              VARCHAR(100)    NOT NULL,
+    fabricante          VARCHAR(100),
+    -- Tipo do sensor (ex: LM35, DHT22)
+    tipo                VARCHAR(40)     NOT NULL,
+    local_instalacao    VARCHAR(150),
+    status_sensor       ENUM('Ativo', 'Inativo', 'Manutencao') DEFAULT 'Ativo',
+    dt_instalacao       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    -- Faixa operacional do sensor
+    faixa_min           DECIMAL(5,2),
+    faixa_max           DECIMAL(5,2),
+    observacao          VARCHAR(255),
+    fk_micro            BIGINT          NOT NULL,
+
+    -- Garante que faixa mínima é menor que a máxima quando ambas informadas
     CONSTRAINT chk_faixa_sensor
-        CHECK (faixa_min IS NULL OR faixa_max IS NULL OR faixa_min < faixa_max)
+        CHECK (faixa_min IS NULL OR faixa_max IS NULL OR faixa_min < faixa_max),
+
+    CONSTRAINT fk_sensor_micro
+        FOREIGN KEY (fk_micro)
+        REFERENCES microcontrolador(id_micro)
 );
 
--- TABELA LEITURA DE TEMPERATURA
+-- TABELA: alocacao_lote
+CREATE TABLE alocacao_lote (
+    id_alocacao             BIGINT      AUTO_INCREMENT PRIMARY KEY,
+    -- Início obrigatório; fim NULL indica monitoramento em curso
+    inicio_monitoramento    DATETIME    NOT NULL,
+    fim_monitoramento       DATETIME    DEFAULT NULL,
+
+    fk_sensor               BIGINT      NOT NULL,
+    fk_lote                 BIGINT      NOT NULL,
+
+    CONSTRAINT fk_alocacao_sensor
+        FOREIGN KEY (fk_sensor)
+        REFERENCES sensor(id_sensor),
+
+    CONSTRAINT fk_alocacao_lote
+        FOREIGN KEY (fk_lote)
+        REFERENCES lote_vacina(id_lote)
+);
+
+
+-- TABELA: leitura_temperatura
 CREATE TABLE leitura_temperatura (
-    
-    -- ID da leitura
-    id_leitura BIGINT AUTO_INCREMENT PRIMARY KEY,
-    
-    -- Valor da temperatura
-    temperatura DECIMAL(5,2) NOT NULL,
-    
-    -- Data e hora da leitura
-    data_hora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Status da temperatura (normal, alerta, crítico)
-    status_temperatura ENUM('Normal', 'Alerta', 'Critico') NOT NULL DEFAULT 'Normal',
-    
-    -- Indica se houve alerta
-    alerta BOOLEAN DEFAULT FALSE,
-		
-    -- Tempo acumulado em alerta (segundos)
-    tempo_alerta_segundos INT DEFAULT 0,
-    
-    -- Sensor responsável pela leitura
-    fk_sensor BIGINT NOT NULL,
-    
-    -- Lote monitorado
-    fk_lote BIGINT NOT NULL,
-    
-    -- Relacionamento com sensor
+
+    id_leitura                  BIGINT          AUTO_INCREMENT PRIMARY KEY,
+
+    temperatura                 DECIMAL(5,2)    NOT NULL,
+
+    -- Indexado para queries de range temporal eficientes
+    data_hora                   DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    -- FK direta para lote: permite relatórios sem joins complexos
+    -- (ex: "lote X ficou fora da faixa por quantas horas?")
+    fk_sensor                   BIGINT          NOT NULL,
+    fk_lote                     BIGINT          NOT NULL,
+
     CONSTRAINT fk_leitura_sensor
         FOREIGN KEY (fk_sensor)
         REFERENCES sensor(id_sensor),
 
-    -- Relacionamento com lote
     CONSTRAINT fk_leitura_lote
         FOREIGN KEY (fk_lote)
         REFERENCES lote_vacina(id_lote)
 );
 
--- ============================================================
---  TermoChain – INSERTs e SELECTs de exemplo
---  Observação: o script de criação foi ajustado (bug da FK
---  vacina → tipo_vacina e FKs de alocacao_lote adicionadas).
--- ============================================================
 
-USE TermoChain;
+-- ----> inserts
 
--- ============================================================
--- 1. EMPRESA
--- ============================================================
+-- 1 EMPRESA
 INSERT INTO empresa
     (razao_social, nome_fantasia, cnpj, telefone, email,
      logradouro, numero, complemento, bairro, cidade, estado, cep, segmento)
@@ -322,9 +196,7 @@ VALUES
      'Farmacêutico');
 
 
--- ============================================================
--- 2. USUARIO
--- ============================================================
+-- 2 USUARIO
 INSERT INTO usuario
     (nome, email, senha, cpf, fk_empresa)
 VALUES
@@ -336,9 +208,7 @@ VALUES
     ('Enzo Quinalha',       'roberto.alves@immunocenter.com.br','cialounge(@8794', '65678901234', 3);
 
 
--- ============================================================
--- 3. TIPO_VACINA
--- ============================================================
+-- 3 TIPO_VACINA
 INSERT INTO tipo_vacina
     (nome, fabricante, temperatura_min, temperatura_max, fk_empresa)
 VALUES
@@ -349,9 +219,7 @@ VALUES
     ('Influenza Trivalente',	'Sanofi Pasteur',       2.00, 8.00, 3);
 
 
--- ============================================================
--- 4. LOTE_VACINA
--- ============================================================
+-- 4 LOTE_VACINA
 INSERT INTO lote_vacina
     (codigo, data_fabricacao, data_validade, peso, volume, quantidade, fk_vacina)
 VALUES
@@ -363,9 +231,7 @@ VALUES
     ('LOTE-FLU-2025-001','2025-05-01', '2025-11-01', 3.80, 1.80,  900, 5);
 
 
--- ============================================================
--- 5. MICROCONTROLADOR
--- ============================================================
+-- 5 MICROCONTROLADOR
 INSERT INTO microcontrolador
     (modelo, fabricante, tipo, numero_serie, local_instalacao, observacao)
 VALUES
@@ -375,9 +241,7 @@ VALUES
     ('ESP32-S3',        'Espressif', 'ESP32', 'SN-ESP32-003', 'Depósito central – ImunoCenter', 'Backup ativo');
 
 
--- ============================================================
--- 6. SENSOR
--- ============================================================
+-- 6 SENSOR
 INSERT INTO sensor
     (modelo, fabricante, tipo, local_instalacao, faixa_min, faixa_max, observacao)
 VALUES
@@ -388,10 +252,7 @@ VALUES
     ('LM35', 'Texas Instruments', 'Temperatura LM35', 'Depósito ImunoCenter',     -55.00, 150.00, NULL);
 
 
--- ============================================================
 -- 7. ALOCACAO_LOTE
---    (FKs fk_lote → lote_vacina e fk_sensor → sensor)
--- ============================================================
 INSERT INTO alocacao_lote
     (fk_lote, fk_sensor, inicio_monitoramento, fim_monitoramento)
 VALUES
@@ -403,11 +264,9 @@ VALUES
     (6, 1, '2025-05-01 08:00:00', NULL);           -- Lote Influenza também no sensor 1
 
 
--- ============================================================
 -- 8. LEITURA_TEMPERATURA
--- ============================================================
 INSERT INTO leitura_temperatura
-    (temperatura, data_hora, status_temperatura, alerta, tempo_alerta_segundos, fk_sensor, fk_lote)
+    (temperatura, data_hora, fk_sensor, fk_lote)
 VALUES
     -- Leituras normais – CoronaVac (faixa 2 a 8 °C)
     ( 5.10, '2025-06-01 08:00:00', 'Normal',  FALSE,   0, 1, 1),
@@ -439,7 +298,7 @@ VALUES
 -- SELECTs
 -- ============================================================
 
--- ① Todos os lotes com o nome da vacina e status
+-- 1 Todos os lotes com o nome da vacina e status
 SELECT
     lv.codigo AS lote,
     tv.nome AS vacina,
@@ -453,7 +312,7 @@ JOIN tipo_vacina tv
 ORDER BY lv.data_validade;
 
 
--- ② Leituras com alerta ou crítico, mostrando vacina e sensor
+-- 2 Leituras com alerta ou crítico, mostrando vacina e sensor
 SELECT
     lt.data_hora,
     lt.temperatura,
@@ -471,7 +330,7 @@ WHERE lt.alerta
 ORDER BY lt.data_hora DESC;
 
 
--- ③ Resumo de leituras por lote (min, max, média e total de alertas)
+-- 3 Resumo de leituras por lote (min, max, média e total de alertas)
 SELECT
     lt.data_hora,
     lt.temperatura,
@@ -492,7 +351,7 @@ WHERE lt.alerta
 ORDER BY lt.data_hora DESC;
 
 
--- ④ Lotes atualmente monitorados (alocações sem fim)
+-- 4 Lotes atualmente monitorados (alocações sem fim)
 SELECT
     al.id_alocacao,
     lv.codigo AS lote,
@@ -510,7 +369,7 @@ JOIN sensor s
 WHERE al.fim_monitoramento IS NULL
 ORDER BY al.inicio_monitoramento;
 
--- ⑤ Usuários por empresa com total de usuários
+-- 5 Usuários por empresa com total de usuários
 SELECT
     e.razao_social AS empresa,
     e.segmento,
@@ -522,7 +381,7 @@ GROUP BY e.id_empresa
 ORDER BY total_usuarios DESC;
 
 
--- ⑥ Lotes vencidos ou próximos do vencimento (próximos 60 dias)
+-- 6 Lotes vencidos ou próximos do vencimento (próximos 60 dias)
 SELECT
     lv.codigo,
     tv.nome AS vacina,
