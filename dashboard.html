@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="dashStyle.css">
+</head>
+
+<body>
+    <div class="header">
+        <a>
+            <img src="img/seta-esquerda.png" class="imgBack">
+        </a>
+        <div class="logoContainer">
+            <img src="img/logoImg.png" class="logo">
+            <img src="img/logotipo.png" class="logoTipo">
+        </div>
+    </div>
+
+    <div class="titleContainer">
+        <h1 iclass="dashTitle">Registro do Sensor</h1>
+    </div>
+
+    <div class="containerGrafico">
+        <div class="containerGrafico" style="width: 50%;">
+            <canvas id="sensorAnalogico"></canvas>
+        </div>
+    </div>
+
+    <script src="dash.js"></script>
+</body>
+
+</html>
