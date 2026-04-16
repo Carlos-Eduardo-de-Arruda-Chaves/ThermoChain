@@ -3,18 +3,26 @@ var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getCo
     data: {
         labels: ['13:00', '13:01', '13:02', '13:03', '13:04'],
         datasets: [
+
+            {
+                label: '',
+                borderColor: 'white',
+                backgroundColor: 'white',
+                data: [12, 12, 12 , 12, 12]
+            }
+            ,
             {
                 label: 'Temperatura Máxima',
-                borderColor: '#000000',
-                backgroundColor: '#000000',
+                borderColor: '#E53935',
+                backgroundColor: '#E53935',
                 data: [8, 8, 8, 8, 8],
                 borderWidth: 2,
                 borderDash: [5, 5],
                 tension: 0.1
             }, {
                 label: 'Temperatura Minima',
-                borderColor: '#000000',
-                backgroundColor: '#000000',
+                borderColor: '#00BFFF',
+                backgroundColor: '#00BFFF',
                 data: [2, 2, 2, 2, 2],
                 borderWidth: 2,
                 borderDash: [5, 5],
@@ -22,14 +30,14 @@ var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getCo
             },
             {
                 label: 'Sensor1',
-                borderColor: '#0056B2',
-                backgroundColor: '#0056B2',
+                borderColor: '#F5A623',
+                backgroundColor: '#F5A623',
                 data: [2, 3, 4, 4, 4]
             },
             {
                 label: 'Sensor2',
-                borderColor: '#FF5722',
-                backgroundColor: '#FF5722',
+                borderColor: '#9B59B6',
+                backgroundColor: '#9B59B6',
                 data: [4, 6, 8, 5, 6]
             },
             {
@@ -37,6 +45,12 @@ var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getCo
                 borderColor: '#8BC34A',
                 backgroundColor: '#8BC34A',
                 data: [6, 4, 2, 0, 0]
+            },
+            {
+                label: '',
+                borderColor: 'white',
+                backgroundColor: 'white',
+                data: [-2, -2, -2 , -2, -2]
             }
         ],
     },

@@ -1,27 +1,34 @@
-.titleContainer{
+.titleContainer {
     display: flex;
     justify-content: center;
 }
 
-.containerGrafico{
+.containerGrafico {
     display: flex;
     justify-content: center;
 }
 
-.imgBack{
+.imgBack {
     width: 25px;
     margin-top: 20px;
 }
 
-.logo{
+.logo {
     width: 30px;
 }
 
-.logoTipo{
+.logoTipo {
     width: 200px;
     margin-bottom: .8%;
 }
 
-.header{
+.header {
     background-color: gray;
+}
+
+.contentGrafico {
+    position: relative;
+    margin: auto;
+    height: 110vh;
+    width: 80vw;
 }
