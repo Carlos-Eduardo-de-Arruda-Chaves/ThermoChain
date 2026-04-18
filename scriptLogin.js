@@ -16,7 +16,10 @@ function entrar(){
 let bancoDeDados = {
   "enzoquinalha@gmail.com": "enzo123",
   "carloschaves@gmail.com": "carlos123",
-  "matheusjacob@yahoo.com": "jacob123"
+  "matheusjacob@yahoo.com": "jacob123",
+  "leonardowerner@gmail.com":"leonardo123",
+  "guilhermebarbosa@gmail.com":"guilherme123",
+  "thiagoemidio@gmail.com":"thiago123",
 };
 
 // 3. Função para validar o acesso
