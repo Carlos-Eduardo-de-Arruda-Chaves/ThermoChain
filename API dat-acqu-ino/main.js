@@ -50,12 +50,10 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-       // const sensorDigital = parseInt(valores[0]);
         const temperatura = parseFloat(valores[0]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         temperatura.push(temperatura);
-       // valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
@@ -80,7 +78,6 @@ const serial = async (
 // função para criar e configurar o servidor web
 const servidor = (
     temperatura
-   // valoresSensorDigital
 ) => {
     const app = express();
 
@@ -100,26 +97,20 @@ const servidor = (
     app.get('/sensores/analogico', (_, response) => {
         return response.json(temperatura);
     });
-    // app.get('/sensores/digital', (_, response) => {
-    //     return response.json(valoresSensorDigital);
-    // });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
     const temperatura = [];
-   // const valoresSensorDigital = [];
 
     // inicia a comunicação serial
     await serial(
         temperatura,
-       // valoresSensorDigital
     );
 
     // inicia o servidor web
     servidor(
         temperatura,
-       // valoresSensorDigital
     );
 })();
