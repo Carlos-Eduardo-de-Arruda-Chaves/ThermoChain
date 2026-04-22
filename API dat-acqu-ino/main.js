@@ -12,7 +12,7 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
-    temperatura,
+    valoresSensorTemperatura
 ) => {
 
     // conexão com o banco de dados MySQL
@@ -31,7 +31,7 @@ const serial = async (
     const portaArduino = portas.find((porta) => porta.vendorId == 2341 && porta.productId == 43);
     if (!portaArduino) {
         throw new Error('O arduino não foi encontrado em nenhuma porta serial');
-    }
+    }   
 
     // configura a porta serial com o baud rate especificado
     const arduino = new serialport.SerialPort(
@@ -50,20 +50,21 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const temperatura = parseFloat(valores[0]);
+        const sensorTemperatura = parseFloat(valores[0]);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        temperatura.push(temperatura);
+        valoresSensorTemperatura.push(sensorTemperatura);
+      //  valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO leitura_temperatura (temperatura, fk_sensor, fk_lote ) VALUES (?)',
-                [temperatura, 1, 1]
+                'INSERT INTO leitura_temperatura (temperatura, fk_sensor, fk_lote ) VALUES (?, 1, 1)',
+                [sensorTemperatura]
             );
-            console.log("valores inseridos no banco: ", temperatura );
+            console.log("valores inseridos no banco: ", sensorTemperatura);
 
         }
 
@@ -77,7 +78,7 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    temperatura
+    valoresSensorTemperatura
 ) => {
     const app = express();
 
@@ -95,22 +96,26 @@ const servidor = (
 
     // define os endpoints da API para cada tipo de sensor
     app.get('/sensores/analogico', (_, response) => {
-        return response.json(temperatura);
+        return response.json(valoresSensorTemperatura);
+    });
+    app.get('/sensores/digital', (_, response) => {
+        return response.json(valoresSensorDigital);
     });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const temperatura = [];
+    const valoresSensorTemperatura = [];
 
     // inicia a comunicação serial
     await serial(
-        temperatura,
+        valoresSensorTemperatura
+    //    valoresSensorDigital
     );
 
     // inicia o servidor web
     servidor(
-        temperatura,
+        valoresSensorTemperatura
     );
-})();
+})();   
