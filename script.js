@@ -81,7 +81,7 @@ for (let i = 0; i < registrosMensais.length; i++) {
 
 
 // montar cada dia
-function montarLinhaDia(registroDia) {
+function montarLinhaDia(registroDia, container) {
 
     // pega informação de cada array (criado la no começo do script)
     const data = registroDia[0];
@@ -102,7 +102,7 @@ function montarLinhaDia(registroDia) {
     }
 
     // html de um dia
-    return `
+    container.innerHTML += `
         <div class="expandLinha">
             <span class="colData">${data}</span>
             <span class="colMedia">média: ${temperaturaMedia}°C</span>
@@ -127,15 +127,12 @@ function expandir(indice) {
     // se estiver vazio ele expande
     if (containerExpansao.innerHTML == "") {
 
-        let conteudoHTML = "";
-
         // percorre todos os dias do mes
         for (let i = 0; i < registrosMensais[indice].registrosDiarios.length; i++) {
-            conteudoHTML += montarLinhaDia(registrosMensais[indice].registrosDiarios[i]);
+            montarLinhaDia(registrosMensais[indice].registrosDiarios[i], containerExpansao);
         }
 
         // mostra os dados (block)
-        containerExpansao.innerHTML = conteudoHTML;
         containerExpansao.style.display = "block";
         botaoExpandir.textContent = "-";
 
