@@ -87,10 +87,10 @@
     }
 
     function Entrar() {
-        let Usuario = Number(input_usuario.value);
-        let Email = (input_email.value);
-        let Senha = Number(input_senha.value);
-        let ConfSenha = Number(input_confsenha.value)
+        let Usuario = input_usuario.value;
+        let Email = input_email.value;
+        let Senha = input_senha.value;
+        let ConfSenha = input_confsenha.value;
 
         if (Usuario == "" || Email == "" || Senha == "" || ConfSenha == "") {
             alert("Insira todos os campos")
@@ -98,8 +98,8 @@
         else if (!Email.includes("@")) {
             alert("Email inválido")
         }
-        else if (Senha !== ConfSenha) {
-            alert("Senha não coincidem")
+        else if (Senha != ConfSenha) {
+            alert("Senhas não coincidem")
         }
         else {
             alerta.innerHTML = `Cadastro Concluído`

@@ -69,11 +69,6 @@ body {
     gap: 5px;
 }
 
-.inputGroup {
-    display: flex;
-    gap: 10px;
-}
-
 .full {
     width: 100%;
     padding: 12px;
@@ -85,16 +80,9 @@ body {
     cursor: pointer;
 }
 
-.inputGroup input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: #E2E8F0;
-}
-
 .inputGroup button {
-    padding: 10px 15px;
+    width: 100%;
+    padding: 12px;
     border: none;
     border-radius: 8px;
     background: #1E63D5;
