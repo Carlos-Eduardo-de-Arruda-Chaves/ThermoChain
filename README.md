@@ -6,7 +6,7 @@
 
 ## 📌 Sobre o Projeto
 
-O **ThermoChain** é um sistema desenvolvido para monitorar a temperatura de vacinas ao longo de toda a cadeia de frio — desde a indústria até o paciente final.
+O **ThermoChain** é um sistema desenvolvido para monitorar a temperatura de vacinas contra febre amarela ao longo de toda a cadeia de frio — desde a indústria até o paciente final.
 
 O objetivo principal é garantir a integridade dos imunobiológicos, evitando perdas causadas por variações térmicas e assegurando conformidade com normas regulatórias.
 
@@ -17,9 +17,9 @@ O objetivo principal é garantir a integridade dos imunobiológicos, evitando pe
 A falta de monitoramento contínuo na cadeia de frio pode causar:
 
 * ❌ Perda de até **41,4% das vacinas**
-* 💸 Prejuízos milionários (até **R$ 50 milhões/ano** no setor privado)
+* 💸 Prejuízos milionários (até **R$ 50 milhões/ano** no setor privado e no setor público)
 * ⚠️ Riscos à saúde pública
-* 📉 Perda de credibilidade de empresas farmacêuticas
+* 📉 Perda de credibilidade de empresas farmacêuticas e transportadoras.
 
 ---
 
