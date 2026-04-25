@@ -1,199 +1,217 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap");
 
-/* RESET BÁSICO */
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Space Grotesk", "inter", sans-serif;
-  background-color: #f5f5f5;
+    font-family: "Space Grotesk", sans-serif;
+    background: #7ca7c4;
 }
 
-.header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-top: 5px;
-  margin-bottom: 30px;
+.pagina {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
 }
 
-.imgBack {
-  display: flex;
-  position: absolute;
-  left: 5px;
+.painel {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px 22px 24px;
+    width: 100%;
+    max-width: 2000px;
+    height: auto;
 }
 
-.logoContainer {
-  margin: auto;
+.containerTitulo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
 }
 
-/* DASHBOARD */
-.dashboard {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
+.tituloPainel {
+    font-size: 30px;
+    font-weight: 600;
+    color: #2f3d57;
 }
 
-/* TÍTULO */
-.titleContainer {
-  display: flex;
-  justify-content: center;
-  color: #0f172a;
+.linhaSensor {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 13px;
 }
 
-/* KPIs (linha de cards) */
-.kpis {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+.linhaSensor select {
+    border: 1px solid #b9c9df;
+    border-radius: 8px;
+    padding: 6px 10px;
+    background: #f8fbff;
 }
 
-/* GRÁFICO */
-.grafico_card {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  border: solid 20px #61aacb;
-  border-radius: 20px;
-  padding: 20px;
-
-  height: 80%;
-  width: 80%;
+.areaTopo {
+    display: grid;
+    grid-template-columns: 1.1fr 1.8fr 1fr;
+    gap: 20px;
+    align-items: start;
 }
 
-/* STATUS (linha de cards) */
-.status {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* CARD STATUS */
-.card_status {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  border-radius: 20px;
-
-  background-color: #61aacb;
-}
-
-.card_status span {
-  text-align: center;
-}
-
-/* IMAGENS */
-.imgBack {
-  width: 25px;
-}
-
-.logo {
-  width: 30px;
-}
-
-.logoTipo {
-  width: 200px;
-}
-
-.card_kpi {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-
-  width: 280px;
-  min-height: 110px;
-  padding: 25px;
-  padding-left: 50px;
-  padding-right: 50px;
-  border-radius: 30px;
-
-  background-color: #0f172a !important;
-}
-
-/* Título */
-.kpi_titulo {
-  font-size: 20px;
-  color: #f5f5f5 !important;
-}
-
-/* Valor */
-.kpi_valor {
-  font-size: 32px;
-  font-weight: bold;
-  color: #ef4444 !important;
-}
-
-/* ALERTA */
-.kpi_alerta {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  font-size: 14px;
-  color: #ef4444 !important;
-
-  padding: 4px 10px;
-  border-radius: 999px;
-
-  background-color: #ef444426 !important;
-}
-
-/* Faixa */
-.kpi_range {
-  font-size: 12px;
-  color: #94a3b8 !important;
-}
-
-.kpi_label_tempo {
-  font-size: 20px;
-  color: #f5f5f5 !important;
-  padding-bottom: 10px;
-}
-
-.kpi_tempo {
-  font-size: 24px;
-  color: #fcfcfc !important;
-  padding-bottom: 10px;
-}
-
-.kpi_data {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  font-size: 14px;
-  color: #eab308 !important;
-
-  padding: 4px 10px;
-  border-radius: 999px;
-
-  background-color: #eab30826 !important;
-}
-
-.valor_imp{
-  color: #fcfcfc !important;
+.areaPizza {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #graficoPizza {
-    max-width: 300px;
-    max-height: 300px;
-    margin-left: 0;
-    margin-right: auto;
-    margin-top: 1%;
+    min-width: 245px !important;
+    height: 245px !important;
 }
 
-#pizzaTitle {
-    text-align: left;
-    margin-left: 6%;
+.legendaPizza {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.itemLegenda {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.caixaLegenda {
+    width: 16px;
+    height: 16px;
+}
+
+.cinza {
+    background: #d9d9d9;
+}
+
+.azul {
+    background: #4d78f2;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px 18px;
+}
+
+.card {
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 6px;
+}
+
+.numero {
+    font-size: 42px;
+    color: #5a5a5a;
+}
+
+.tempo {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.texto {
+    position: absolute;
+    bottom: 6px;
+    font-size: 11px;
+    color: black;
+}
+
+.azul {
+    background: #a5b8ff;
+}
+
+.vermelho {
+    background: #ffc0c0;
+}
+
+.verde {
+    background: #b8f4bc;
+}
+
+.rosa {
+    background: #ffc0c0;
+}
+
+.azul2 {
+    background: #a5b8ff;
+}
+
+.amarelo {
+    background: #fff49d;
+}
+
+.cardTemp {
+    border: 1px solid #b8d3f1;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
+}
+
+.topoTemp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #b9dbff;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.valorTemp {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.rodapeTemp {
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    background: #b9dbff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px;
+}
+
+.statusTexto {
+    font-weight: 700;
+}
+
+.areaLinha {
+    width: 100%;
+    margin: 30px auto 0;
+    text-align: center;
+    height: 400px;
+    position: relative;
+}
+
+#graficoLinha {
+    width: 100%;
+    height: 100%;
+}
+
+.containerGrafico {
+    position: relative;
+    width: 100%;
+    height: 320px;
 }
