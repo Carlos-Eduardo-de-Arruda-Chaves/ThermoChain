@@ -30,11 +30,13 @@ body {
 
 .containerTitulo {
     display: flex;
-    justify-content: center;
+    align-items: center;
     margin-bottom: 8px;
+    position: relative;
 }
 
 .tituloPainel {
+    margin: 0 auto;
     font-size: 30px;
     font-weight: 600;
     color: #2f3d57;
@@ -214,4 +216,16 @@ body {
     position: relative;
     width: 100%;
     height: 320px;
+}
+
+.voltar{
+    text-decoration: none;
+}
+
+.setaPainel {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
 }

@@ -34,29 +34,29 @@ function chamar(sensor) {
 
     if (sensor == 1) {
         valores = [2, 3, 6, 4, 5];
-        dentro = 80;
-        fora = 20;
+        dentro = 100;
+        fora = 0;
         tempAtual = "5.1C";
         status = "Temperatura normal";
-        kpis = ["3", "1", "0", "0", "00:02:14", "1"];
+        kpis = ["3", "1", "0", "0", "00:02:14", "R$3.840"];
     }
 
     if (sensor == 2) {
         valores = [6, 7, 2, 1, 3];
-        dentro = 65;
-        fora = 35;
+        dentro = 80;
+        fora = 20;
         tempAtual = "6.8C";
         status = "Temperatura normal";
-        kpis = ["3", "1", "0", "1", "00:03:41", "2"];
+        kpis = ["3", "1", "0", "1", "00:03:41", "R$1.275"];
     }
 
     if (sensor == 3) {
-        valores = [2, 3, 5, 7, 9];
-        dentro = 93.6;
-        fora = 7.4;
+        valores = [4, 2, 1, 9, 11];
+        dentro = 40;
+        fora = 60;
         tempAtual = "9.2C";
         status = "Temperatura acima da média";
-        kpis = ["3", "1", "1.2", "1", "00:04:32", "1"];
+        kpis = ["3", "1", "1.2", "1", "00:04:32", "R$2.583"];
     }
 
     atualizarOpcoes();
