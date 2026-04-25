@@ -12,72 +12,90 @@
 <body>
 
     <!-- HEADER -->
-    <div class="header">
-        <a href="../Tela_home.html">
-            <img src="../img/seta-esquerda.png" class="imgBack">
-        </a>
-        <div class="logoContainer">
-            <img src="../img/logoImg.png" class="logo">
-            <img src="../img/logotipo.png" class="logoTipo">
+    <header>
+        <div class="header">
+            <a href="../Tela_home.html">
+                <img src="../img/seta-esquerda.png" class="imgBack">
+            </a>
+            <div class="logoContainer">
+                <img src="../img/logoImg.png" class="logo">
+                <img src="../img/logotipo.png" class="logoTipo">
+            </div>
         </div>
-    </div>
+    </header>
+    <main>
+        <div class="dashboard">
 
-    <!-- DASHBOARD -->
-    <div class="dashboard">
-
-        <!-- TÍTULO -->
-        <div class="titleContainer">
-            <h1 class="dashTitle">Dashboard</h1>
-        </div>
-
-        <!-- KPIs -->
-        <div class="kpis">
-
-            <!-- CARD 1 -->
-            <div class="card_kpi">
-                <span class="kpi_label">Registro de temperatura</span>
+            <!-- TÍTULO -->
+            <div class="titleContainer">
+                <h1 class="dashTitle">Dashboard</h1>
             </div>
 
-            <!-- CARD 2 -->
-            <div class="card_kpi">
-                <span class="kpi_label">Temperatura:</span>
-                <span class="kpi_value">9.2°C</span>
+            <!-- KPIs -->
+            <div class="kpis">
+
+                <!-- CARD 1 -->
+                <div class="card_kpi">
+                    <span class="kpi_titulo">Temperatura Atual</span>
+
+                    <span class="kpi_valor">9.2°C</span>
+
+                    <span class="kpi_alerta">
+                        ▲ Acima da Faixa Segura
+                    </span>
+
+                    <span class="kpi_range">Faixa: 2°C - 8°C</span>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="card_kpi">
+                    <span class="kpi_label_tempo">Tempo fora de faixa: </span>
+                    <span class="kpi_tempo">00:04:32</span>
+                    <span class="kpi_data">Hoje</span>
+                </div>
+
+                <div class="card_kpi card_kpi_danger">
+                    <span class="kpi_titulo">Perda Est. por Vacina </span>
+                    <span class="kpi_valor"><strong>R$ 3.840</strong> </span>
+                    <span class="kpi_range">Doses comprometidas: <span class="valor_imp">48</span> </span>
+                    <span class="kpi_range">Custo unitário: <span class="valor_imp">R$ 80,00</span> </span>
+                    <span class="kpi_alerta">+12 doses esta hora </span>
+                </div>
+                <!-- CARD 3 -->
+            </div>
+            <div>
+                <div class="grafico_card_pizza">
+                    <h3 id="pizzaTitle">Status da temperatura</h3>
+                    <canvas id="graficoPizza"></canvas>
+                </div>
             </div>
 
-            <!-- CARD 3 -->
-            <div class="card_kpi">
-                <button class="btn_detalhes">Detalhes</button>
+
+            <!-- GRÁFICO -->
+            <div class="grafico_card">
+                <h3>Registros do sensor</h3>
+                <canvas id="sensorAnalogico"></canvas>
             </div>
 
+            <!-- STATUS -->
+            <div class="status">
+
+                <!-- CARD STATUS -->
+                <div class="card_status">
+                    <span class="status_label"><strong>Status:</strong></span>
+                    <span class="status_value">Temperatura acima da média</span>
+                </div>
+
+                <!-- CARD FALHA -->
+                <div class="card_status">
+                    <span class="status_label"><strong>Tipo de falha:</strong></span>
+                    <span class="status_value">Temperatura elevada</span>
+                </div>
+
+            </div>
         </div>
-
-        <!-- GRÁFICO -->
-        <div class="grafico_card">
-            <h3>Registros do sensor</h3>
-            <canvas id="sensorAnalogico"></canvas>
-        </div>
-
-        <!-- STATUS -->
-        <div class="status">
-
-            <!-- CARD STATUS -->
-            <div class="card_status">
-                <span class="status_label"><strong>Status:</strong></span>
-                <span class="status_value">Temperatura acima da média</span>
-            </div>
-
-            <!-- CARD FALHA -->
-            <div class="card_status">
-                <span class="status_label"><strong>Tipo de falha:</strong></span>
-                <span class="status_value">Temperatura elevada</span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="dash.js"></script>
-
+    </main>
 </body>
+<script src="dash.js"></script>
 
 </html>
