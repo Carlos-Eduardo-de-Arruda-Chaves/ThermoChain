@@ -6,40 +6,40 @@ USE thermochain;
 
 -- TABELA: empresa
 CREATE TABLE empresa (
-    id_empresa      BIGINT          AUTO_INCREMENT PRIMARY KEY,
-    razao_social    VARCHAR(150)    NOT NULL,
-    nome_fantasia   VARCHAR(150),
-    -- CNPJ armazenado apenas com dígitos numéricos (sem máscara)
-    cnpj            CHAR(14)        NOT NULL UNIQUE,
-    telefone        VARCHAR(20),
-    email           VARCHAR(150)    UNIQUE,
+    id_empresa BIGINT AUTO_INCREMENT PRIMARY KEY,
+    razao_social VARCHAR(150) NOT NULL,
+    nome_fantasia VARCHAR(150),
+    -- CNPJ armazenado apenas com dígitos numéricos
+    cnpj CHAR(14) NOT NULL UNIQUE,
+    telefone VARCHAR(20),
+    email VARCHAR(150) UNIQUE,
     -- Endereço completo
-    logradouro      VARCHAR(150)    NOT NULL,
-    numero          VARCHAR(10),
-    complemento     VARCHAR(100),
-    bairro          VARCHAR(100),
-    cidade          VARCHAR(100)    NOT NULL,
-    estado          CHAR(2)         NOT NULL,
-    -- CEP armazenado apenas com dígitos numéricos (sem máscara)
-    cep             CHAR(8)         NOT NULL,
-    segmento        VARCHAR(60)     NOT NULL,
+    logradouro VARCHAR(150) NOT NULL,
+    numero VARCHAR(10),
+    complemento VARCHAR(100),
+    bairro VARCHAR(100),
+    cidade VARCHAR(100) NOT NULL,
+    estado CHAR(2) NOT NULL,
+    -- CEP armazenado apenas com dígitos numéricos 
+    cep CHAR(8) NOT NULL,
+    segmento VARCHAR(60) NOT NULL,
     status_empresa  ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
-    dt_cadastro     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP
+    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- TABELA: usuario
 -- Usuários vinculados a uma empresa
 CREATE TABLE usuario (
-    id_usuario      BIGINT          AUTO_INCREMENT PRIMARY KEY,
-    nome            VARCHAR(120)    NOT NULL,
-    email           VARCHAR(150)    NOT NULL UNIQUE,
+    id_usuario BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
     -- Armazenar sempre como hash (bcrypt)
-    senha           VARCHAR(255)    NOT NULL,
+    senha VARCHAR(255) NOT NULL,
     -- CPF armazenado apenas com dígitos numéricos (sem máscara)
-    cpf             CHAR(11)        NOT NULL UNIQUE,
+    cpf CHAR(11) NOT NULL UNIQUE,
     status_usuario  ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
-    dt_registro     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fk_empresa      BIGINT          NOT NULL,
+    dt_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fk_empresa BIGINT NOT NULL,
     CONSTRAINT fk_usuario_empresa
         FOREIGN KEY (fk_empresa)
         REFERENCES empresa(id_empresa)
@@ -48,13 +48,13 @@ CREATE TABLE usuario (
 -- TABELA: tipo_vacina
 -- Catálogo de tipos de vacinas com faixas de temperatura segura
 CREATE TABLE tipo_vacina (
-    id_vacina           INT             AUTO_INCREMENT PRIMARY KEY,
-    nome                VARCHAR(120)    NOT NULL,
-    fabricante          VARCHAR(120)    NOT NULL,
-    temperatura_min     DECIMAL(5,2)    NOT NULL,
-    temperatura_max     DECIMAL(5,2)    NOT NULL,
-    dt_cadastro         DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fk_empresa          BIGINT          NOT NULL,
+    id_vacina INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
+    fabricante VARCHAR(120) NOT NULL,
+    temperatura_min DECIMAL(5,2) NOT NULL,
+    temperatura_max DECIMAL(5,2) NOT NULL,
+    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fk_empresa BIGINT NOT NULL,
     -- Garante que temperatura mínima é menor que a máxima
     CONSTRAINT chk_temperatura
         CHECK (temperatura_min < temperatura_max),
@@ -68,17 +68,17 @@ CREATE TABLE tipo_vacina (
 -- TABELA: lote_vacina
 -- Lotes físicos de vacinas com rastreio completo
 CREATE TABLE lote_vacina (
-    id_lote             BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    id_lote BIGINT AUTO_INCREMENT PRIMARY KEY,
     -- Código único do fabricante
-    codigo              VARCHAR(60)     NOT NULL UNIQUE,
-    data_fabricacao     DATE,
-    data_validade       DATE            NOT NULL,
-    peso                DECIMAL(10,2),
-    volume              DECIMAL(10,2),
-    quantidade          INT             NOT NULL,
-    status_lote         ENUM('Ativo', 'Vencido', 'Descartado') DEFAULT 'Ativo',
-    dt_cadastro         DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fk_vacina           INT             NOT NULL,
+    codigo VARCHAR(60) NOT NULL UNIQUE,
+    data_fabricacao DATE,
+    data_validade DATE NOT NULL,
+    peso DECIMAL(10,2),
+    volume DECIMAL(10,2),
+    quantidade INT NOT NULL,
+    status_lote ENUM('Ativo', 'Vencido', 'Descartado') DEFAULT 'Ativo',
+    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fk_vacina INT NOT NULL,
     -- Garante que a validade é posterior à fabricação
     CONSTRAINT chk_validade
         CHECK (data_fabricacao IS NULL OR data_validade > data_fabricacao),
@@ -88,55 +88,36 @@ CREATE TABLE lote_vacina (
         REFERENCES tipo_vacina(id_vacina)
 );
 
--- TABELA: microcontrolador
-CREATE TABLE microcontrolador (
-    id_micro                BIGINT          AUTO_INCREMENT PRIMARY KEY,
-    modelo                  VARCHAR(100)    NOT NULL,
-    fabricante              VARCHAR(100),
-    tipo                    ENUM('ESP32', 'Arduino', 'Raspberry', 'Outro') NOT NULL,
-    -- Número de série único do dispositivo
-    numero_serie            VARCHAR(100)    UNIQUE,
-    local_instalacao        VARCHAR(150),
-    status_micro            ENUM('Ativo', 'Inativo', 'Manutencao') DEFAULT 'Ativo',
-    dt_instalacao           DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    dt_ultima_manutencao    DATETIME,
-    observacao              VARCHAR(255)
-);
-
 -- TABELA: sensor
 CREATE TABLE sensor (
-    id_sensor           BIGINT          AUTO_INCREMENT PRIMARY KEY,
-    modelo              VARCHAR(100)    NOT NULL,
-    fabricante          VARCHAR(100),
+    id_sensor BIGINT AUTO_INCREMENT PRIMARY KEY,
+    modelo VARCHAR(100) NOT NULL,
+    modelo_micro VARCHAR(100),
+    fabricante VARCHAR(100),
     -- Tipo do sensor (ex: LM35, DHT22)
-    tipo                VARCHAR(40)     NOT NULL,
-    local_instalacao    VARCHAR(150),
-    status_sensor       ENUM('Ativo', 'Inativo', 'Manutencao') DEFAULT 'Ativo',
-    dt_instalacao       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    tipo VARCHAR(40) NOT NULL,
+    local_instalacao VARCHAR(150),
+    status_sensor ENUM('Ativo', 'Inativo', 'Manutencao') DEFAULT 'Ativo',
+    dt_instalacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     -- Faixa operacional do sensor
-    faixa_min           DECIMAL(5,2),
-    faixa_max           DECIMAL(5,2),
-    observacao          VARCHAR(255),
-    fk_micro            BIGINT          NOT NULL,
+    faixa_min DECIMAL(5,2),
+    faixa_max DECIMAL(5,2),
+    observacao VARCHAR(255),
 
     -- Garante que faixa mínima é menor que a máxima quando ambas informadas
     CONSTRAINT chk_faixa_sensor
-        CHECK (faixa_min IS NULL OR faixa_max IS NULL OR faixa_min < faixa_max),
-
-    CONSTRAINT fk_sensor_micro
-        FOREIGN KEY (fk_micro)
-        REFERENCES microcontrolador(id_micro)
+        CHECK (faixa_min IS NULL OR faixa_max IS NULL OR faixa_min < faixa_max)
 );
 
 -- TABELA: alocacao_lote
 CREATE TABLE alocacao_lote (
-    id_alocacao             BIGINT      AUTO_INCREMENT PRIMARY KEY,
-    -- Início obrigatório; fim NULL indica monitoramento em curso
-    inicio_monitoramento    DATETIME    NOT NULL,
-    fim_monitoramento       DATETIME    DEFAULT NULL,
+    id_alocacao BIGINT AUTO_INCREMENT PRIMARY KEY,
+    
+    inicio_monitoramento DATETIME NOT NULL,
+    fim_monitoramento DATETIME DEFAULT NULL,
 
-    fk_sensor               BIGINT      NOT NULL,
-    fk_lote                 BIGINT      NOT NULL,
+    fk_sensor BIGINT NOT NULL,
+    fk_lote BIGINT NOT NULL,
 
     CONSTRAINT fk_alocacao_sensor
         FOREIGN KEY (fk_sensor)
@@ -151,17 +132,14 @@ CREATE TABLE alocacao_lote (
 -- TABELA: leitura_temperatura
 CREATE TABLE leitura_temperatura (
 
-    id_leitura                  BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    id_leitura BIGINT AUTO_INCREMENT PRIMARY KEY,
 
-    temperatura                 DECIMAL(5,2)    NOT NULL,
+    temperatura DECIMAL(5,2) NOT NULL,
+    
+    data_hora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    -- Indexado para queries de range temporal eficientes
-    data_hora                   DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    -- FK direta para lote: permite relatórios sem joins complexos
-    -- (ex: "lote X ficou fora da faixa por quantas horas?")
-    fk_sensor                   BIGINT          NOT NULL,
-    fk_lote                     BIGINT          NOT NULL,
+    fk_sensor BIGINT NOT NULL,
+    fk_lote BIGINT NOT NULL,
 
     CONSTRAINT fk_leitura_sensor
         FOREIGN KEY (fk_sensor)
@@ -212,11 +190,11 @@ VALUES
 INSERT INTO tipo_vacina
     (nome, fabricante, temperatura_min, temperatura_max, fk_empresa)
 VALUES
-    ('Febre Amarela',           'Sinovac/Butantan',  2.00,  8.00, 1),
-    ('Covid-19',	'Pfizer',           -10.00,	0.00, 1),
-    ('Febre Amarela',         'AstraZeneca/Fiocruz', 2.00, 8.00, 2),
-    ('Sarampo',             'Johnson & Johnson',   2.00, 8.00, 3),
-    ('Influenza Trivalente',	'Sanofi Pasteur',       2.00, 8.00, 3);
+    ('Febre Amarela','Sinovac/Butantan',  2.00,  8.00, 1),
+    ('Covid-19', 'Pfizer', -10.00,	0.00, 1),
+    ('Febre Amarela', 'AstraZeneca/Fiocruz', 2.00, 8.00, 2),
+    ('Sarampo', 'Johnson & Johnson',   2.00, 8.00, 3),
+    ('Influenza Trivalente', 'Sanofi Pasteur',2.00, 8.00, 3);
 
 
 -- 4 LOTE_VACINA
@@ -231,17 +209,8 @@ VALUES
     ('LOTE-FLU-2025-001','2025-05-01', '2025-11-01', 3.80, 1.80,  900, 5);
 
 
--- 5 MICROCONTROLADOR
-INSERT INTO microcontrolador
-    (modelo, fabricante, tipo, numero_serie, local_instalacao, observacao)
-VALUES
-    ('Arduino Uno R3', 'Arduino', 'Arduino', 'SN-ESP32-001', 'Câmara fria A – VaccinaCold', 'Principal'),
-    ('Arduino Uno R3', 'Arduino', 'Arduino', 'SN-ESP32-002', 'Câmara fria B – VaccinaCold', NULL),
-    ('Arduino Uno R3',	'Arduino',  'Arduino','SN-ARD-001',  'Veículo refrigerado 01 – FrigoCargo', NULL),
-    ('ESP32-S3',        'Espressif', 'ESP32', 'SN-ESP32-003', 'Depósito central – ImunoCenter', 'Backup ativo');
 
-
--- 6 SENSOR
+-- 5 SENSOR
 INSERT INTO sensor
     (modelo, fabricante, tipo, local_instalacao, faixa_min, faixa_max, observacao)
 VALUES
@@ -252,7 +221,7 @@ VALUES
     ('LM35', 'Texas Instruments', 'Temperatura LM35', 'Depósito ImunoCenter',     -55.00, 150.00, NULL);
 
 
--- 7. ALOCACAO_LOTE
+-- 6. ALOCACAO_LOTE
 INSERT INTO alocacao_lote
     (fk_lote, fk_sensor, inicio_monitoramento, fim_monitoramento)
 VALUES
@@ -264,34 +233,14 @@ VALUES
     (6, 1, '2025-05-01 08:00:00', NULL);           -- Lote Influenza também no sensor 1
 
 
--- 8. LEITURA_TEMPERATURA
+-- 8. Exemplo de LEITURA_TEMPERATURA
 INSERT INTO leitura_temperatura
     (temperatura, data_hora, fk_sensor, fk_lote)
 VALUES
-    -- Leituras normais – CoronaVac (faixa 2 a 8 °C)
-    ( 5.10, '2025-06-01 08:00:00', 'Normal',  FALSE,   0, 1, 1),
-    ( 5.50, '2025-06-01 08:30:00', 'Normal',  FALSE,   0, 1, 1),
-    ( 7.20, '2025-06-01 09:00:00', 'Normal',  FALSE,   0, 1, 1),
-
-    -- Alerta – temperatura subindo
-    ( 8.80, '2025-06-01 09:30:00', 'Alerta',  TRUE,  120, 1, 1),
-    (10.50, '2025-06-01 10:00:00', 'Critico', TRUE,  600, 1, 1),
-
-    -- Volta ao normal
-    ( 6.00, '2025-06-01 10:30:00', 'Normal',  FALSE,   0, 1, 1),
-
-    -- Leituras – Pfizer (faixa -90 a -60 °C)
-    (-75.00,'2025-06-01 08:00:00', 'Normal',  FALSE,   0, 3, 3),
-    (-72.30,'2025-06-01 08:30:00', 'Normal',  FALSE,   0, 3, 3),
-    (-58.00,'2025-06-01 09:00:00', 'Alerta',  TRUE,  300, 3, 3),
-
-    -- Leituras – AstraZeneca (veículo)
-    ( 4.50, '2025-06-01 10:00:00', 'Normal',  FALSE,   0, 4, 4),
-    ( 5.00, '2025-06-01 10:30:00', 'Normal',  FALSE,   0, 4, 4),
-
-    -- Leituras – Janssen
-    ( 3.80, '2025-06-01 11:00:00', 'Normal',  FALSE,   0, 5, 5),
-    ( 9.10, '2025-06-01 11:30:00', 'Alerta',  TRUE,   90, 5, 5);
+   
+    ( 5.10, '2025-06-01 08:00:00', 0, 1, 1),
+    ( 5.50, '2025-06-01 08:30:00', 0, 1, 1),
+    ( 7.20, '2025-06-01 09:00:00', 0, 1, 1);
 
 
 -- SELECTs
@@ -314,17 +263,17 @@ ORDER BY lv.data_validade;
 SELECT
     lt.data_hora,
     lt.temperatura,
-    lt.status_temperatura,
-    lt.tempo_alerta_segundos AS seg_alerta,
     tv.nome AS vacina,
     lv.codigo AS lote,
     s.modelo AS sensor,
     s.local_instalacao
 FROM leitura_temperatura lt
-JOIN sensor s       USING (id_sensor)
-JOIN lote_vacina lv USING (id_lote)
-JOIN tipo_vacina tv USING (id_vacina)
-WHERE lt.alerta
+JOIN sensor s 
+    ON lt.fk_sensor = s.id_sensor
+JOIN lote_vacina lv 
+    ON lt.fk_lote = lv.id_lote
+JOIN tipo_vacina tv 
+    ON lv.fk_vacina = tv.id_vacina
 ORDER BY lt.data_hora DESC;
 
 
@@ -332,8 +281,6 @@ ORDER BY lt.data_hora DESC;
 SELECT
     lt.data_hora,
     lt.temperatura,
-    lt.status_temperatura,
-    lt.tempo_alerta_segundos AS seg_alerta,
     tv.nome AS vacina,
     lv.codigo AS lote,
     s.modelo AS sensor,
@@ -345,7 +292,6 @@ JOIN lote_vacina lv
     ON lv.id_lote = lt.fk_lote
 JOIN tipo_vacina tv 
     ON tv.id_vacina = lv.fk_vacina
-WHERE lt.alerta
 ORDER BY lt.data_hora DESC;
 
 
@@ -367,6 +313,7 @@ JOIN sensor s
 WHERE al.fim_monitoramento IS NULL
 ORDER BY al.inicio_monitoramento;
 
+
 -- 5 Usuários por empresa com total de usuários
 SELECT
     e.razao_social AS empresa,
@@ -377,17 +324,3 @@ LEFT JOIN usuario u
     ON u.fk_empresa = e.id_empresa
 GROUP BY e.id_empresa
 ORDER BY total_usuarios DESC;
-
-
--- 6 Lotes vencidos ou próximos do vencimento (próximos 60 dias)
-SELECT
-    lv.codigo,
-    tv.nome AS vacina,
-    lv.data_validade,
-    DATEDIFF(lv.data_validade, CURDATE()) AS dias_restantes,
-    lv.status_lote
-FROM lote_vacina lv
-JOIN tipo_vacina tv 
-    ON tv.id_vacina = lv.fk_vacina
-WHERE DATEDIFF(lv.data_validade, CURDATE()) <= 60
-ORDER BY lv.data_validade;
