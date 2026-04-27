@@ -93,7 +93,7 @@ function montarLinhaDia(registroDia, container) {
     let textoSituacao = "";
     let classeSituacao = "";
 
-    if (situacao === "ideal") {
+    if (situacao == "ideal") {
         textoSituacao = "ideal";
         classeSituacao = "ideal";
     } else {
