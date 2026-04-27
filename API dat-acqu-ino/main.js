@@ -98,9 +98,9 @@ const servidor = (
     app.get('/sensores/analogico', (_, response) => {
         return response.json(valoresSensorTemperatura);
     });
-    app.get('/sensores/digital', (_, response) => {
-        return response.json(valoresSensorDigital);
-    });
+    // app.get('/sensores/digital', (_, response) => {
+    //     return response.json(valoresSensorDigital);
+    // });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
