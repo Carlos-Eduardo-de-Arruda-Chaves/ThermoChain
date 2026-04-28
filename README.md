@@ -63,6 +63,28 @@ Ferramenta para estimar prejuízos com base na quantidade de doses e perdas, mos
 
 ---
 
+# API de Inserção no Banco de Dados
+
+## Pré-requisitos
+
+
+- Node.js
+- npm (gerenciador de pacotes do Node)
+
+---
+
+## Instalação
+
+instale as dependências:
+
+> npm install
+
+## iniciação
+
+> npm start ou npm main.js
+
+--
+
 ## 🔄 Fluxo do Sistema
 
 1. 🏭 **Indústria e Produção**
