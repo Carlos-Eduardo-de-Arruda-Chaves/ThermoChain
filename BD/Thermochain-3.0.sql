@@ -233,16 +233,6 @@ VALUES
     (6, 1, '2025-05-01 08:00:00', NULL);           -- Lote Influenza também no sensor 1
 
 
--- 8. Exemplo de LEITURA_TEMPERATURA
-INSERT INTO leitura_temperatura
-    (temperatura, data_hora, fk_sensor, fk_lote)
-VALUES
-   
-    ( 5.10, '2025-06-01 08:00:00', 0, 1, 1),
-    ( 5.50, '2025-06-01 08:30:00', 0, 1, 1),
-    ( 7.20, '2025-06-01 09:00:00', 0, 1, 1);
-
-
 -- SELECTs
 
 -- 1 Todos os lotes com o nome da vacina e status
