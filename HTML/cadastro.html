@@ -18,7 +18,8 @@
 
                 <div class="header">
                     <div class="headerVoltar">
-                        <a href="Tela_home.html"><img src="../CSS/img/seta-esquerda.png" alt="Voltar" class="chevron"></a>
+                        <a href="Tela_home.html"><img src="../CSS/img/seta-esquerda.png" alt="Voltar"
+                                class="chevron"></a>
                         <img src="../CSS/img/logo.png" alt="ThermoChain" class="logo">
                     </div>
                     <div class="subtext">
@@ -33,7 +34,9 @@
                     <div class="input-box">
                         <input type="text" id="input_usuario" placeholder="Username">
                     </div>
+                    <div id="div_emailErro" class="erro"> </div>
                 </div>
+
 
                 <div class="campo">
                     <h3>E-mail</h3>
@@ -41,6 +44,7 @@
                     <div class="input-box">
                         <input type="text" id="input_email" placeholder="Exemplo@termochain.com">
                     </div>
+                    <div id="div_emailErro" class="erro"> </div>
                 </div>
 
                 <div class="campo">
@@ -49,6 +53,7 @@
                     <div class="input-box">
                         <input type="password" id="input_senha" placeholder="Digite sua senha">
                     </div>
+                    <div id="div_senhaErro" class="erro"> </div>
                 </div>
 
                 <div class="campo">
@@ -57,6 +62,7 @@
                     <div class="input-box">
                         <input type="password" id="input_confsenha" placeholder="Confirma sua Senha">
                     </div>
+                    <div id="div_senhaErro" class="erro"> </div>
                 </div>
 
                 <div class="button">
@@ -68,7 +74,7 @@
                     <h4>Já tem uma conta?</h4>
                 </div>
 
-                <a href="../CSS/login.html">Faça Login</a>
+                <a href="../HTML/login.html">Faça Login</a>
 
         </div>
     </div>
@@ -92,14 +98,18 @@
         let Senha = input_senha.value;
         let ConfSenha = input_confsenha.value;
 
+        div_emailErro.innerHTML = ``;
+        div_senhaErro.innerHTML = ``;
+
         if (Usuario == "" || Email == "" || Senha == "" || ConfSenha == "") {
-            alert("Insira todos os campos")
+            div_emailErro.innerHTML = "Insira todos os campos"
+            div_senhaErro.innerHTML = `Insira todos os campos`;
         }
         else if (!Email.includes("@")) {
-            alert("Email inválido")
+            div_emailErro.innerHTML = `Email inválido`;
         }
         else if (Senha != ConfSenha) {
-            alert("Senhas não coincidem")
+            div_senhaErro.innerHTML = `Senhas não coincidem`;
         }
         else {
             alerta.innerHTML = `Cadastro Concluído`
@@ -110,6 +120,81 @@
             input_confsenha.value = "";
         }
     }
+
+
+
+    function entrar() {
+        aguardar();
+
+        var usuarioVar = input_usuario.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+        var confSenhaVar = input_confsenha.value;
+
+        if (emailVar == "" || senhaVar == "" || usuarioVar == "" || confSenhaVar == "") {
+            cardErro.style.display = "block"
+            div_emailErro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            div_senhaErro.innerHTML = "(Mensagem de erro para todos os campos em branco)"
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>
 
 </html>
