@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../CSS/dashStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body onload="chamar(1)">
+    <div class="alertaLote" id="alertaLote">
+        <div class="textoAlerta">
+            <h2 id="alertaTitulo">Titulo do Lote</h2>
+            <p id="alertaDesc">O lote está com a temperatura acima da média</p>
+        </div>
+
+        <img src="../img/alerta.gif" class="gifAlerta" alt="Alerta">
+        <button class="fecharAlerta" onclick="fechar()">X</button>
+    </div>
+    <div class="pagina">
+        <section class="painel">
+
+            <div class="containerTitulo">
+                <a href="../HTML/logsMenu.html">
+                    <img src="../CSS/img/seta-esquerda.png" class="setaPainel" alt="Voltar">
+                </a>
+
+                <h1 class="tituloPainel">DashBoard</h1>
+            </div>
+
+            <div class="linhaSensor">
+                <div class="labelSensorContainer">
+                    <label for="selectSensor" class="labelSensor">Lotes:</label>
+                </div>
+
+                <select id="selectSensor" onchange="trocar()">
+                    <option value="1">1ABCD</option>
+                    <option value="2">2ABCD</option>
+                    <option value="3">3ABCD</option>
+                </select>
+                <input id="inputPesquisa" placeholder="Pesquisar lote..." oninput="pesquisarLote()">
+            </div>
+
+            <section class="areaTopo">
+
+                <div class="areaPizza">
+                    <canvas id="graficoPizza"></canvas>
+
+                    <div class="legendaPizza">
+                        <div class="itemLegenda">
+                            <span class="caixaLegenda cinza"></span>
+                            <span>Tempo fora da faixa <strong id="txtFora">20%</strong></span>
+                        </div>
+
+                        <div class="itemLegenda">
+                            <span class="caixaLegenda azul"></span>
+                            <span>Tempo dentro da faixa <strong id="txtDentro">80%</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <div class="card vermelho" id="cardRisco">
+                        <span class="numero" id="valor2">4</span>
+                        <span class="texto">Lote em Risco</span>
+                    </div>
+
+                    <div class="card verde" id="cardMedio">
+                        <span class="numero" id="valor3">3</span>
+                        <span class="texto">Temperatura fora do padrão</span>
+                    </div>
+
+                    <div class="card rosa" id="cardOcorrencia">
+                        <span class="numero" id="valor4">4</span>
+                        <span class="texto">Ocorrências</span>
+                    </div>
+                    <div class="cardBaixo">
+                        <div class="card azul2" id="cardTempo">
+                            <span class="tempo" id="valor5">00:04:32</span>
+                            <span class="texto">Tempo fora da faixa</span>
+                        </div>
+
+                        <div class="card amarelo">
+                            <span class="numero" id="valor6">1</span>
+                            <span class="texto">Perda Est. por Vacina</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cardTemp">
+                    <div class="topoTemp">Temperatura</div>
+                    <div class="valorTemp" id="tempAtual">9.2C</div>
+
+                    <div class="rodapeTemp">
+                        <div class="statusPequeno">Status</div>
+                        <div class="statusTexto" id="statusText">Temperatura acima da média</div>
+                    </div>
+                </div>
+
+                <div class="cardLocalizacaoContainer">
+                    <div class="cardLocalizacao" id="cardLocalizacaoValue"></div>
+                </div>
+            </section>
+
+            <section class="areaLinha">
+                <h3>Registros de Temperatura</h3>
+                <div class="containerGrafico">
+                    <canvas id="graficoLinha"></canvas>
+                </div>
+            </section>
+
+        </section>
+    </div>
+
+    <script src="../JS/dash.js"></script>
+</body>
+
+</html>
