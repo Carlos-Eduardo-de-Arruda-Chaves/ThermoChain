@@ -306,7 +306,7 @@ input[type="checkbox"]:checked {
 .caixa_input{
     width: 550px;
     height: 60px;
-    border-color: rgba(13, 27, 46, 1);
+    border-color: rgb(34, 83, 152);
     border-radius: 10px;
     padding-left: 20px;
     border-width: 3px;
@@ -771,6 +771,11 @@ a:visited {
     flex-direction: column;
     gap: 5px;
 }
+.mural {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
 .inputGroup {
     display: flex;
@@ -975,3 +980,200 @@ a:visited {
     color: #64748B;
     margin-top: 2px;
 }
+
+
+/* ===== MURAL DE AVISOS ===== */
+
+.B_Home{
+    background-color: #F5F7F8;
+}
+
+.cabecalho{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding-right: 50px;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    padding-top: 20px;
+   
+}
+
+.botoes_cabecario{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.botao_head{
+    background-color: #F5F7F8;
+    box-shadow: none;
+    border: none;
+    height: 35px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.botao_cliente_cadastro:hover{
+    background-color: rgb(3, 3, 194);
+}
+
+.botao_cliente_cadastro{
+    background-color: rgba(0, 86, 178, 1);
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login{
+    background-color: white;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.botao_cliente_login:hover{
+    background-color: rgb(221, 221, 221);
+}
+
+
+.titulo-mural{
+
+    display: flex;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+    justify-content: center;
+    font-size: 16px;
+     align-items: center;
+}
+
+
+   .container-mural{
+    width: 70%;
+    max-width: 1200px;
+
+     background-image: linear-gradient(135deg, rgba(0, 86, 178, 1), rgba(121, 169, 194, 1));
+    border: 1px solid rgba(0, 0, 0, 0.262);
+
+    border-radius: 25px;
+    align-items: center;
+    padding: 30px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.container-mural h1{
+    font-size: 50px;
+    color: #000000;
+}
+
+.div-form{  
+    width: 100%;
+    padding: 7px;
+     display: flex;
+ align-items: center;
+ justify-content: center;
+
+}
+.avisos{
+      width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding-bottom: 50px;
+    
+}
+
+.div-form label{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.div-form input{
+    width: 100%;
+    margin-top: 10px;
+
+    padding: 15px;
+
+    border-radius: 18px;
+    border: none;
+
+    background-color: rgba(21, 92, 163, 0.759);
+
+    color: white;
+    font-size: 16px;
+
+    outline: none;
+}
+
+.div-form button{
+    margin-top: 10px;
+
+    width: 400px;
+
+    padding:   14px;
+
+    border: none;
+    border-radius: 14px;
+
+    background:  #0056B2;
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+   
+    transition: 0.3s;
+}
+
+.div-form button:hover{
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+.div-results{
+    width: 100%;
+}
+
+.feed-container{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.publicacao{
+    width: 100%;
+
+    background: rgba(255,255,255,0.07);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    border-left: 5px solid #00bfff;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    transition: 0.3s;
+}
+
+
