@@ -1,200 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThermoChain- Cadastro</title>
+    <title>ThermoChain - Cadastro</title>
+
     <link rel="stylesheet" href="../CSS/stylecadastro.css">
 </head>
 
 <body class="B_Cadastro">
 
-    <div class="Title">
+    <div class="container">
 
-        <div class="container">
+        <div class="header">
 
-            <body class="backg">
+            <div class="headerVoltar">
 
-                <div class="header">
-                    <div class="headerVoltar">
-                        <a href="Tela_home.html"><img src="../CSS/img/seta-esquerda.png" alt="Voltar"
-                                class="chevron"></a>
-                        <img src="../CSS/img/logo.png" alt="ThermoChain" class="logo">
-                    </div>
-                    <div class="subtext">
-                        <img src="../CSS/img/check.png" alt="check" class="check">
-                        <span>Controle Térmico de ponta a ponta</span>
-                    </div>
-                </div>
+                <a href="Tela_home.html">
+                    <img src="../CSS/img/seta-esquerda.png"
+                        alt="Voltar"
+                        class="chevron">
+                </a>
 
-                <div class="campo">
-                    <h3>Nome</h3>
-                    <img src="../CSS/img/emailIcon.png" class="email">
-                    <div class="input-box">
-                        <input type="text" id="input_usuario" placeholder="Username">
-                    </div>
-                    <div id="div_emailErro" class="erro"> </div>
-                </div>
+                <img src="../CSS/img/logo.png"
+                    alt="ThermoChain"
+                    class="logo">
 
+            </div>
 
-                <div class="campo">
-                    <h3>E-mail</h3>
-                    <img src="../CSS/img/emailIcon.png" class="email">
-                    <div class="input-box">
-                        <input type="text" id="input_email" placeholder="Exemplo@termochain.com">
-                    </div>
-                    <div id="div_emailErro" class="erro"> </div>
-                </div>
+            <div class="subtext">
 
-                <div class="campo">
-                    <h3>Senha</h3>
-                    <img src="../CSS/img/olhoIcon.png" class="olho" onclick="toggleSenha('input_senha')">
-                    <div class="input-box">
-                        <input type="password" id="input_senha" placeholder="Digite sua senha">
-                    </div>
-                    <div id="div_senhaErro" class="erro"> </div>
-                </div>
+                <img src="../CSS/img/check.png"
+                    alt="check"
+                    class="check">
 
-                <div class="campo">
-                    <h3>Confirmar Senha</h3>
-                    <img src="../CSS/img/olhoIcon.png" class="olho" onclick="toggleSenha('input_confsenha')">
-                    <div class="input-box">
-                        <input type="password" id="input_confsenha" placeholder="Confirma sua Senha">
-                    </div>
-                    <div id="div_senhaErro" class="erro"> </div>
-                </div>
+                <span>
+                    Controle Térmico de ponta a ponta
+                </span>
 
-                <div class="button">
-                    <button onclick="Entrar()">ENTRAR</button>
-                </div>
-
-                <div class="alerta">
-                    <div id="alerta"></div>
-                    <h4>Já tem uma conta?</h4>
-                </div>
-
-                <a href="../HTML/login.html">Faça Login</a>
+            </div>
 
         </div>
+
+
+        <div class="campo">
+
+            <h3>Nome</h3>
+
+            <img src="../CSS/img/userIcon.png"
+                class="email">
+
+            <div class="input-box">
+
+                <input type="text"
+                    id="input_usuario"
+                    placeholder="Digite seu nome">
+
+            </div>
+
+            <div id="div_usuarioErro"
+                class="erro"></div>
+
+        </div>
+
+
+        <div class="campo">
+
+            <h3>E-mail</h3>
+
+            <img src="../CSS/img/emailIcon.png"
+                class="email">
+
+            <div class="input-box">
+
+                <input type="email"
+                    id="input_email"
+                    placeholder="Exemplo@thermochain.com">
+
+            </div>
+
+            <div id="div_emailErro"
+                class="erro"></div>
+
+        </div>
+
+
+        <div class="campo">
+
+            <h3>Senha</h3>
+
+            <img src="../CSS/img/olhoIcon.png"
+                class="olho"
+                onclick="mostrarSenha('input_senha')">
+
+            <div class="input-box">
+
+                <input type="password"
+                    id="input_senha"
+                    placeholder="Digite sua senha">
+
+            </div>
+
+            <div id="div_senhaErro"
+                class="erro"></div>
+
+        </div>
+
+
+        <div class="campo">
+
+            <h3>Confirmar Senha</h3>
+
+            <img src="../CSS/img/olhoIcon.png"
+                class="olho"
+                onclick="mostrarSenha('input_confsenha')">
+
+            <div class="input-box">
+
+                <input type="password"
+                    id="input_confsenha"
+                    placeholder="Confirme sua senha">
+
+            </div>
+
+            <div id="div_confSenhaErro"
+                class="erro"></div>
+
+        </div>
+
+
+        <div class="button">
+
+            <button onclick="cadastrar()">
+                CADASTRAR
+            </button>
+
+        </div>
+
+
+        <div class="alerta">
+
+            <div id="alerta"></div>
+
+            <h4>Já tem uma conta?</h4>
+
+        </div>
+
+        <a href="../HTML/login.html">
+            Faça Login
+        </a>
+
     </div>
 
+    <script src="../JS/scriptCadastro.js"></script>
+
 </body>
-
-<script>
-    function toggleSenha(idInput) {
-        const input = document.getElementById(idInput);
-
-        if (input.type === "password") {
-            input.type = "text";
-        } else {
-            input.type = "password";
-        }
-    }
-
-    function Entrar() {
-        let Usuario = input_usuario.value;
-        let Email = input_email.value;
-        let Senha = input_senha.value;
-        let ConfSenha = input_confsenha.value;
-
-        div_emailErro.innerHTML = ``;
-        div_senhaErro.innerHTML = ``;
-
-        if (Usuario == "" || Email == "" || Senha == "" || ConfSenha == "") {
-            div_emailErro.innerHTML = "Insira todos os campos"
-            div_senhaErro.innerHTML = `Insira todos os campos`;
-        }
-        else if (!Email.includes("@")) {
-            div_emailErro.innerHTML = `Email inválido`;
-        }
-        else if (Senha != ConfSenha) {
-            div_senhaErro.innerHTML = `Senhas não coincidem`;
-        }
-        else {
-            alerta.innerHTML = `Cadastro Concluído`
-
-            input_usuario.value = "";
-            input_email.value = "";
-            input_senha.value = "";
-            input_confsenha.value = "";
-        }
-    }
-
-
-
-    function entrar() {
-        aguardar();
-
-        var usuarioVar = input_usuario.value;
-        var emailVar = input_email.value;
-        var senhaVar = input_senha.value;
-        var confSenhaVar = input_confsenha.value;
-
-        if (emailVar == "" || senhaVar == "" || usuarioVar == "" || confSenhaVar == "") {
-            cardErro.style.display = "block"
-            div_emailErro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            div_senhaErro.innerHTML = "(Mensagem de erro para todos os campos em branco)"
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
-</script>
 
 </html>
