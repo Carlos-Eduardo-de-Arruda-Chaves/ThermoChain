@@ -21,7 +21,7 @@ const serial = async (
             host: 'localhost',
             user: 'thermo_insert',
             password: 'Thermo@123',
-            database: 'thermochain',
+            database: 'Thermochain', // database "thermochain" virou "Thermochain"
             port: 3307
         }
     ).promise();
@@ -61,7 +61,7 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO leitura_temperatura (temperatura, fk_sensor, fk_lote ) VALUES (?, 1, 1)',
+                'INSERT INTO leitura_temperatura (temperatura) VALUES (?)', // Para verificar se estava funcionando, foi retirado "fk_sensor" e "fk_lote", e os valores "1" e "1"
                 [sensorTemperatura]
             );
             console.log("valores inseridos no banco: ", sensorTemperatura);
