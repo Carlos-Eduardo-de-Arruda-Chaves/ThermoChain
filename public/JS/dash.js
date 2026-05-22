@@ -12,17 +12,13 @@ let kpis = [];
 fechar();
 alertar();
 
+let lotes = [];
+
 fetch("/avisos/listar").then(function (resposta) {
-    console.log('oi');
 
-    console.log(resposta)
     if (resposta.ok) {
-        resposta.json().then(function (dados) {
-            console.log(dados);
-            console.log('Dados1: ', dados[0]);
-            console.log('Dados1 Temp: ', dados[0].temperatura);
 
-            let total = dados.length;
+        resposta.json().then(function (dados) {
 
             let codigos = [];
 
@@ -31,6 +27,7 @@ fetch("/avisos/listar").then(function (resposta) {
                 let check = false;
 
                 for (let j = 0; j < codigos.length; j++) {
+
                     if (codigos[j][0] == dados[i].codigo) {
                         check = true;
                         break;
@@ -38,16 +35,39 @@ fetch("/avisos/listar").then(function (resposta) {
                 }
 
                 if (!check) {
-                    codigos.push([dados[i].codigo, dados[i].fk_lote]);
+                    codigos.push([
+                        dados[i].codigo,
+                        dados[i].fk_lote
+                    ]);
                 }
             }
-            console.log(codigos);
+
+            lotes = codigos;
+
+            const select = document.getElementById("selectSensor");
+
+            select.innerHTML = "";
+
+            for (let i = 0; i < lotes.length; i++) {
+
+                let option = document.createElement("option");
+
+                option.value = lotes[i][1];
+                option.textContent = lotes[i][0];
+                option.dataset.nomeOriginal = lotes[i][0];
+                select.appendChild(option);
+            }
+
+                chamar(lotes[0][1]);
+
         });
+
     } else {
         throw ('Houve um erro na API!');
     }
-}).catch(function (resposta) {
-    console.error(resposta);
+
+}).catch(function (erro) {
+    console.error(erro);
 });
 
 function fechar() {
@@ -72,22 +92,26 @@ function alertar() {
 }
 
 function atualizarOpcoes() {
+
     const select = document.getElementById("selectSensor");
     const options = select.options;
 
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 0; i < options.length; i++) {
+
         let valoresTemp = [];
 
-        if (i == 1) valoresTemp = [2, 3, 6, 4, 5];
-        if (i == 2) valoresTemp = [6, 7, 2, 3, 3];
-        if (i == 3) valoresTemp = [2, 3, 5, 7, 9];
+        if (i == 0) valoresTemp = [2, 3, 6, 4, 5];
+        if (i == 1) valoresTemp = [6, 7, 2, 3, 3];
+        if (i == 2) valoresTemp = [2, 3, 5, 7, 9];
 
         const ultimo = valoresTemp[valoresTemp.length - 1];
 
+        let nomeOriginal = options[i].dataset.nomeOriginal;
+
         if (ultimo > 8 || ultimo < 2) {
-            options[i - 1].text = `🔴 ABCD${i}`;
+            options[i].text = `🔴 ${nomeOriginal}`;
         } else {
-            options[i - 1].text = `ABCD${i}`;
+            options[i].text = nomeOriginal;
         }
     }
 }
@@ -249,5 +273,3 @@ function trocar() {
     let sensor = document.getElementById("selectSensor").value;
     chamar(sensor);
 }
-
-chamar(1);
