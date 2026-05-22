@@ -18,35 +18,30 @@ fetch("/avisos/listar").then(function (resposta) {
     console.log(resposta)
     if (resposta.ok) {
         resposta.json().then(function (dados) {
-                console.log(dados);
-                console.log('Dados1: ', dados[0]);
-                console.log('Dados1 Temp: ', dados[0].temperatura);
+            console.log(dados);
+            console.log('Dados1: ', dados[0]);
+            console.log('Dados1 Temp: ', dados[0].temperatura);
 
-                let maior = 0;
-                let total = dados.length;
+            let total = dados.length;
 
-                for (let i = 0; i < total;  i++){
-                        if (maior < dados[i].fk_lote){
-                                maior = dados[i].fk_lote;
-                        }
+            let codigos = [];
+
+            for (let i = 0; i < dados.length; i++) {
+
+                let check = false;
+
+                for (let j = 0; j < codigos.length; j++) {
+                    if (codigos[j][0] == dados[i].codigo) {
+                        check = true;
+                        break;
+                    }
                 }
 
-                let matrizSelect = [];
-                let codigos = [];
-                for (let i = 0; i < dados.length; i++){
-                        let nomeLote = '';
-
-                        console.log(dados[i].fk_lote, i, dados[i].codigo);
-
-                        if (!codigos.includes(dados[i].codigo, 0)){
-                                codigos.push(dados[i].codigo);
-                        }
-
-                        matrizSelect.push([i+1, nomeLote]);
+                if (!check) {
+                    codigos.push([dados[i].codigo, dados[i].fk_lote]);
                 }
-                console.log(codigos);
-
-
+            }
+            console.log(codigos);
         });
     } else {
         throw ('Houve um erro na API!');
