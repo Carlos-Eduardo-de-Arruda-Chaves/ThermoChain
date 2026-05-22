@@ -1,7 +1,7 @@
 --  TERMOCHAIN — Script de Criação do Banco de Dados
 
-CREATE DATABASE thermochain;
-USE thermochain;
+CREATE DATABASE Thermochain;
+USE Thermochain;
 
 CREATE USER 'thermo-viz'@'%' IDENTIFIED BY 'Thermo-viz#2026';
 GRANT ALL PRIVILEGES ON thermochain.* TO 'thermo-viz'@'%';
