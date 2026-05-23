@@ -8,68 +8,85 @@ let fora;
 let tempAtual;
 let status;
 let kpis = [];
+let temperaturas = []
+let primeira_verificacao = false
 
 fechar();
 alertar();
 
 let lotes = [];
+function verificar() {
+    fetch("/avisos/listar").then(function (resposta) {
 
-fetch("/avisos/listar").then(function (resposta) {
+        temperaturas = []
+        if (resposta.ok) {
 
-    if (resposta.ok) {
-
-        resposta.json().then(function (dados) {
-
-            let codigos = [];
-
-            for (let i = 0; i < dados.length; i++) {
-
-                let check = false;
-
-                for (let j = 0; j < codigos.length; j++) {
-
-                    if (codigos[j][0] == dados[i].codigo) {
-                        check = true;
-                        break;
+            resposta.json().then(function (dados) {
+                console.log(dados);
+                if (!primeira_verificacao) {
+                    sessionStorage.SENSOR = dados[0].fk_sensor
+                    console.log(sessionStorage.SENSOR);
+                    primeira_verificacao = true
+                }
+                for (i = 0; i < dados.length; i++) {
+                    if (dados[i].fk_sensor == sessionStorage.SENSOR) {
+                        console.log(`Data da temperatura: ${dados[i].data_hora}`);
+                        console.log(`Temperatura do sensor ${sessionStorage.SENSOR}: ${dados[i].temperatura}`);
+                        
                     }
                 }
 
-                if (!check) {
-                    codigos.push([
-                        dados[i].codigo,
-                        dados[i].fk_lote
-                    ]);
+
+                let codigos = [];
+
+                for (let i = 0; i < dados.length; i++) {
+
+                    let check = false;
+
+                    for (let j = 0; j < codigos.length; j++) {
+
+                        if (codigos[j][0] == dados[i].codigo) {
+                            check = true;
+                            break;
+                        }
+                    }
+
+                    if (!check) {
+                        codigos.push([
+                            dados[i].codigo,
+                            dados[i].fk_lote
+                        ]);
+                    }
                 }
-            }
 
-            lotes = codigos;
+                lotes = codigos;
 
-            const select = document.getElementById("selectSensor");
+                const select = document.getElementById("selectSensor");
 
-            select.innerHTML = "";
+                select.innerHTML = "";
 
-            for (let i = 0; i < lotes.length; i++) {
+                for (let i = 0; i < lotes.length; i++) {
 
-                let option = document.createElement("option");
+                    let option = document.createElement("option");
 
-                option.value = lotes[i][1];
-                option.textContent = lotes[i][0];
-                option.dataset.nomeOriginal = lotes[i][0];
-                select.appendChild(option);
-            }
+                    option.value = lotes[i][1];
+                    option.textContent = lotes[i][0];
+                    option.dataset.nomeOriginal = lotes[i][0];
+                    select.appendChild(option);
+                }
 
                 chamar(lotes[0][1]);
 
-        });
+            });
 
-    } else {
-        throw ('Houve um erro na API!');
-    }
+        } else {
+            throw ('Houve um erro na API!');
+        }
 
-}).catch(function (erro) {
-    console.error(erro);
-});
-
+    }).catch(function (erro) {
+        console.error(erro);
+    });
+}
 function fechar() {
     document.getElementById("alertaLote").style.display = 'none';
 }
@@ -272,4 +289,7 @@ function chamar(sensor) {
 function trocar() {
     let sensor = document.getElementById("selectSensor").value;
     chamar(sensor);
+    console.log(selectSensor.value);
+    sessionStorage.SENSOR = selectSensor.value
+    verificar()
 }
