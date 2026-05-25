@@ -36,10 +36,11 @@ function cadastrar() {
 
     const inputSenha =
         document.getElementById("input_senha");
-
+    const input_cpf =
+        document.getElementById("input_cpf");
     const inputConfSenha =
         document.getElementById("input_confsenha");
-
+    const inputEmpresa = document.getElementById("input_empresa");
 
     // PEGANDO OS VALORES
 
@@ -57,7 +58,10 @@ function cadastrar() {
     const confSenha =
         inputConfSenha.value.trim();
 
+    const cpf =
+        input_cpf.value.trim();
 
+    const codigoEmpresaTexto = inputEmpresa.value.trim();
     // DIVS DE ERRO
 
     // Captura os locais onde os erros
@@ -70,14 +74,21 @@ function cadastrar() {
 
     const divSenhaErro =
         document.getElementById("div_senhaErro");
-
+    const divEmpresaErro = document.getElementById("div_empresaErro");
     const divConfSenhaErro =
         document.getElementById("div_confSenhaErro");
-
+    const divCpf =
+        document.getElementById("div_cpfErro");
     const alerta =
         document.getElementById("alerta");
 
-
+    console.log(divUsuarioErro);
+    console.log(divEmailErro);
+    console.log(divSenhaErro);
+    console.log(divConfSenhaErro);
+    console.log(divEmpresaErro);
+    console.log(divCpf);
+    console.log(alerta);
     // LIMPAR ERROS ANTIGOS
 
     // Limpa mensagens antigas
@@ -86,7 +97,8 @@ function cadastrar() {
     divEmailErro.innerHTML = "";
     divSenhaErro.innerHTML = "";
     divConfSenhaErro.innerHTML = "";
-
+    divEmpresaErro.innerHTML = "";
+    divCpf.innerHTML = "";
     alerta.innerHTML = "";
 
 
@@ -98,7 +110,8 @@ function cadastrar() {
         usuario == "" ||
         email == "" ||
         senha == "" ||
-        confSenha == ""
+        confSenha == "" ||
+        cpf == ""
     ) {
 
         alerta.innerHTML =
@@ -138,8 +151,18 @@ function cadastrar() {
         return;
     }
 
-
-
+    // Verifica a empresa em que o usuario está
+   var fkEmpresaVar=0;
+    if (codigoEmpresaTexto == "ABCD1") {
+    fkEmpresaVar=1
+    }else if(codigoEmpresaTexto =="ACDE1"){
+        fkEmpresaVar=2
+    }else if(codigoEmpresaTexto =="BCDE1"){
+        fkEmpresaVar=3
+    }else{
+        divEmpresaErro.innerHTML = "Código de empresa inválido.";
+        return;
+    }
     // CONFIRMAR SENHA
 
     // Verifica se as duas senhas
@@ -152,10 +175,15 @@ function cadastrar() {
         return;
     }
 
-
-    // =========================
+    // Verifica se o cpf da empresa possui mais dígitos ou menos
+    if (cpf.length == 11) {
+        divCpf.innerHTML = "CPF VÁLIDO";
+    } else {
+        divCpf.innerHTML = "CPF INVÁLIDO";
+        return;
+    }
     // ENVIO PARA O BACKEND
-    // =========================
+
 
     // Envia os dados para a rota
     // de cadastro do servidor
@@ -174,61 +202,62 @@ function cadastrar() {
 
             nomeServer: usuario,
             emailServer: email,
-            senhaServer: senha
-
+            senhaServer: senha,
+            cpfServer: cpf,
+            fkEmpresaServer: fkEmpresaVar
         })
 
     })
 
-    // RESPOSTA DO SERVIDOR
-    .then(function (resposta) {
+        // RESPOSTA DO SERVIDOR
+        .then(function (resposta) {
 
-        // Se o cadastro der certo
-        if (resposta.ok) {
+            // Se o cadastro der certo
+            if (resposta.ok) {
 
+                alerta.innerHTML =
+                    "✅ Cadastro realizado com sucesso!";
+
+
+                // Limpa os campos
+                inputUsuario.value = "";
+                inputEmail.value = "";
+                inputSenha.value = "";
+                inputConfSenha.value = "";
+                input_cpf.value = "";
+                inputEmpresa.value = "";
+                // Aguarda 2 segundos
+                // e redireciona para login
+                setTimeout(function () {
+
+                    window.location =
+                        "../HTML/login.html";
+
+                }, 2000);
+
+            } else {
+
+                // Caso dê erro no cadastro
+                alerta.innerHTML =
+                    "❌ Erro ao realizar cadastro.";
+
+            }
+
+        })
+
+
+
+        // ERRO DO SISTEMA
+
+        .catch(function (erro) {
+
+            // Mostra erro no console
+            console.log(erro);
+
+            // Mostra erro visual
             alerta.innerHTML =
-                "✅ Cadastro realizado com sucesso!";
+                "❌ Erro interno do sistema.";
 
-
-            // Limpa os campos
-            inputUsuario.value = "";
-            inputEmail.value = "";
-            inputSenha.value = "";
-            inputConfSenha.value = "";
-
-
-            // Aguarda 2 segundos
-            // e redireciona para login
-            setTimeout(function () {
-
-                window.location =
-                    "../HTML/login.html";
-
-            }, 2000);
-
-        } else {
-
-            // Caso dê erro no cadastro
-            alerta.innerHTML =
-                "❌ Erro ao realizar cadastro.";
-
-        }
-
-    })
-
-
-
-    // ERRO DO SISTEMA
-
-    .catch(function (erro) {
-
-        // Mostra erro no console
-        console.log(erro);
-
-        // Mostra erro visual
-        alerta.innerHTML =
-            "❌ Erro interno do sistema.";
-
-    });
+        });
 
 }

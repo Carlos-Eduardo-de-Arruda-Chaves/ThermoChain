@@ -1,6 +1,10 @@
 var mysql = require("mysql2");
 
 // CONEXÃO DO BANCO MYSQL SERVER
+console.log("HOST:", process.env.DB_HOST);
+console.log("DATABASE:", process.env.DB_DATABASE);
+console.log("USER:", process.env.DB_USER);
+console.log("PORT:", process.env.DB_PORT);
 var mySqlConfig = {
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
