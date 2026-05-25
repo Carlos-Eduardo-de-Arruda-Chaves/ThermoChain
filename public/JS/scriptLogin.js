@@ -174,7 +174,7 @@ function entrar() {
     // Captura campos do HTML
     const emailInput = document.getElementById("ipt_email");
     const senhaInput = document.getElementById("ipt_senha");
-    const codigoEmpresaInput = document.getElementById("ipt_codigoempresa");
+    const codigoEmpresaInput = document.getElementById("ipt_codigoEmpresa");
 
 
     // VALORES
