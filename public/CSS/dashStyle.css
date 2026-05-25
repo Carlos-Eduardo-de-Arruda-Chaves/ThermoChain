@@ -270,7 +270,7 @@ body {
     height: 320px;
 }
 
-.voltar{
+.voltar {
     text-decoration: none;
 }
 
@@ -282,8 +282,17 @@ body {
     left: 0;
 }
 
-.alertaLote {
+#containerAlertas {
     position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+
+.alertaLote {
     top: 20px;
     right: 20px;
     width: 420px;

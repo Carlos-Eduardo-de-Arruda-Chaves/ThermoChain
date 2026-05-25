@@ -8,17 +8,20 @@ let fora;
 let tempAtual;
 let status;
 let kpis = [];
-let temperaturas = []
-let primeira_verificacao = false
-
-fechar();
-alertar();
+let temperaturas = [];
+let datas = [];
+let primeira_verificacao = false;
+let sensores = {};
+let dados_alerta = [];
+let alertasExibidos = [];
 
 let lotes = [];
 function verificar() {
+    sensores = {};
     fetch("/avisos/listar").then(function (resposta) {
 
         temperaturas = []
+        datas = []
         if (resposta.ok) {
 
             resposta.json().then(function (dados) {
@@ -28,14 +31,24 @@ function verificar() {
                     console.log(sessionStorage.SENSOR);
                     primeira_verificacao = true
                 }
-                for (i = 0; i < dados.length; i++) {
+                for (let i = 0; i < dados.length; i++) {
                     if (dados[i].fk_sensor == sessionStorage.SENSOR) {
                         console.log(`Data da temperatura: ${dados[i].data_hora}`);
                         console.log(`Temperatura do sensor ${sessionStorage.SENSOR}: ${dados[i].temperatura}`);
-                        
+                        temperaturas.push(dados[i].temperatura)
+                        let dataFormatada = dados[i].data_hora
+                            // split() divide a string de acordo com o parametro passado
+                            .split('T')[1]
+                            .split('-')
+                            // reverse() inverte a ordem da array, para deixar o dia em forma de "20", "06", "2026" por exemplo
+                            .reverse()
+                            // join junta os elementos da array com "/", assim ficando correto e certo para ver a data do registro
+                            .join('/');
+                        datas.push(dataFormatada.substring(0, 8))
                     }
                 }
-
+                console.log(temperaturas);
+                console.log(datas);
 
                 let codigos = [];
 
@@ -54,28 +67,42 @@ function verificar() {
                     if (!check) {
                         codigos.push([
                             dados[i].codigo,
-                            dados[i].fk_lote
+                            dados[i].fk_sensor
                         ]);
                     }
+                }
+
+                for (let i = 0; i < dados.length; i++) {
+
+                    let sensor = dados[i].fk_sensor;
+
+                    if (!sensores[sensor]) {
+                        sensores[sensor] = [];
+                    }
+
+                    sensores[sensor].push(dados[i]);
                 }
 
                 lotes = codigos;
 
                 const select = document.getElementById("selectSensor");
 
-                select.innerHTML = "";
+                if (select.options.length === 0) {
 
-                for (let i = 0; i < lotes.length; i++) {
+                    for (let i = 0; i < lotes.length; i++) {
 
-                    let option = document.createElement("option");
+                        let option = document.createElement("option");
 
-                    option.value = lotes[i][1];
-                    option.textContent = lotes[i][0];
-                    option.dataset.nomeOriginal = lotes[i][0];
-                    select.appendChild(option);
+                        option.value = lotes[i][1];
+                        option.textContent = lotes[i][0];
+                        option.dataset.nomeOriginal = lotes[i][0];
+
+                        select.appendChild(option);
+                    }
                 }
-
-                chamar(lotes[0][1]);
+                dados_alerta = dados;
+                alertar();
+                chamar(sessionStorage.SENSOR);
 
             });
 
@@ -87,45 +114,104 @@ function verificar() {
         console.error(erro);
     });
 }
-function fechar() {
-    document.getElementById("alertaLote").style.display = 'none';
+
+function fechar(nome) {
+    if (!alertasExibidos.includes(nome)) {
+        alertasExibidos.push(nome);
+    }
+    let alerta = document.getElementById(`alerta-${nome}`);
+    if (alerta) {
+        alerta.remove();
+    }
 }
 
 function abrir(nome, desc) {
-    document.getElementById("alertaTitulo").textContent = nome;
-    document.getElementById("alertaDesc").textContent = desc;
 
-    document.getElementById("alertaLote").style.display = 'block';
+    if (alertasExibidos.includes(nome)) {
+        return;
+    }
+
+    if (document.getElementById(`alerta-${nome}`)) {
+        return;
+    }
+
+    let container = document.getElementById("containerAlertas");
+
+    let alerta = document.createElement("div");
+
+    alerta.className = "alertaLote";
+    alerta.id = `alerta-${nome}`;
+
+    alerta.innerHTML = `
+        <div class="textoAlerta">
+            <h2>${nome}</h2>
+            <p>${desc}</p>
+        </div>
+
+        <img src="../CSS/img/alerta.gif" class="gifAlerta" alt="Alerta">
+
+        <button class="fecharAlerta" onclick="fechar('${nome}')">
+            X
+        </button>
+    `;
+
+    container.appendChild(alerta);
 }
 
 function alertar() {
-    if (valores[valores.length - 1] > 8) {
-        abrir(nome, 'O lote está com a temperatura acima da média');
-    } else if (valores[valores.length - 1] < 2) {
-        abrir(nome, 'O lote está com a temperatura abaixo da média');
+
+    let ultimosSensores = {};
+
+    for (let i = 0; i < dados_alerta.length; i++) {
+
+        let dado = dados_alerta[i];
+        let sensor = dado.fk_sensor;
+
+        if (!ultimosSensores[sensor]) {
+
+            ultimosSensores[sensor] = dado;
+
+        } else {
+            let dataAtual = dado.data_hora
+                .replace('T', ' ')
+                .replace('.000Z', '');
+
+            let ultimaData = ultimosSensores[sensor].data_hora
+                .replace('T', ' ')
+                .replace('.000Z', '');
+
+            if (dataAtual > ultimaData) {
+                ultimosSensores[sensor] = dado;
+            }
+        }
     }
 
-    setTimeout(alertar, 2000);
+    let listaSensores = Object.keys(ultimosSensores);
+
+    for (let i = 0; i < listaSensores.length; i++) {
+        let sensor = listaSensores[i];
+        let registro = ultimosSensores[sensor];
+        let temperatura = Number(registro.temperatura);
+
+        if (temperatura > 8) {
+            abrir(registro.codigo, 'O lote está com a temperatura acima da média');
+        } else if (temperatura < 2) {
+            abrir(registro.codigo, 'O lote está com a temperatura abaixo da média');
+        }
+    }
 }
 
 function atualizarOpcoes() {
-
     const select = document.getElementById("selectSensor");
     const options = select.options;
 
     for (let i = 0; i < options.length; i++) {
-
-        let valoresTemp = [];
-
-        if (i == 0) valoresTemp = [2, 3, 6, 4, 5];
-        if (i == 1) valoresTemp = [6, 7, 2, 3, 3];
-        if (i == 2) valoresTemp = [2, 3, 5, 7, 9];
-
-        const ultimo = valoresTemp[valoresTemp.length - 1];
-
+        let sensor = options[i].value;
+        let registros = sensores[sensor];
+        let ultimaTemp = registros[registros.length - 1].temperatura;
         let nomeOriginal = options[i].dataset.nomeOriginal;
 
-        if (ultimo > 8 || ultimo < 2) {
+        if (ultimaTemp > 8 || ultimaTemp < 2) {
             options[i].text = `🔴 ${nomeOriginal}`;
         } else {
             options[i].text = nomeOriginal;
@@ -154,32 +240,30 @@ function chamar(sensor) {
 
     nome = `Lote ${sensor}`;
 
-    if (sensor == 1) {
-        valores = [2, 3, 6, 4, 5];
-        dentro = 100;
-        fora = 0;
-        tempAtual = "5ºC";
-        status = "Temperatura normal";
-        kpis = ["3", `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? 'Sim' : 'Não'}`, "0", "0", "00:00:00", "R$3.840", "José Carvalho Pinto - SA/BH"];
+    let registros = sensores[sensor];
+
+    valores = [];
+    datas = [];
+
+    for (let i = 0; i < registros.length; i++) {
+        valores.push(Number(registros[i].temperatura));
+        let dataFormatada = registros[i].data_hora.split('T')[1];
+        datas.push(dataFormatada.substring(0, 8));
     }
 
-    if (sensor == 2) {
-        valores = [6, 7, 2, 1, 3];
-        dentro = 80;
-        fora = 20;
-        tempAtual = "3ºC";
+    tempAtual = valores[valores.length - 1];
+    if (valores[valores.length - 1] > 8) {
+        status = "Temperatura elevada";
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 8), 0, "00:00:00", 'R$1000', 'sptech'] // abs pega o valor absoluto (-2) = 2
+    } else if (valores[valores.length - 1] < 2) {
+        status = "Temperatura baixa";
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 2), 0, "00:00:00", 'R$1000', 'sptech']
+    } else {
         status = "Temperatura normal";
-        kpis = ["3", `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? 'Sim' : 'Não'}`, "0", "1", "00:03:41", "R$1.275", "Rua Haddock Lobo 595 - SP/SP"];
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, 0, 0, "00:00:00", 'R$1000', 'sptech'];
     }
-
-    if (sensor == 3) {
-        valores = [4, 2, 1, 9, 11];
-        dentro = 40;
-        fora = 60;
-        tempAtual = "11ºC";
-        status = "Temperatura acima da média";
-        kpis = ["3", `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? 'Sim' : 'Não'}`, "1.2", "3", "00:04:32", "R$2.583", "Rua Maneira Legal Divertida e Feliz - 67"];
-    }
+    dentro = 67;
+    fora = 33;
 
     atualizarOpcoes();
 
@@ -218,19 +302,19 @@ function chamar(sensor) {
     graficoLinha = new Chart(document.getElementById("graficoLinha").getContext("2d"), {
         type: "line",
         data: {
-            labels: ["15:40", "15:50", "16:00", "16:10", "16:20"],
+            labels: datas,
             datasets: [
                 {
                     label: '',
                     borderColor: 'transparent',
                     backgroundColor: 'transparent',
-                    data: [12, 12, 12, 12, 12]
+                    data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12]
                 },
                 {
                     label: 'Temperatura Máxima',
                     borderColor: '#E53935',
                     backgroundColor: '#E53935',
-                    data: [8, 8, 8, 8, 8],
+                    data: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
                     borderWidth: 2,
                     borderDash: [5, 5],
                     tension: 0.1
@@ -239,7 +323,7 @@ function chamar(sensor) {
                     label: 'Temperatura Minima',
                     borderColor: '#00BFFF',
                     backgroundColor: '#00BFFF',
-                    data: [2, 2, 2, 2, 2],
+                    data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
                     borderWidth: 2,
                     borderDash: [5, 5],
                     tension: 0.1
@@ -287,9 +371,7 @@ function chamar(sensor) {
 }
 
 function trocar() {
-    let sensor = document.getElementById("selectSensor").value;
-    chamar(sensor);
-    console.log(selectSensor.value);
+    let sensor = Number(document.getElementById("selectSensor").value);
     sessionStorage.SENSOR = selectSensor.value
     verificar()
 }
