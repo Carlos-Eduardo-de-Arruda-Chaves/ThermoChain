@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
-*{
-      padding: 0;
-      margin: 0;
+* {
+  padding: 0;
+  margin: 0;
 }
 
 
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -26,7 +27,7 @@ body {
 
 .backg {
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
 
   display: flex;
   justify-content: center;
@@ -67,16 +68,16 @@ body {
   text-align: center;
   color: #000;
   border-radius: 20px;
-  padding: 65px;
+  padding: 39px;
   background: rgb(246, 243, 243);
   width: 290px;
 
   position: relative;
-
+  height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
 
   box-shadow: 0px 25px 50px #00000040;
 }
@@ -109,7 +110,7 @@ body {
 .button button {
   border-radius: 8px;
   background-color: #0056b2;
-  /* 🔵 azul */
+
   color: white;
   /* texto branco */
   padding: 12px 90px;
@@ -128,12 +129,12 @@ body {
   align-items: center;
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 6px;
   width: 100%;
   justify-content: center;
   /*melhor que 300px */
   border: 1px solid #ccc;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   /* espaço entre eles */
 
   text-align: left;
@@ -160,6 +161,23 @@ body {
   z-index: 2;
 }
 
+.cpf{
+   pointer-events: none;
+  position: absolute;
+  right: -9px;
+  width: 20px;
+  top: 37px;
+  z-index: 5;
+}
+.empresa {
+  /* Mantenha suas configurações e adicione: */
+  pointer-events: none;
+  position: absolute;
+  right: -9px;
+  width: 17px;
+  top: 37px;
+  z-index: 2;
+}
 .campo {
   margin-bottom: 25px;
   text-align: left;
@@ -179,6 +197,7 @@ a:link {
   color: #0056b2;
   text-decoration: none;
 }
+
 a:visited {
   color: #0056b2;
   text-decoration: none;

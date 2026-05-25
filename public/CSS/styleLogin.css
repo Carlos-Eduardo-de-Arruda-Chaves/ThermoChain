@@ -1,125 +1,139 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
-body{
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-}
-
-a:link { 
-    color: #0056B2; 
-    text-decoration: none;
-}
-a:visited { 
-    color: #0056B2; 
-    text-decoration: none;
+body {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
 }
 
-.backg{
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(135deg, rgba(0, 86, 178, 1), rgba(121,169,194,1));
+a:link {
+  color: #0056b2;
+  text-decoration: none;
 }
-.janela{
-    background-color: rgba(248,250,252,1);
-    padding: 2%;
-    border-radius: 12px;
-    box-shadow: 0px 25px 50px #00000040;
-    width: 350px;
-    height: fit-content;
+a:visited {
+  color: #0056b2;
+  text-decoration: none;
 }
-.chevron{
-    width: 30px;
-    height: 30px;
+
+.backg {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 86, 178, 1),
+    rgba(121, 169, 194, 1)
+  );
 }
-.header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.janela {
+  background-color: rgba(248, 250, 252, 1);
+  padding: 2%;
+  border-radius: 12px;
+  box-shadow: 0px 25px 50px #00000040;
+  width: 350px;
+  height: fit-content;
 }
-.headerVoltar{
-    display: flex;
-    justify-content: center;
+.chevron {
+  width: 30px;
+  height: 30px;
 }
-.logo{
-    width: 250px;
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.subtext{
-    background-color: #0056B23B;
-    border-radius: 10px;
-    padding: 2px;
-    padding-top: 4px;
-    display: flex;
-    justify-content: center;
-    color: #0056B2;
-    width: fit-content;
+.headerVoltar {
+  display: flex;
+  justify-content: center;
 }
-.check{
-    width: 7%;
-    padding-right: 7px;
-    padding-left: 6px;
+.logo {
+  width: 250px;
 }
-.input{
-    width: 100%;
-    padding: 15px;
-    margin: 11px 0;
-    display: inline-block;
-    border: 1px solid #E2E8F0;
-    border-radius: 4px;
-    box-sizing: border-box;
+.subtext {
+  background-color: #0056b23b;
+  border-radius: 10px;
+  padding: 2px;
+  padding-top: 4px;
+  display: flex;
+  justify-content: center;
+  color: #0056b2;
+  width: fit-content;
 }
-.email{
-    background-image: url('img/emailIcon.png');
-    background-repeat: no-repeat;
-    background-size: 5%;
-    background-position: 10px center;
-    padding-left: 40px;
+.check {
+  width: 7%;
+  padding-right: 7px;
+  padding-left: 6px;
 }
-.senha{
-    padding-right: 40px;
-    padding-left: 40px;
-    background-image: url('img/senhaIcon.png');
-    background-repeat: no-repeat;
-    background-size: 5%;
-    background-position: 10px center;
+.input {
+  width: 100%;
+  padding: 15px;
+  margin: 11px 0;
+  display: inline-block;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
+.email {
+  background-image: url("img/emailIcon.png");
+  background-repeat: no-repeat;
+  background-size: 5%;
+  background-position: 10px center;
+  padding-left: 40px;
+}
+
+.codigo {
+  background-image: url("img/codigoIcon.png");
+  background-repeat: no-repeat;
+  background-size: 5%;
+  background-position: 10px center;
+  padding-left: 40px;
+}
+
+.senha {
+  padding-right: 40px;
+  padding-left: 40px;
+  background-image: url("img/senhaIcon.png");
+  background-repeat: no-repeat;
+  background-size: 5%;
+  background-position: 10px center;
+}
+
 .olho {
-    cursor: pointer;
-    width: 20px;
-    position: absolute;
-    right: 10px;
+  cursor: pointer;
+  width: 20px;
+  position: absolute;
+  right: 10px;
 }
-.inputContainer{
-    position: relative;
-    display: flex;
-    align-items: center;
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
-.senhaTitle{
-    display: flex;
-    justify-content: space-between;
+.senhaTitle {
+  display: flex;
+  justify-content: space-between;
 }
 .container {
-    margin-top: 5%;
-    margin-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
-.botao{
-    width: 100%;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    background-color: #0056B2;
-    color: #fff;
-    border-radius: 8px;
-    border: 0px;
+.botao {
+  width: 100%;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: #0056b2;
+  color: #fff;
+  border-radius: 8px;
+  border: 0px;
 }
 .botao:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
-.footer{
-    display: flex;
-    justify-content: space-between;
+.footer {
+  display: flex;
+  justify-content: space-between;
 }
-.erro{
-    color: red;
+.erro {
+  color: red;
 }

@@ -31,35 +31,67 @@
             <div class="container">
                 <label>E-mail</label><br>
                 <div>
-                    <input type="text" id="ipt_email" placeholder="Exemplo@exemplo.com" class="input email" autocomplete="off">
+                    <input type="text" id="ipt_email" placeholder="Exemplo@exemplo.com" class="input email"
+                        autocomplete="off">
                 </div>
                 <div id="div_emailErro" class="erro"></div>
 
+                <label for="">Codigo Empresa</label>
+                <div>
+                    <input type="text" id="ipt_codigoEmpresa" placeholder="ABCD12" class="input codigo" autocomplete="off">
+                </div>
                 <div>
                     <div class="senhaTitle">
                         <span>Senha</span>
                         <a href="">Recuperar senha</a>
                     </div>
                     <div class="inputContainer">
-                        <input type="password" id="ipt_senha" class="input senha" placeholder="Digite sua senha" autocomplete="off">
+                        <input type="password" id="ipt_senha" class="input senha" placeholder="Digite sua senha"
+                            autocomplete="off">
                         <img src="../CSS/img/olhoIcon.png" id="olho" class="olho">
                     </div>
-                    <div id="div_senhaErro" class="erro"></div>
                 </div>
+                
 
-                <input type="checkbox">
-                <label for="">Lembrar de mim</label><br><br>
-
-                <button onclick="entrar()" class="botao" id="btn_entrar">Entrar</button>
+                <div id="div_senhaErro" class="erro"></div>
             </div>
 
-
-            <div class="footer">
-                <span>Ainda nao tem uma conta? </span>
-                <a href="cadastro.html">Solicite acesso já!</a>
+            <input type="checkbox">
+            <label for="">Lembrar de mim</label><br><br>
+            <div id="cardErro" style="display:none;">
+                <span id="mensagem_erro"></span>
             </div>
+            <button onclick="entrar()" class="botao" id="btn_entrar">Entrar</button>
+        </div>
+
+
+        <div class="footer">
+            <span>Ainda nao tem uma conta? </span>
+            <a href="cadastro.html">Solicite acesso já!</a>
         </div>
     </div>
-<script src="../JS/scriptLogin.js"></script>
+    </div>
+    <script src="../JS/scriptLogin.js"></script>
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </html>

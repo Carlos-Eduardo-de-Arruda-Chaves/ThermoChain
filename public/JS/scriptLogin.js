@@ -8,20 +8,6 @@ let tentativas = 0;
 let bloqueado = false;
 
 
-// FUNÇÃO DE LOGIN SIMPLES
-
-function entrar(){
-
-    // Impede login enquanto estiver bloqueado
-    if (bloqueado) return;
-
-    // Pega os valores digitados
-    let email = ipt_email.value
-    let senha = ipt_senha.value
-
-    // Envia para validação
-    verificarLogin(email, senha)
-}
 
 
 
@@ -32,12 +18,12 @@ function entrar(){
 // valor = senha
 let bancoDeDados = {
 
-  "enzoquinalha@gmail.com": "enzo123",
-  "carloschaves@gmail.com": "carlos123",
-  "matheusjacob@yahoo.com": "jacob123",
-  "leonardowerner@gmail.com":"leonardo123",
-  "guilhermebarbosa@gmail.com":"guilherme123",
-  "thiagoemidio@gmail.com":"thiago123",
+    "enzoquinalha@gmail.com": "enzo123",
+    "carloschaves@gmail.com": "carlos123",
+    "matheusjacob@yahoo.com": "jacob123",
+    "leonardowerner@gmail.com": "leonardo123",
+    "guilhermebarbosa@gmail.com": "guilherme123",
+    "thiagoemidio@gmail.com": "thiago123",
 
 };
 
@@ -46,62 +32,62 @@ let bancoDeDados = {
 
 function verificarLogin(usuario, senha) {
 
-  // Impede tentativa se estiver bloqueado
-  if (bloqueado) return;
+    // Impede tentativa se estiver bloqueado
+    if (bloqueado) return;
 
-  // Limpa mensagens antigas
-  div_emailErro.innerHTML = ``
-  div_senhaErro.innerHTML = ``
+    // Limpa mensagens antigas
+    div_emailErro.innerHTML = ``
+    div_senhaErro.innerHTML = ``
 
 
-  // Verifica se o usuário existe no objeto
-  if (bancoDeDados.hasOwnProperty(usuario)) {
-    
+    // Verifica se o usuário existe no objeto
+    if (bancoDeDados.hasOwnProperty(usuario)) {
 
-    // Se existir, verifica se a senha está correta
-    if (bancoDeDados[usuario] === senha) {
 
-      console.log("Acesso concedido! Bem-vindo.")
+        // Se existir, verifica se a senha está correta
+        if (bancoDeDados[usuario] === senha) {
 
-      // Reseta tentativas após login correto
-      tentativas = 0;
+            console.log("Acesso concedido! Bem-vindo.")
 
-      return true;
+            // Reseta tentativas após login correto
+            tentativas = 0;
+
+            return true;
+
+        } else {
+
+            // Senha incorreta
+            console.log("Senha incorreta.")
+
+            div_senhaErro.innerHTML =
+                `Senha Incorreta`
+
+
+            // Soma tentativa errada
+            tentativas++;
+
+
+            // Se atingir 3 erros
+            // bloqueia usuário
+            if (tentativas >= 3) {
+
+                bloquearUsuario();
+
+            }
+
+            return false;
+        }
+
 
     } else {
 
-      // Senha incorreta
-      console.log("Senha incorreta.")
+        // Usuário não encontrado
+        console.log("Usuário não encontrado.")
 
-      div_senhaErro.innerHTML =
-        `Senha Incorreta`
-      
+        div_emailErro.innerHTML =
+            `Usuário não encontrado`
 
-      // Soma tentativa errada
-      tentativas++;
-
-
-      // Se atingir 3 erros
-      // bloqueia usuário
-      if (tentativas >= 3) {
-
-          bloquearUsuario();
-
-      }
-
-      return false;
     }
-    
-
-  } else {
-
-    // Usuário não encontrado
-    console.log("Usuário não encontrado.")
-
-    div_emailErro.innerHTML =
-      `Usuário não encontrado`
-
-  }
 
 }
 
@@ -115,11 +101,11 @@ function bloquearUsuario() {
     bloqueado = true;
 
     div_senhaErro.innerHTML =
-      `Muitas tentativas! Bloqueado por 30 segundos.`;
-    
+        `Muitas tentativas! Bloqueado por 30 segundos.`;
+
 
     // Desativa botão de login
-    if(typeof btn_entrar !== 'undefined')
+    if (typeof btn_entrar !== 'undefined')
 
         btn_entrar.disabled = true;
 
@@ -134,13 +120,13 @@ function bloquearUsuario() {
         tentativas = 0;
 
         // Reativa botão
-        if(typeof btn_entrar !== 'undefined')
+        if (typeof btn_entrar !== 'undefined')
 
             btn_entrar.disabled = false;
 
 
         div_senhaErro.innerHTML =
-          `Acesso liberado. Tente novamente.`;
+            `Acesso liberado. Tente novamente.`;
 
     }, 30000);
 
@@ -151,27 +137,27 @@ function bloquearUsuario() {
 
 // Enquanto segura o mouse,
 // mostra senha
-olho.addEventListener('mousedown', function() {
+olho.addEventListener('mousedown', function () {
 
-  ipt_senha.type = 'text';
+    ipt_senha.type = 'text';
 
 });
 
 
 // Quando solta,
 // esconde senha
-olho.addEventListener('mouseup', function() {
+olho.addEventListener('mouseup', function () {
 
-  ipt_senha.type = 'password';
+    ipt_senha.type = 'password';
 
 });
 
 
 // Se mover mouse para fora,
 // também esconde
-olho.addEventListener('mousemove', function() {
+olho.addEventListener('mousemove', function () {
 
-  ipt_senha.type = 'password';
+    ipt_senha.type = 'password';
 
 });
 
@@ -180,31 +166,26 @@ olho.addEventListener('mousemove', function() {
 
 function entrar() {
 
-    // Ativa loading
-    aguardar();
+
 
 
     // INPUTS
 
     // Captura campos do HTML
-    const emailInput =
-        document.getElementById("email_input");
-
-    const senhaInput =
-        document.getElementById("senha_input");
+    const emailInput = document.getElementById("ipt_email");
+    const senhaInput = document.getElementById("ipt_senha");
+    const codigoEmpresaInput = document.getElementById("ipt_codigoEmpresa");
 
 
     // VALORES
 
     // Pega os valores digitados
-    const emailVar =
-        emailInput.value.trim();
-
-    const senhaVar =
-        senhaInput.value.trim();
+    const emailVar = emailInput.value.trim();
+    const senhaVar = senhaInput.value.trim();
+    const codigoEmpresaVar = codigoEmpresaInput.value.trim();
 
 
-   
+
     // ELEMENTOS DE ERRO
 
     // Caixa de erro
@@ -216,7 +197,7 @@ function entrar() {
         document.getElementById("mensagem_erro");
 
 
-    
+
     // LIMPAR ERROS ANTIGOS
 
     mensagemErro.innerHTML = "";
@@ -224,13 +205,14 @@ function entrar() {
     cardErro.style.display = "none";
 
 
-    
+
     // CAMPOS VAZIOS
 
     // Verifica se algum campo ficou vazio
     if (
         emailVar == "" ||
-        senhaVar == ""
+        senhaVar == "" ||
+        codigoEmpresaVar == ""
     ) {
 
         // Mostra erro
@@ -239,7 +221,7 @@ function entrar() {
         mensagemErro.innerHTML =
             "Preencha todos os campos.";
 
-        finalizarAguardar();
+
 
         // Esconde mensagem após 5 segundos
         setTimeout(sumirMensagem, 5000);
@@ -248,7 +230,7 @@ function entrar() {
     }
 
 
-    
+
     // VALIDAR EMAIL
 
     // Verifica formato básico do email
@@ -262,21 +244,34 @@ function entrar() {
         mensagemErro.innerHTML =
             "E-mail inválido.";
 
-        finalizarAguardar();
+
 
         setTimeout(sumirMensagem, 5000);
 
         return false;
     }
 
+    let fkEmpresaVar = 0;
+
+    if (codigoEmpresaVar == "ABCD1") {
+        fkEmpresaVar = 1;
+    } else if (codigoEmpresaVar == "ACDE1") {
+        fkEmpresaVar = 2;
+    } else if (codigoEmpresaVar == "BCDE1") {
+        fkEmpresaVar = 3;
+    } else {
+        mensagemErro.innerHTML = "Código da empresa inválido.";
+        cardErro.style.display = "block";
+        return false;
+    }
 
     // Debug no console
     console.log("FORM LOGIN:", emailVar);
 
 
-    
+
     // REQUISIÇÃO AO BACKEND
-    
+
     fetch("/usuarios/autenticar", {
 
         // Método HTTP
@@ -292,115 +287,109 @@ function entrar() {
         body: JSON.stringify({
 
             emailServer: emailVar,
-            senhaServer: senhaVar
-
+            senhaServer: senhaVar,
+            codigoEmpresaServer: fkEmpresaVar
         })
 
     })
 
 
-    
-    // RESPOSTA DO SERVIDOR
 
-    .then(function (resposta) {
+        // RESPOSTA DO SERVIDOR
 
-        console.log(
-            "ESTOU NO THEN DO entrar()!"
-        );
+        .then(function (resposta) {
 
-
-        // Login correto
-        if (resposta.ok) {
-
-            resposta.json().then(json => {
-
-                console.log(json);
+            console.log(
+                "ESTOU NO THEN DO entrar()!"
+            );
 
 
-                
-                // SESSION STORAGE
-                
+            // Login correto
+            if (resposta.ok) {
 
-                // Salva dados do usuário
-                sessionStorage.EMAIL_USUARIO =
-                    json.email;
+                resposta.json().then(json => {
 
-                sessionStorage.NOME_USUARIO =
-                    json.nome;
-
-                sessionStorage.ID_USUARIO =
-                    json.id;
-
-
-                // Salva aquários se existirem
-                if (
-                    json.aquarios != undefined
-                ) {
-
-                    sessionStorage.AQUARIOS =
-                        JSON.stringify(json.aquarios);
-
-                }
-
-
-                // =========================
-                // REDIRECIONAMENTO
-                // =========================
-
-                setTimeout(function () {
-
-                    window.location =
-                        "./dashboard/cards.html";
-
-                }, 1000);
-
-            });
-
-
-        } else {
-
-            // Login inválido
-            resposta.text().then(texto => {
-
-                console.error(texto);
-
-                cardErro.style.display =
-                    "block";
-
-                mensagemErro.innerHTML =
-                    "Email ou senha inválidos.";
-
-                finalizarAguardar();
-
-                setTimeout(
-                    sumirMensagem,
-                    5000
-                );
-
-            });
-
-        }
-
-    })
+                    console.log(json);
 
 
 
-    // ERRO DO SISTEMA
-    .catch(function (erro) {
+                    // SESSION STORAGE
 
-        console.log(erro);
 
-        cardErro.style.display =
-            "block";
+                    // Salva dados do usuário
+                    sessionStorage.EMAIL_USUARIO =
+                        json.email;
 
-        mensagemErro.innerHTML =
-            "Erro interno do servidor.";
+                    sessionStorage.NOME_USUARIO =
+                        json.nome;
 
-        finalizarAguardar();
+                    sessionStorage.ID_USUARIO =
+                        json.id;
 
-        setTimeout(sumirMensagem, 5000);
 
-    });
+                    // Salva aquários se existirem
+                    if (
+                        json.aquarios != undefined
+                    ) {
+
+                        sessionStorage.AQUARIOS =
+                            JSON.stringify(json.aquarios);
+
+                    }
+
+
+                    // =========================
+                    // REDIRECIONAMENTO
+                    // =========================
+                    setTimeout(function () {
+                        window.location = "Tela_home.html";
+                    }, 1000); // 1000ms = 1 segundo 
+                });
+
+
+            } else {
+
+                // Login inválido
+                resposta.text().then(texto => {
+
+                    console.error(texto);
+
+                    cardErro.style.display =
+                        "block";
+
+                    mensagemErro.innerHTML =
+                        "Email ou senha inválidos.";
+
+
+
+                    setTimeout(
+                        sumirMensagem,
+                        5000
+                    );
+
+                });
+
+            }
+
+        })
+
+
+
+        // ERRO DO SISTEMA
+        .catch(function (erro) {
+
+            console.log(erro);
+
+            cardErro.style.display =
+                "block";
+
+            mensagemErro.innerHTML =
+                "Erro interno do servidor.";
+
+
+            setTimeout(sumirMensagem, 5000);
+
+        });
 
     return false;
 }
