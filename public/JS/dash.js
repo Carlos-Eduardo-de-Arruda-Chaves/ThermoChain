@@ -67,14 +67,16 @@ function verificar() {
                     if (!check) {
                         codigos.push([
                             dados[i].codigo,
-                            dados[i].fk_sensor
+                            dados[i].fk_lote
                         ]);
                     }
                 }
 
+                let indice = 0;
+
                 for (let i = 0; i < dados.length; i++) {
 
-                    let sensor = dados[i].fk_sensor;
+                    let sensor = dados[i].fk_lote;
 
                     if (!sensores[sensor]) {
                         sensores[sensor] = [];
@@ -87,10 +89,8 @@ function verificar() {
 
                 const select = document.getElementById("selectSensor");
 
-                if (select.options.length === 0) {
-
+                if (select.options.length == 0) {
                     for (let i = 0; i < lotes.length; i++) {
-
                         let option = document.createElement("option");
 
                         option.value = lotes[i][1];
@@ -126,71 +126,46 @@ function fechar(nome) {
 }
 
 function abrir(nome, desc) {
-
-    if (alertasExibidos.includes(nome)) {
-        return;
-    }
-
-    if (document.getElementById(`alerta-${nome}`)) {
-        return;
-    }
-
-    let container = document.getElementById("containerAlertas");
+    if (alertasExibidos.includes(nome)) return;
+    if (document.getElementById(`alerta-${nome}`)) return;
 
     let alerta = document.createElement("div");
-
     alerta.className = "alertaLote";
     alerta.id = `alerta-${nome}`;
-
     alerta.innerHTML = `
         <div class="textoAlerta">
             <h2>${nome}</h2>
             <p>${desc}</p>
         </div>
-
         <img src="../CSS/img/alerta.gif" class="gifAlerta" alt="Alerta">
-
-        <button class="fecharAlerta" onclick="fechar('${nome}')">
-            X
-        </button>
+        <button class="fecharAlerta" onclick="fechar('${nome}')">X</button>
     `;
 
-    container.appendChild(alerta);
+    document.getElementById("containerAlertas").appendChild(alerta);
 }
 
 function alertar() {
-
-    let ultimosSensores = {};
+    let ultimosLotes = {};
 
     for (let i = 0; i < dados_alerta.length; i++) {
-
         let dado = dados_alerta[i];
-        let sensor = dado.fk_sensor;
+        let lote = dado.codigo;
 
-        if (!ultimosSensores[sensor]) {
-
-            ultimosSensores[sensor] = dado;
-
+        if (!ultimosLotes[lote]) {
+            ultimosLotes[lote] = dado;
         } else {
-            let dataAtual = dado.data_hora
-                .replace('T', ' ')
-                .replace('.000Z', '');
-
-            let ultimaData = ultimosSensores[sensor].data_hora
-                .replace('T', ' ')
-                .replace('.000Z', '');
-
+            let dataAtual = dado.data_hora.replace('T', ' ').replace('.000Z', '');
+            let ultimaData = ultimosLotes[lote].data_hora.replace('T', ' ').replace('.000Z', '');
             if (dataAtual > ultimaData) {
-                ultimosSensores[sensor] = dado;
+                ultimosLotes[lote] = dado;
             }
         }
     }
 
-    let listaSensores = Object.keys(ultimosSensores);
+    let listaLotes = Object.keys(ultimosLotes);
 
-    for (let i = 0; i < listaSensores.length; i++) {
-        let sensor = listaSensores[i];
-        let registro = ultimosSensores[sensor];
+    for (let i = 0; i < listaLotes.length; i++) {
+        let registro = ultimosLotes[listaLotes[i]];
         let temperatura = Number(registro.temperatura);
 
         if (temperatura > 8) {
@@ -236,11 +211,12 @@ function pesquisarLote() {
     }
 }
 
-function chamar(sensor) {
+function chamar(sensor, local, perda) {
 
     nome = `Lote ${sensor}`;
 
     let registros = sensores[sensor];
+    console.log('registro:', registros, sensor);
 
     valores = [];
     datas = [];
@@ -253,14 +229,14 @@ function chamar(sensor) {
 
     tempAtual = valores[valores.length - 1];
     if (valores[valores.length - 1] > 8) {
-        status = "Temperatura elevada";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 8), 0, "00:00:00", 'R$1000', 'sptech'] // abs pega o valor absoluto (-2) = 2
+        status = "Temperatura acima da média";
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 8).toFixed(2), 0, "00:00:00", registros[0].quantidade, registros[0].local_instalacao] // abs pega o valor absoluto (-2) = 2
     } else if (valores[valores.length - 1] < 2) {
-        status = "Temperatura baixa";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 2), 0, "00:00:00", 'R$1000', 'sptech']
+        status = "Temperatura abaixo da média";
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 2).toFixed(2), 0, "00:00:00", registros[0].quantidade, registros[0].local_instalacao]
     } else {
         status = "Temperatura normal";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, 0, 0, "00:00:00", 'R$1000', 'sptech'];
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, 0, 0, "00:00:00", registros[0].quantidade, registros[0].local_instalacao];
     }
     dentro = 67;
     fora = 33;
@@ -290,6 +266,21 @@ function chamar(sensor) {
     document.getElementById("cardMedio").style.background = `${Number(kpis[2]) != 0 ? '#ffc0c0' : '#a5b8ff'}`;
     document.getElementById("cardOcorrencia").style.background = `${Number(kpis[3]) != 0 ? '#ffc0c0' : '#a5b8ff'}`;
     document.getElementById("cardTempo").style.background = `${kpis[4] != "00:00:00" ? '#ffc0c0' : '#a5b8ff'}`;
+
+    let min = 0;
+
+    for (let i = registros.length - 1; i >= 0; i--) {
+        console.log(min, Number(registros[i].temperatura));
+
+        if (min > registros[i].temperatura) {
+            min = registros[i].temperatura;
+        }
+    }
+
+    if (min != 0) {
+        min -= 1;
+        min = Math.floor(min);
+    }
 
     if (graficoLinha != null) {
         graficoLinha.destroy();
@@ -346,7 +337,7 @@ function chamar(sensor) {
             scales: {
                 y: {
                     beginAtZero: true,
-                    min: 0
+                    min: min
                 }
             }
         }
@@ -372,6 +363,7 @@ function chamar(sensor) {
 
 function trocar() {
     let sensor = Number(document.getElementById("selectSensor").value);
-    sessionStorage.SENSOR = selectSensor.value
-    verificar()
+    sessionStorage.SENSOR = selectSensor.value;
+    alertasExibidos = [];
+    verificar();
 }
