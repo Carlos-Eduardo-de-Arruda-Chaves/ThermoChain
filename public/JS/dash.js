@@ -20,8 +20,8 @@ function verificar() {
     sensores = {};
     fetch("/avisos/listar").then(function (resposta) {
 
-        temperaturas = []
-        datas = []
+        temperaturas = [];
+        datas = [];
         if (resposta.ok) {
 
             resposta.json().then(function (dados) {
@@ -35,15 +35,9 @@ function verificar() {
                     if (dados[i].fk_sensor == sessionStorage.SENSOR) {
                         console.log(`Data da temperatura: ${dados[i].data_hora}`);
                         console.log(`Temperatura do sensor ${sessionStorage.SENSOR}: ${dados[i].temperatura}`);
-                        temperaturas.push(dados[i].temperatura)
-                        let dataFormatada = dados[i].data_hora
-                            // split() divide a string de acordo com o parametro passado
-                            .split('T')[1]
-                            .split('-')
-                            // reverse() inverte a ordem da array, para deixar o dia em forma de "20", "06", "2026" por exemplo
-                            .reverse()
-                            // join junta os elementos da array com "/", assim ficando correto e certo para ver a data do registro
-                            .join('/');
+                        temperaturas.push(dados[i].temperatura);
+                        let dataFormatada = dados[i].data_hora.slice(11, 19);
+                        datas.push(dataFormatada);
                         datas.push(dataFormatada.substring(0, 8))
                     }
                 }
@@ -212,28 +206,78 @@ function pesquisarLote() {
 }
 
 function chamar(sensor, local, perda) {
+    let ocorrencia = 0;
+    let tempBaixo = false;
+    let tempAcima = false;
+    let pegouTempoAtual = false;
 
     nome = `Lote ${sensor}`;
 
     let registros = sensores[sensor];
     console.log('registro:', registros, sensor);
+    console.log('oi', datas, temperaturas);
+
+    let alertar = false;
+    let tempoInicioForaDaFaixa = 0;
+    let tempoForaDaFaixa = 0;
+    let tempo = 0;
+    let horas = 0;
+    let minutos = 0;
+    let segundos = 0;
+    let totalTempo = 0;
 
     valores = [];
     datas = [];
 
     for (let i = 0; i < registros.length; i++) {
         valores.push(Number(registros[i].temperatura));
-        let dataFormatada = registros[i].data_hora.split('T')[1];
+        let dataFormatada = registros[i].data_hora.slice(11, 19);
         datas.push(dataFormatada.substring(0, 8));
+    }
+
+    for (let i = 0; i < registros.length; i++) {
+        if (registros[i].temperatura < 2 || registros[i].temperatura > 8) {
+            if (!pegouTempoAtual) {
+                tempoInicioForaDaFaixa = datas[i];
+                pegouTempoAtual = true;
+                console.log('dt atual: ', datas[i]);
+
+                tempo = datas[i].split(':');
+
+                horas = parseInt(tempo[0]);
+                minutos = parseInt(tempo[1]);
+                segundos = parseInt(tempo[2]);
+
+                totalTempo = (horas * 60) + minutos + (segundos / 60);
+                console.log(totalTempo.toFixed(0), 'ak');
+
+            }
+            if (registros[i].temperatura < 2 && !tempBaixo) {
+                ocorrencia++;
+                tempBaixo = true;
+            } else if (registros[i].temperatura > 8 && !tempAcima) {
+                ocorrencia++;
+                tempAcima = true;
+            }
+        } else {
+            tempAcima = false;
+            tempBaixo = false;
+            console.log(tempoInicioForaDaFaixa, 'alskdajksld');
+
+            tempoForaDaFaixa = totalTempo.toFixed(0) - tempoInicioForaDaFaixa;
+            console.log(tempoForaDaFaixa, 'visu');
+
+            pegouTempoAtual = false;
+        }
     }
 
     tempAtual = valores[valores.length - 1];
     if (valores[valores.length - 1] > 8) {
         status = "Temperatura acima da média";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 8).toFixed(2), 0, "00:00:00", registros[0].quantidade, registros[0].local_instalacao] // abs pega o valor absoluto (-2) = 2
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 8).toFixed(2), ocorrencia, "00:00:00", registros[0].quantidade, registros[0].local_instalacao] // abs pega o valor absoluto (-2) = 2
     } else if (valores[valores.length - 1] < 2) {
         status = "Temperatura abaixo da média";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 2).toFixed(2), 0, "00:00:00", registros[0].quantidade, registros[0].local_instalacao]
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 2).toFixed(2), ocorrencia, "00:00:00", registros[0].quantidade, registros[0].local_instalacao]
     } else {
         status = "Temperatura normal";
         kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, 0, 0, "00:00:00", registros[0].quantidade, registros[0].local_instalacao];
@@ -289,6 +333,7 @@ function chamar(sensor, local, perda) {
     if (graficoPizza != null) {
         graficoPizza.destroy();
     }
+    console.log(datas, 'valores');
 
     graficoLinha = new Chart(document.getElementById("graficoLinha").getContext("2d"), {
         type: "line",
@@ -364,6 +409,5 @@ function chamar(sensor, local, perda) {
 function trocar() {
     let sensor = Number(document.getElementById("selectSensor").value);
     sessionStorage.SENSOR = selectSensor.value;
-    alertasExibidos = [];
     verificar();
 }
