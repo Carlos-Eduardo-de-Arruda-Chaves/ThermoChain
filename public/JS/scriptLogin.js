@@ -16,17 +16,6 @@ let bloqueado = false;
 // Objeto simulando usuários cadastrados
 // chave = email
 // valor = senha
-let bancoDeDados = {
-
-    "enzoquinalha@gmail.com": "enzo123",
-    "carloschaves@gmail.com": "carlos123",
-    "matheusjacob@yahoo.com": "jacob123",
-    "leonardowerner@gmail.com": "leonardo123",
-    "guilhermebarbosa@gmail.com": "guilherme123",
-    "thiagoemidio@gmail.com": "thiago123",
-
-};
-
 
 // VALIDAÇÃO DE LOGIN
 
@@ -251,19 +240,6 @@ function entrar() {
         return false;
     }
 
-    let fkEmpresaVar = 0;
-
-    if (codigoEmpresaVar == "ABCD1") {
-        fkEmpresaVar = 1;
-    } else if (codigoEmpresaVar == "ACDE1") {
-        fkEmpresaVar = 2;
-    } else if (codigoEmpresaVar == "BCDE1") {
-        fkEmpresaVar = 3;
-    } else {
-        mensagemErro.innerHTML = "Código da empresa inválido.";
-        cardErro.style.display = "block";
-        return false;
-    }
 
     // Debug no console
     console.log("FORM LOGIN:", emailVar);
@@ -271,6 +247,8 @@ function entrar() {
 
 
     // REQUISIÇÃO AO BACKEND
+    
+    // estranhasso 
 
     fetch("/usuarios/autenticar", {
 
@@ -288,7 +266,7 @@ function entrar() {
 
             emailServer: emailVar,
             senhaServer: senhaVar,
-            codigoEmpresaServer: fkEmpresaVar
+            codigoEmpresaServer: codigoEmpresaVar
         })
 
     })
@@ -327,23 +305,23 @@ function entrar() {
                         json.id;
 
 
-                    // Salva aquários se existirem
-                    if (
-                        json.aquarios != undefined
-                    ) {
-
-                        sessionStorage.AQUARIOS =
-                            JSON.stringify(json.aquarios);
-
-                    }
+                    
 
 
                     // =========================
                     // REDIRECIONAMENTO
                     // =========================
-                    setTimeout(function () {
-                        window.location = "Tela_home.html";
-                    }, 1000); // 1000ms = 1 segundo 
+
+                    if(json.n3 == 0){
+                        setTimeout(function () {
+                            window.location = "Tela_home.html";
+                        }, 1000); // 1000ms = 1 segundo 
+                    }else if(json.n3 == 1){
+                        setTimeout(function () {
+                            window.location = "bobIA.html";
+                        }, 1000); // 1000ms = 1 segundo 
+                    }
+                    
                 });
 
 

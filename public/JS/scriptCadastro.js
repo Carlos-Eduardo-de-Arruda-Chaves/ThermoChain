@@ -2,7 +2,7 @@
 function mostrarSenha(idInput) {
 
     // Pega o input pelo ID recebido
-    const input =
+    let input =
         document.getElementById(idInput);
 
     // Se o input estiver como password,
@@ -28,58 +28,59 @@ function cadastrar() {
     // PEGANDO OS INPUTS
 
     // Captura os campos do HTML
-    const inputUsuario =
+
+    let inputUsuario =
         document.getElementById("input_usuario");
 
-    const inputEmail =
+    let inputEmail =
         document.getElementById("input_email");
 
-    const inputSenha =
+    let inputSenha =
         document.getElementById("input_senha");
-    const input_cpf =
+    let input_cpf =
         document.getElementById("input_cpf");
-    const inputConfSenha =
+    let inputConfSenha =
         document.getElementById("input_confsenha");
-    const inputEmpresa = document.getElementById("input_empresa");
+    let inputEmpresa = document.getElementById("input_empresa");
 
     // PEGANDO OS VALORES
 
     // Pega o valor digitado
     // e remove espaços extras
-    const usuario =
+    let usuario =
         inputUsuario.value.trim();
 
-    const email =
+    let email =
         inputEmail.value.trim();
 
-    const senha =
+    let senha =
         inputSenha.value.trim();
 
-    const confSenha =
+    let confSenha =
         inputConfSenha.value.trim();
 
-    const cpf =
+    let cpf =
         input_cpf.value.trim();
 
-    const codigoEmpresaTexto = inputEmpresa.value.trim();
+    let codigoEmpresaTexto = inputEmpresa.value.trim();
     // DIVS DE ERRO
 
     // Captura os locais onde os erros
     // vão aparecer na tela
-    const divUsuarioErro =
+    let divUsuarioErro =
         document.getElementById("div_usuarioErro");
 
-    const divEmailErro =
+    let divEmailErro =
         document.getElementById("div_emailErro");
 
-    const divSenhaErro =
+    let divSenhaErro =
         document.getElementById("div_senhaErro");
-    const divEmpresaErro = document.getElementById("div_empresaErro");
-    const divConfSenhaErro =
+    let divEmpresaErro = document.getElementById("div_empresaErro");
+    let divConfSenhaErro =
         document.getElementById("div_confSenhaErro");
-    const divCpf =
+    let divCpf =
         document.getElementById("div_cpfErro");
-    const alerta =
+    let alerta =
         document.getElementById("alerta");
 
     console.log(divUsuarioErro);
@@ -120,6 +121,7 @@ function cadastrar() {
         // Para a execução da função
         return;
     }
+    // confirmar se o codigo de empresa está vazio
 
 
     // VALIDAR EMAIL
@@ -151,18 +153,7 @@ function cadastrar() {
         return;
     }
 
-    // Verifica a empresa em que o usuario está
-   var fkEmpresaVar=0;
-    if (codigoEmpresaTexto == "ABCD1") {
-    fkEmpresaVar=1
-    }else if(codigoEmpresaTexto =="ACDE1"){
-        fkEmpresaVar=2
-    }else if(codigoEmpresaTexto =="BCDE1"){
-        fkEmpresaVar=3
-    }else{
-        divEmpresaErro.innerHTML = "Código de empresa inválido.";
-        return;
-    }
+
     // CONFIRMAR SENHA
 
     // Verifica se as duas senhas
@@ -175,7 +166,7 @@ function cadastrar() {
         return;
     }
 
-    // Verifica se o cpf da empresa possui mais dígitos ou menos
+    // Verifica se o cpf do usuario possui mais dígitos ou menos
     if (cpf.length == 11) {
         divCpf.innerHTML = "CPF VÁLIDO";
     } else {
@@ -204,7 +195,7 @@ function cadastrar() {
             emailServer: email,
             senhaServer: senha,
             cpfServer: cpf,
-            fkEmpresaServer: fkEmpresaVar
+            fkEmpresaServer: codigoEmpresaTexto
         })
 
     })
