@@ -205,11 +205,20 @@ function pesquisarLote() {
     }
 }
 
+function formatarHorario(hora) {
+    let partes = hora.split(':');
+
+    let horas = Number(partes[0]);
+    let minutos = Number(partes[1]);
+    let segundos = Number(partes[2]);
+
+    return horas * 3600 + minutos * 60 + segundos;
+}
+
 function chamar(sensor, local, perda) {
     let ocorrencia = 0;
     let tempBaixo = false;
     let tempAcima = false;
-    let pegouTempoAtual = false;
 
     nome = `Lote ${sensor}`;
 
@@ -220,11 +229,7 @@ function chamar(sensor, local, perda) {
     let alertar = false;
     let tempoInicioForaDaFaixa = 0;
     let tempoForaDaFaixa = 0;
-    let tempo = 0;
-    let horas = 0;
-    let minutos = 0;
-    let segundos = 0;
-    let totalTempo = 0;
+    let foraDaFaixa = false;
 
     valores = [];
     datas = [];
@@ -237,51 +242,45 @@ function chamar(sensor, local, perda) {
 
     for (let i = 0; i < registros.length; i++) {
         if (registros[i].temperatura < 2 || registros[i].temperatura > 8) {
-            if (!pegouTempoAtual) {
-                tempoInicioForaDaFaixa = datas[i];
-                pegouTempoAtual = true;
-                console.log('dt atual: ', datas[i]);
-
-                tempo = datas[i].split(':');
-
-                horas = parseInt(tempo[0]);
-                minutos = parseInt(tempo[1]);
-                segundos = parseInt(tempo[2]);
-
-                totalTempo = (horas * 60) + minutos + (segundos / 60);
-                console.log(totalTempo.toFixed(0), 'ak');
-
-            }
-            if (registros[i].temperatura < 2 && !tempBaixo) {
-                ocorrencia++;
-                tempBaixo = true;
-            } else if (registros[i].temperatura > 8 && !tempAcima) {
-                ocorrencia++;
-                tempAcima = true;
+            if (!foraDaFaixa) {
+                foraDaFaixa = true;
+                tempoInicioForaDaFaixa = formatarHorario(datas[i]);
             }
         } else {
             tempAcima = false;
             tempBaixo = false;
             console.log(tempoInicioForaDaFaixa, 'alskdajksld');
 
-            tempoForaDaFaixa = totalTempo.toFixed(0) - tempoInicioForaDaFaixa;
-            console.log(tempoForaDaFaixa, 'visu');
-
-            pegouTempoAtual = false;
+            if (foraDaFaixa) {
+                tempoForaDaFaixa += formatarHorario(datas[i]) - tempoInicioForaDaFaixa;
+                foraDaFaixa = false;
+            }
         }
     }
+    if (foraDaFaixa) {
+        tempoForaDaFaixa +=
+            formatarHorario(datas[datas.length - 1]) - tempoInicioForaDaFaixa;
+    }
+
+    let horasTempo = Math.floor(tempoForaDaFaixa / 3600);
+    let minutosTempo = Math.floor((tempoForaDaFaixa % 3600) / 60);
+    let segundosTempo = tempoForaDaFaixa % 60;
+
+    let tempoFormatado = String(horasTempo).padStart(2, '0') + ':' + String(minutosTempo).padStart(2, '0') + ':' + String(segundosTempo).padStart(2, '0');
 
     tempAtual = valores[valores.length - 1];
     if (valores[valores.length - 1] > 8) {
         status = "Temperatura acima da média";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 8).toFixed(2), ocorrencia, "00:00:00", registros[0].quantidade, registros[0].local_instalacao] // abs pega o valor absoluto (-2) = 2
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 8).toFixed(2), ocorrencia, tempoFormatado, registros[0].quantidade, registros[0].local_instalacao] // abs pega o valor absoluto (-2) = 2
     } else if (valores[valores.length - 1] < 2) {
         status = "Temperatura abaixo da média";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 2).toFixed(2), ocorrencia, "00:00:00", registros[0].quantidade, registros[0].local_instalacao]
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, Math.abs(valores[valores.length - 1] - 2).toFixed(2), ocorrencia, tempoFormatado, registros[0].quantidade, registros[0].local_instalacao]
     } else {
         status = "Temperatura normal";
-        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, 0, 0, "00:00:00", registros[0].quantidade, registros[0].local_instalacao];
+        kpis = ['0', `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? "Sim" : "Não"}`, 0, ocorrencia, tempoFormatado, registros[0].quantidade, registros[0].local_instalacao];
     }
+
+    // bola
     dentro = 67;
     fora = 33;
 
