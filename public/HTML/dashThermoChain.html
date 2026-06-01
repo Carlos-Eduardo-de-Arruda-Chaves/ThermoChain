@@ -11,7 +11,6 @@
 </head>
 
 <body onload="verificar()">
-    <div id="containerAlertas"></div>
     <div class="pagina">
         <section class="painel">
 
@@ -28,25 +27,36 @@
                     <label for="selectSensor" class="labelSensor">Lotes:</label>
                 </div>
 
-                <select id="selectSensor" onchange="trocar()">
-                </select>
+                <select id="selectSensor" onchange="trocar()"></select>
                 <input id="inputPesquisa" placeholder="Pesquisar lote..." oninput="pesquisarLote()">
             </div>
 
             <section class="areaTopo">
 
-                <div class="areaPizza">
-                    <canvas id="graficoPizza"></canvas>
+                <div class="colunaEsquerda">
+                    <div class="cardTemp">
+                        <div class="topoTemp">Temperatura</div>
+                        <div class="valorTemp" id="tempAtual">9.2C</div>
 
-                    <div class="legendaPizza">
-                        <div class="itemLegenda">
-                            <span class="caixaLegenda cinza"></span>
-                            <span>Tempo fora da faixa <strong id="txtFora">20%</strong></span>
+                        <div class="rodapeTemp">
+                            <div class="statusPequeno">Status</div>
+                            <div class="statusTexto" id="statusText">Temperatura acima da média</div>
                         </div>
+                    </div>
 
-                        <div class="itemLegenda">
-                            <span class="caixaLegenda azul"></span>
-                            <span>Tempo dentro da faixa <strong id="txtDentro">80%</strong></span>
+                    <div class="areaPizza">
+                        <canvas id="graficoPizza"></canvas>
+
+                        <div class="legendaPizza">
+                            <div class="itemLegenda">
+                                <span class="caixaLegenda cinza"></span>
+                                <span>Tempo fora da faixa <strong id="txtFora">20%</strong></span>
+                            </div>
+
+                            <div class="itemLegenda">
+                                <span class="caixaLegenda azul"></span>
+                                <span>Tempo dentro da faixa <strong id="txtDentro">80%</strong></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,6 +76,7 @@
                         <span class="numero" id="valor4">4</span>
                         <span class="texto">Ocorrências</span>
                     </div>
+
                     <div class="cardBaixo">
                         <div class="card azul2" id="cardTempo">
                             <span class="tempo" id="valor5">00:04:32</span>
@@ -79,14 +90,9 @@
                     </div>
                 </div>
 
-                <div class="cardTemp">
-                    <div class="topoTemp">Temperatura</div>
-                    <div class="valorTemp" id="tempAtual">9.2C</div>
-
-                    <div class="rodapeTemp">
-                        <div class="statusPequeno">Status</div>
-                        <div class="statusTexto" id="statusText">Temperatura acima da média</div>
-                    </div>
+                <div class="painelAlertas">
+                    <h3>Alertas</h3>
+                    <div id="containerAlertas"></div>
                 </div>
 
                 <div class="cardLocalizacaoContainer">

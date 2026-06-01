@@ -139,7 +139,9 @@ function abrir(nome, desc) {
 }
 
 function alertar() {
+    document.getElementById("containerAlertas").innerHTML = "";
     let ultimosLotes = {};
+    let existeAlerta = false;
 
     for (let i = 0; i < dados_alerta.length; i++) {
         let dado = dados_alerta[i];
@@ -164,9 +166,22 @@ function alertar() {
 
         if (temperatura > 8) {
             abrir(registro.codigo, 'O lote está com a temperatura acima da média');
+            existeAlerta = true;
         } else if (temperatura < 2) {
             abrir(registro.codigo, 'O lote está com a temperatura abaixo da média');
+            existeAlerta = true;
         }
+    }
+
+    if (!existeAlerta) {
+        document.getElementById("containerAlertas").innerHTML = `
+            <div class="alertaLote">
+                <div class="textoAlerta">
+                    <h2>Sem alertas</h2>
+                    <p>Todos os lotes estão dentro da faixa ideal.</p>
+                </div>
+            </div>
+        `;
     }
 }
 
@@ -245,6 +260,7 @@ function chamar(sensor, local, perda) {
             if (!foraDaFaixa) {
                 foraDaFaixa = true;
                 tempoInicioForaDaFaixa = formatarHorario(datas[i]);
+                ocorrencia++;
             }
         } else {
             tempAcima = false;
@@ -258,8 +274,7 @@ function chamar(sensor, local, perda) {
         }
     }
     if (foraDaFaixa) {
-        tempoForaDaFaixa +=
-            formatarHorario(datas[datas.length - 1]) - tempoInicioForaDaFaixa;
+        tempoForaDaFaixa += formatarHorario(datas[datas.length - 1]) - tempoInicioForaDaFaixa;
     }
 
     let horasTempo = Math.floor(tempoForaDaFaixa / 3600);
@@ -281,8 +296,15 @@ function chamar(sensor, local, perda) {
     }
 
     // bola
-    dentro = 67;
-    fora = 33;
+    let tempoTotal = formatarHorario(datas[datas.length - 1]) - formatarHorario(datas[0]);
+
+    if (tempoTotal > 0) {
+        fora = Math.round((tempoForaDaFaixa / tempoTotal) * 100);
+        dentro = 100 - fora;
+    } else {
+        fora = 0;
+        dentro = 100;
+    }
 
     atualizarOpcoes();
 

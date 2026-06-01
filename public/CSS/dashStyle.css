@@ -16,31 +16,36 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
-    margin-top: 1%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #7CA7C4;
 }
 
 .painel {
     width: 100%;
-    max-width: 1600px;
+    height: calc(100vh - 20px);
     background: #fff;
-    border-radius: 20px;
-    transform: scale(0.88);
-    transform-origin: top center;
+    border-radius: 16px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .containerTitulo {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     position: relative;
 }
 
 .tituloPainel {
     margin: 0 auto;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 600;
     color: #2f3d57;
 }
@@ -49,7 +54,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     font-size: 13px;
 }
 
@@ -63,19 +68,28 @@ body {
 .areaTopo {
     display: grid;
     grid-template-columns: 1.1fr 1.8fr 1fr;
-    gap: 20px;
+    gap: 12px;
     align-items: start;
+}
+
+.colunaEsquerda {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .areaPizza {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 0;
+    justify-self: center;
+    align-self: center;
 }
 
 #graficoPizza {
-    min-width: 245px !important;
-    height: 245px !important;
+    width: 245px !important;
+    height: 150px !important;
 }
 
 .legendaPizza {
@@ -84,7 +98,7 @@ body {
     flex-direction: column;
     gap: 10px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .itemLegenda {
@@ -110,6 +124,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px 18px;
+    align-content: start;
 }
 
 .card {
@@ -139,10 +154,6 @@ body {
     color: black;
 }
 
-.azul {
-    background: #a5b8ff;
-}
-
 .vermelho {
     background: #ffc0c0;
 }
@@ -164,14 +175,34 @@ body {
 }
 
 .cardTemp {
+    width: 80%;
     border: 1px solid #b8d3f1;
-    height: 220px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     border-radius: 4px;
-    margin-right: 20px;
+    margin-left: 10%;
+}
+
+.painelAlertas {
+    width: 90%;
+    border: 1px solid #b8d3f1;
+    border-radius: 4px;
+    height: 96.5%;
+    background: #f8fbff;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.painelAlertas h3 {
+    background: #b9dbff;
+    padding: 8px;
+    text-align: center;
+    color: #2f3d57;
+    font-size: 16px;
 }
 
 .topoTemp {
@@ -186,12 +217,13 @@ body {
 .valorTemp {
     font-size: 60px;
     font-weight: 700;
+    margin-top: -7%;
 }
 
 .rodapeTemp {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 96.5%;
     background: #b9dbff;
     display: flex;
     flex-direction: column;
@@ -209,7 +241,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: -6%;
+    margin-top: -10%;
 }
 
 .cardLocalizacao {
@@ -257,10 +289,22 @@ body {
 
 .areaLinha {
     width: 100%;
-    margin: 30px auto 0;
+    margin: 4px auto 0;
     text-align: center;
-    height: 325px;
+    height: 35vh;
+    min-height: 0;
+    flex: 1;
     position: relative;
+    box-sizing: border-box;
+}
+
+.areaLinha h3 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    white-space: nowrap;
 }
 
 #graficoLinha {
@@ -269,9 +313,11 @@ body {
 }
 
 .containerGrafico {
-    position: relative;
+    position: absolute;
+    top: 28px;
+    left: 0;
     width: 100%;
-    height: calc(100% - 40px);
+    height: calc(100% - 28px);
 }
 
 .voltar {
@@ -287,31 +333,31 @@ body {
 }
 
 #containerAlertas {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: 1;
-    opacity: 0.9;
+    padding: 10px;
+    max-width: 315px;
+    overflow-x: hidden;
 }
 
 .alertaLote {
-    top: 20px;
-    right: 20px;
-    width: 420px;
+    width: 100%;
+    min-height: 80px;
     background: #ffffff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 24px;
+    gap: 12px;
+    padding: 12px 14px;
     border-radius: 16px;
     box-shadow:
         0 10px 25px rgba(0, 0, 0, 0.08),
         0 4px 10px rgba(0, 0, 0, 0.04);
     border: 1px solid #e4edf7;
-    z-index: 9999;
 }
 
 .fecharAlerta {
@@ -326,18 +372,18 @@ body {
 }
 
 .textoAlerta h2 {
-    font-size: 28px;
+    font-size: 14px;
     color: #2f3d57;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .textoAlerta p {
-    font-size: 16px;
+    font-size: 12px;
     color: #5a5a5a;
 }
 
 .gifAlerta {
-    width: 90px;
-    height: 90px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
 }
