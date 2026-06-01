@@ -61,7 +61,11 @@ body {
     padding: 20px;
     flex-wrap: wrap;
 }
-
+.cabecalho{
+      display: flex;
+    justify-content: center;
+    gap: 191px;
+}
 .card {
     background: white;
     padding: 25px;
