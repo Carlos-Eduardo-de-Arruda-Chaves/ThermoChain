@@ -36,7 +36,7 @@ a:visited {
 .botoes_cabecario{
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap:190px;
 }
 
 .botao_cliente_cadastro:hover{
@@ -1003,7 +1003,7 @@ a:visited {
 .botoes_cabecario{
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 190px;
 }
 
 .botao_head{

@@ -44,7 +44,7 @@ html{
 .botoes_cabecario{
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 130px;
 }
 
 .botao_cliente_cadastro:hover{
