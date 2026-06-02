@@ -230,7 +230,7 @@ function formatarHorario(hora) {
     return horas * 3600 + minutos * 60 + segundos;
 }
 
-function chamar(sensor, local, perda) {
+function chamar(sensor) {
     let ocorrencia = 0;
     let tempBaixo = false;
     let tempAcima = false;
@@ -239,7 +239,9 @@ function chamar(sensor, local, perda) {
 
     let registros = sensores[sensor];
     console.log('registro:', registros, sensor);
-    console.log('oi', datas, temperaturas);
+    console.log('oi', temperaturas);
+
+    
 
     let alertar = false;
     let tempoInicioForaDaFaixa = 0;
@@ -333,7 +335,8 @@ function chamar(sensor, local, perda) {
     document.getElementById("cardTempo").style.background = `${kpis[4] != "00:00:00" ? '#ffc0c0' : '#a5b8ff'}`;
 
     let min = 0;
-
+    console.log(valores, 'carlos');
+    
     for (let i = registros.length - 1; i >= 0; i--) {
         console.log(min, Number(registros[i].temperatura));
 
@@ -355,11 +358,26 @@ function chamar(sensor, local, perda) {
         graficoPizza.destroy();
     }
     console.log(datas, 'valores');
-
+    console.log(valores.length);
+    
+    let valores_tratados = []
+    let datas_tratadas = []
+    if(valores.length > 10){
+        for(i=10;i>0;i--){
+            console.log(valores[valores.length - i]);
+            valores_tratados.push(valores[valores.length - i])
+            datas_tratadas.push(datas[datas.length - i])
+        }
+    } else {
+        valores_tratados = valores
+        datas_tratadas = datas
+    }
+    console.log(`xD`, datas_tratadas);
+    
     graficoLinha = new Chart(document.getElementById("graficoLinha").getContext("2d"), {
         type: "line",
         data: {
-            labels: datas,
+            labels: datas_tratadas,
             datasets: [
                 {
                     label: '',
@@ -388,7 +406,7 @@ function chamar(sensor, local, perda) {
                 {
                     label: nome,
                     borderColor: '#F5A623',
-                    data: valores,
+                    data: valores_tratados,
                     fill: true,
                     tension: 0.3,
                     pointRadius: 5,
@@ -432,3 +450,5 @@ function trocar() {
     sessionStorage.SENSOR = selectSensor.value;
     verificar();
 }
+
+setInterval(verificar, 5000)
