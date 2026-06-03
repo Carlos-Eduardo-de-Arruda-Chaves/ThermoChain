@@ -66,3 +66,12 @@ button:hover {
     text-align: left;
     display: none;
 }
+
+.chevron {
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-radius: 60px;
+  padding: 20px;
+}

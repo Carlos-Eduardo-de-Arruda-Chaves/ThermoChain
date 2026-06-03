@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BobIA</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+
+    <a href="/public/HTML/Tela_home.html">
+        <img src="/public/CSS/img/seta-esquerda.png" alt="Voltar" class="chevron">
+    </a>
 
     <div id="container">
         <h1>BobIA</h1>
@@ -23,7 +30,7 @@
     </div>
 
     <script>
-        
+
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
             const loadingMessage = document.getElementById('loadingMessage');
@@ -57,6 +64,7 @@
         }
 
     </script>
-    
+
 </body>
+
 </html>
