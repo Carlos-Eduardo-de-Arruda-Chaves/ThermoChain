@@ -10,6 +10,10 @@ const SERVIDOR_PORTA = 3300;
 // habilita ou desabilita a inserção de dados no banco de dados
 const HABILITAR_OPERACAO_INSERIR = true;
 
+// váriaveis para definir empresa e sensor
+const empresa = 1
+const sensor = 1
+
 // função para comunicação serial
 const serial = async (
     valoresSensorTemperatura
@@ -61,10 +65,22 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO leitura_temperatura (temperatura) VALUES (?)', // Para verificar se estava funcionando, foi retirado "fk_sensor" e "fk_lote", e os valores "1" e "1"
-                [sensorTemperatura]
+                'INSERT INTO leitura_temperatura (temperatura, fk_sensor, fk_empresa) VALUES (?, ?, ?)', // Para verificar se estava funcionando, foi retirado "fk_sensor" e "fk_lote", e os valores definidos em empresa e sensor
+                [sensorTemperatura, sensor, empresa]
             );
-            console.log("valores inseridos no banco: ", sensorTemperatura);
+            // repetindo para "criar" outros sensores
+
+            await poolBancoDados.execute(
+                'INSERT INTO leitura_temperatura (temperatura, fk_sensor, fk_empresa) VALUES ((? - 10), (? + 1), ?)', // Para verificar se estava funcionando, foi retirado "fk_sensor" e "fk_lote", e os valores definidos em empresa e sensor
+                [sensorTemperatura, sensor, empresa]
+            );
+
+            await poolBancoDados.execute(
+                'INSERT INTO leitura_temperatura (temperatura, fk_sensor, fk_empresa) VALUES ((? + 10), (? + 2), ?)', // Para verificar se estava funcionando, foi retirado "fk_sensor" e "fk_lote", e os valores definidos em empresa e sensor
+                [sensorTemperatura, sensor, empresa]
+            );
+
+            console.log("valores inseridos no banco (verdadeiro): ", sensorTemperatura, sensor, empresa);
 
         }
 
