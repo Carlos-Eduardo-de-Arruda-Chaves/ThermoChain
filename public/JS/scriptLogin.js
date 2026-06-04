@@ -304,7 +304,8 @@ function entrar() {
                     sessionStorage.ID_USUARIO =
                         json.id;
 
-
+                    sessionStorage.FK_EMPRESA = 
+                        json.fkEmpresa
                     
 
 

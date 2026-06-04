@@ -27,12 +27,12 @@ function autenticar(req, res) {
 
                         // //   enviando os dados do usuário direto para o navegador.
                         res.json({
-                            id: resultadoAutenticar[0].id,
+                            id: resultadoAutenticar[0].id_usuario,
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,
                             senha: resultadoAutenticar[0].senha,
                             cpf: resultadoAutenticar[0].cpf,
-                            fkEmpresa: resultadoAutenticar[0].fk_Empresa,
+                            fkEmpresa: resultadoAutenticar[0].fk_empresa,
                             n3: resultadoAutenticar[0].n3
                         });
 
