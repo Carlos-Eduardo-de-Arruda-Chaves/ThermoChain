@@ -1,7 +1,9 @@
 var avisoModel = require("../models/avisoModel");
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    
+    var fk_empresa = req.body.fkEmpresaServer
+    avisoModel.listar(fk_empresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

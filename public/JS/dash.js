@@ -17,97 +17,105 @@ let alertasExibidos = [];
 
 let lotes = [];
 function verificar() {
+
     sensores = {};
-    fetch("/avisos/listar").then(function (resposta) {
 
-        temperaturas = [];
-        datas = [];
-        if (resposta.ok) {
+    fetch("/avisos/listar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fkEmpresaServer: sessionStorage.FK_EMPRESA
+        })
+    })
+        .then(resposta => resposta.json())
+        .then(function (dados) {
+            temperaturas = [];
+            datas = [];
 
-            resposta.json().then(function (dados) {
-                console.log(dados);
-                if (!primeira_verificacao) {
-                    sessionStorage.SENSOR = dados[0].fk_sensor
-                    console.log(sessionStorage.SENSOR);
-                    primeira_verificacao = true
+
+
+            console.log(dados);
+            if (!primeira_verificacao) {
+                sessionStorage.SENSOR = dados[0].fk_sensor
+                console.log(sessionStorage.SENSOR);
+                primeira_verificacao = true
+            }
+            for (let i = 0; i < dados.length; i++) {
+                if (dados[i].fk_sensor == sessionStorage.SENSOR) {
+                    console.log(`Data da temperatura: ${dados[i].data_hora}`);
+                    console.log(`Temperatura do sensor ${sessionStorage.SENSOR}: ${dados[i].temperatura}`);
+                    temperaturas.push(dados[i].temperatura);
+                    let dataFormatada = dados[i].data_hora.slice(11, 19);
+                    datas.push(dataFormatada);
+                    datas.push(dataFormatada.substring(0, 8))
                 }
-                for (let i = 0; i < dados.length; i++) {
-                    if (dados[i].fk_sensor == sessionStorage.SENSOR) {
-                        console.log(`Data da temperatura: ${dados[i].data_hora}`);
-                        console.log(`Temperatura do sensor ${sessionStorage.SENSOR}: ${dados[i].temperatura}`);
-                        temperaturas.push(dados[i].temperatura);
-                        let dataFormatada = dados[i].data_hora.slice(11, 19);
-                        datas.push(dataFormatada);
-                        datas.push(dataFormatada.substring(0, 8))
+            }
+            console.log(temperaturas);
+            console.log(datas);
+
+            let codigos = [];
+
+            for (let i = 0; i < dados.length; i++) {
+
+                let check = false;
+
+                for (let j = 0; j < codigos.length; j++) {
+
+                    if (codigos[j][0] == dados[i].codigo) {
+                        check = true;
+                        break;
                     }
                 }
-                console.log(temperaturas);
-                console.log(datas);
 
-                let codigos = [];
+                if (!check) {
+                    codigos.push([
+                        dados[i].codigo,
+                        dados[i].fk_lote
+                    ]);
+                }
+            }
 
-                for (let i = 0; i < dados.length; i++) {
+            let indice = 0;
 
-                    let check = false;
+            for (let i = 0; i < dados.length; i++) {
 
-                    for (let j = 0; j < codigos.length; j++) {
+                let sensor = dados[i].fk_lote;
 
-                        if (codigos[j][0] == dados[i].codigo) {
-                            check = true;
-                            break;
-                        }
-                    }
-
-                    if (!check) {
-                        codigos.push([
-                            dados[i].codigo,
-                            dados[i].fk_lote
-                        ]);
-                    }
+                if (!sensores[sensor]) {
+                    sensores[sensor] = [];
                 }
 
-                let indice = 0;
+                sensores[sensor].push(dados[i]);
+            }
 
-                for (let i = 0; i < dados.length; i++) {
+            lotes = codigos;
 
-                    let sensor = dados[i].fk_lote;
+            const select = document.getElementById("selectSensor");
 
-                    if (!sensores[sensor]) {
-                        sensores[sensor] = [];
-                    }
+            if (select.options.length == 0) {
+                for (let i = 0; i < lotes.length; i++) {
+                    let option = document.createElement("option");
 
-                    sensores[sensor].push(dados[i]);
+                    option.value = lotes[i][1];
+                    option.textContent = lotes[i][0];
+                    option.dataset.nomeOriginal = lotes[i][0];
+
+                    select.appendChild(option);
                 }
+            }
+            dados_alerta = dados;
+            alertar();
+            chamar(sessionStorage.SENSOR);
 
-                lotes = codigos;
 
-                const select = document.getElementById("selectSensor");
 
-                if (select.options.length == 0) {
-                    for (let i = 0; i < lotes.length; i++) {
-                        let option = document.createElement("option");
 
-                        option.value = lotes[i][1];
-                        option.textContent = lotes[i][0];
-                        option.dataset.nomeOriginal = lotes[i][0];
 
-                        select.appendChild(option);
-                    }
-                }
-                dados_alerta = dados;
-                alertar();
-                chamar(sessionStorage.SENSOR);
+        });
+    }
 
-            });
-
-        } else {
-            throw ('Houve um erro na API!');
-        }
-
-    }).catch(function (erro) {
-        console.error(erro);
-    });
-}
 
 function fechar(nome) {
     if (!alertasExibidos.includes(nome)) {
@@ -241,7 +249,7 @@ function chamar(sensor) {
     console.log('registro:', registros, sensor);
     console.log('oi', temperaturas);
 
-    
+
 
     let alertar = false;
     let tempoInicioForaDaFaixa = 0;
@@ -336,7 +344,7 @@ function chamar(sensor) {
 
     let min = 0;
     console.log(valores, 'carlos');
-    
+
     for (let i = registros.length - 1; i >= 0; i--) {
         console.log(min, Number(registros[i].temperatura));
 
@@ -359,11 +367,11 @@ function chamar(sensor) {
     }
     console.log(datas, 'valores');
     console.log(valores.length);
-    
+
     let valores_tratados = []
     let datas_tratadas = []
-    if(valores.length > 10){
-        for(i=10;i>0;i--){
+    if (valores.length > 10) {
+        for (i = 10; i > 0; i--) {
             console.log(valores[valores.length - i]);
             valores_tratados.push(valores[valores.length - i])
             datas_tratadas.push(datas[datas.length - i])
@@ -372,8 +380,8 @@ function chamar(sensor) {
         valores_tratados = valores
         datas_tratadas = datas
     }
-    console.log(`xD`, datas_tratadas);
-    
+    console.log(datas_tratadas);
+
     graficoLinha = new Chart(document.getElementById("graficoLinha").getContext("2d"), {
         type: "line",
         data: {
