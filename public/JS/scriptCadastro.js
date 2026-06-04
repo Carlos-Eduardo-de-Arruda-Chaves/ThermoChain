@@ -207,7 +207,7 @@ function cadastrar() {
             if (resposta.ok) {
 
                 alerta.innerHTML =
-                    "✅ Cadastro realizado com sucesso!";
+                    "Cadastro realizado com sucesso!";
 
 
                 // Limpa os campos
@@ -230,7 +230,7 @@ function cadastrar() {
 
                 // Caso dê erro no cadastro
                 alerta.innerHTML =
-                    "❌ Erro ao realizar cadastro.";
+                    " Erro ao realizar cadastro.";
 
             }
 
@@ -247,7 +247,7 @@ function cadastrar() {
 
             // Mostra erro visual
             alerta.innerHTML =
-                "❌ Erro interno do sistema.";
+                "Erro interno do sistema.";
 
         });
 
