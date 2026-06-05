@@ -1,96 +1,90 @@
-/* SOBRE NÓS */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-
-body {
-  
-    background-size: cover;        /* faz a imagem cobrir toda a tela */
-    background-position: center;   /* centraliza */
-    background-repeat: no-repeat;  /* não repete */
-    background-attachment: fixed;  /* efeito de fundo parado (parallax leve) */
-}
 .sobre-container {
-    width: 100%;
+    padding: 0 50px;
 }
 
-/* BANNER */
 .banner {
-    background: linear-gradient(135deg, rgb(43, 87, 131), #196bbd);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 70px 20px;
-    border-radius: 20px;
-    margin: 0 50px 40px 50px;
+    background: linear-gradient(135deg, #003d80, rgb(92, 151, 214));
+    color: white;
+    text-align: left;
+    padding: 70px;
+    border-radius: 25px;
+    margin-bottom: 50px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
 }
 
 .banner h1 {
-    font-size: 40px;
-   
-    margin-bottom: 10px;
+    font-size: 48px;
+    margin-bottom: 14px;
 }
 
 .banner p {
-    font-size: 20px;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* SOBRE */
+.mvv {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.card-sobre {
+    flex: 1;
+    padding: 40px 36px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-sobre h3 {
+    padding-left: 48px;
+    color: rgba(0, 86, 178, 1);
+    margin-bottom: 10px;
+}
+
+.card-sobre p {
+    color: rgba(71, 85, 105, 1);
+    padding-left: 48px;
+    font-size: 17px;
+    margin-top: -10px;
+}
+
 .sobre {
-    background: linear-gradient(135deg, rgb(58, 106, 154), #196bbd),rgb(57, 107, 207);
-    border-radius: 15px; 
-    text-align: center;
-    padding: 50px 80px;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.sobre div {
+    width: 70%;
+    background: linear-gradient(135deg, rgba(0, 61, 128, 1), rgb(74, 143, 218));
+    border-radius: 20px;
+    padding: 40px 60px;
+}
+
+.sobre-direita {
+    justify-content: flex-end;
+}
+
+.sobre-esquerda {
+    justify-content: flex-start;
 }
 
 .sobre h2 {
-    color: rgb(255, 255, 255);
-    font-size: 40px;
-    margin-bottom: 30px;
+    color: white;
+    font-size: 32px;
+    margin-bottom: 15px;
 }
 
 .sobre p {
+    color: white;
     font-size: 18px;
-     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color:rgb(255, 255, 255);
     line-height: 1.6;
 }
 
-/* MISSÃO VISÃO VALORES */
-.mvv {
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-    padding: 20px;
-    flex-wrap: wrap;
-}
-.cabecalho{
-      display: flex;
-    justify-content: center;
-    gap: 191px;
-}
-.card {
-    background: white;
-    padding: 30px;
-    width: 280px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border-radius: 15px;
-    font-size: 17px;
-    border: 2px solid rgba(0, 86, 178, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(0, 86, 178, 1);
-}
-
-.card h3 {
-    color: rgba(0, 86, 178, 1);
-}
-
-/* EQUIPE */
 .equipe {
     text-align: center;
-    padding: 60px;
+    padding: 30px 60px 60px;
     background-color: #F5F7F8;
 }
 
@@ -121,6 +115,15 @@ body {
     border-color: rgba(0, 86, 178, 1);
 }
 
+.imgSobre {
+    width: 300px;
+    margin: -100px 0px 0px -150px;
+}
+
+.textoSobre {
+    margin: -25px 0px 0px -25px;
+}
+
 .membro img {
     width: 100px;
     height: 100px;
@@ -128,4 +131,18 @@ body {
     border: 3px solid rgba(0, 86, 178, 1);
     object-fit: cover;
     margin-bottom: 10px;
+}
+
+.membro h3 {
+    margin-bottom: 6px;
+}
+
+.membro p {
+    color: rgba(71, 85, 105, 1);
+    font-size: 14px;
+}
+
+.cabecalho {
+    justify-content: space-between;
+    gap: unset;
 }
