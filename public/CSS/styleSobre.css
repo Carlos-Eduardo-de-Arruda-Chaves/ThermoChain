@@ -17,7 +17,7 @@ body {
     background: linear-gradient(135deg, rgb(43, 87, 131), #196bbd);
     color: rgb(255, 255, 255);
     text-align: center;
-    padding: 80px 20px;
+    padding: 70px 20px;
     border-radius: 20px;
     margin: 0 50px 40px 50px;
 }
@@ -68,9 +68,11 @@ body {
 }
 .card {
     background: white;
-    padding: 25px;
-    width: 260px;
+    padding: 30px;
+    width: 280px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 15px;
+    font-size: 17px;
     border: 2px solid rgba(0, 86, 178, 0.2);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     transition: 0.3s;
