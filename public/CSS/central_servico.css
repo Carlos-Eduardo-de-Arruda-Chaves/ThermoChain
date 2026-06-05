@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Space Grotesk',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:40px;
+
+    background:linear-gradient(
+        135deg,
+        #dff4e4 0%,
+        #d9eef6 50%,
+        #b9d0ff 100%
+    );
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.logo img{
+    position:fixed;
+    top:20px;
+    left:20px;
+    height:80px;
+}
+
+.titulo h1{
+    font-size:40px;
+    color:#0f3d6e;
+}
+
+.titulo p{
+    margin-top:15px;
+    color:#5a6475;
+    font-size:20px;
+}
+
+.nivel-tres{
+    display:inline-block;
+    margin-top:20px;
+
+    background:white;
+    padding:15px 25px;
+
+    border-radius:50px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.nivel-tres span{
+    color:#2563eb;
+    font-weight:700;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-top:80px;
+}
+
+.card{
+    width:320px;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    text-decoration:none;
+    color:inherit;
+
+    transition:.3s;
+}
+
+.card:hover{
+    background:#35507a;
+    color:white;
+}
+
+.card:hover h2,
+.card:hover p,
+.card:hover button{
+    color:white;
+}
+
+.card:hover button{
+    background:#4a6a9e;
+}
+
+.icone{
+    width:120px;
+    height:120px;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#f5f8ff;
+    border-radius:50%;
+}
+
+.icone img{
+    width:70px;
+}
+
+.card h2{
+    margin-top:25px;
+    text-align:center;
+    color:#1d4ed8;
+}
+
+.card p{
+    margin-top:15px;
+    text-align:center;
+    color:#666;
+    line-height:1.6;
+}
+
+.card button{
+    width:100%;
+    margin-top:25px;
+
+    padding:15px;
+
+    border:none;
+    border-radius:15px;
+
+    background:#eef4ff;
+    color:#1d4ed8;
+
+    cursor:pointer;
+    font-weight:700;
+}
+
+.bobia{
+    position:fixed;
+    right:40px;
+    bottom:40px;
+}
+
+.bobia img{
+    width:100px;
+    transition:.3s;
+}
+
+.bobia img:hover{
+    transform:scale(1.1);
+}

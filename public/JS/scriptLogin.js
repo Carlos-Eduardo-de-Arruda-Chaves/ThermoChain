@@ -247,7 +247,7 @@ function entrar() {
 
 
     // REQUISIÇÃO AO BACKEND
-    
+
     // estranhasso 
 
     fetch("/usuarios/autenticar", {
@@ -304,25 +304,25 @@ function entrar() {
                     sessionStorage.ID_USUARIO =
                         json.id;
 
-                    sessionStorage.FK_EMPRESA = 
+                    sessionStorage.FK_EMPRESA =
                         json.fkEmpresa
-                    
+
 
 
                     // =========================
                     // REDIRECIONAMENTO
                     // =========================
 
-                    if(json.n3 == 0){
+                    if (json.n3 == 0) {
                         setTimeout(function () {
                             window.location = "Tela_home.html";
                         }, 1000); // 1000ms = 1 segundo 
-                    }else if(json.n3 == 1){
+                    } else if (json.n3 == 1) {
                         setTimeout(function () {
-                            window.location = "bobIA.html";
+                            window.location = "central_servico";
                         }, 1000); // 1000ms = 1 segundo 
                     }
-                    
+
                 });
 
 
