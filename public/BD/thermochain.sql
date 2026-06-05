@@ -1,8 +1,10 @@
 --  TERMOCHAIN — Script de Criação do Banco de Dados
 
-CREATE DATABASE thermochain;
-
-USE thermochain;
+CREATE DATABASE Thermochain;
+USE Thermochain;
+-- CREATE USER 'thermochain'@'%' IDENTIFIED BY 'Thermo-viz#2026';
+ -- GRANT ALL PRIVILEGES ON thermochain.* TO 'thermochain'@'%';
+ -- FLUSH PRIVILEGES;	
 
 -- TABELA: empresa
 CREATE TABLE empresa (
@@ -24,7 +26,8 @@ CREATE TABLE empresa (
     cep CHAR(8) NOT NULL,
     segmento VARCHAR(60) NOT NULL,
     status_empresa  ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
-    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    dt_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    cod_empresa char(06) not null unique
 );
 
 -- TABELA: usuario
@@ -39,10 +42,11 @@ CREATE TABLE usuario (
     cpf CHAR(11) NOT NULL UNIQUE,
     status_usuario  ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
     dt_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fk_empresa BIGINT NOT NULL,
+    fk_empresa char(6) NOT NULL,
+    n3 tinyint(1) not null default 0,
     CONSTRAINT fk_usuario_empresa
         FOREIGN KEY (fk_empresa)
-        REFERENCES empresa(id_empresa)
+        REFERENCES empresa(cod_empresa)
 );
 
 -- TABELA: tipo_vacina
@@ -156,34 +160,34 @@ CREATE TABLE leitura_temperatura (
 -- 1 EMPRESA
 INSERT INTO empresa
     (razao_social, nome_fantasia, cnpj, telefone, email,
-     logradouro, numero, complemento, bairro, cidade, estado, cep, segmento)
+     logradouro, numero, complemento, bairro, cidade, estado, cep, segmento, cod_empresa)
 VALUES
     ('Butantã Distribuidora Ltda', 'VaccinaCold',
      '12345678000191', '(11) 91234-5678', 'contato@butanta.com.br',
      'Av. Paulista', '1000', NULL, 'Bela Vista', 'São Paulo', 'SP', '01310100',
-     'Saúde'),
+     'Saúde', 'ABCD01'),
 
     ('FrigoCargo Transportes S.A.', 'FrigoCargo',
      '98765432000155', '(21) 93456-7890', 'ops@frigocargo.com.br',
      'Rua da Assembleia', '500', NULL, 'Centro', 'Rio de Janeiro', 'RJ', '20011001',
-     'Logística'),
+     'Logística', 'ABCD02'),
 
     ('ImunoCenter Farmacêutica Ltda', 'ImunoCenter',
      '11223344000177', '(31) 92345-6789', 'farma@immunocenter.com.br',
      'Av. Afonso Pena', '2500', 'Bloco 23', 'Funcionários', 'Belo Horizonte', 'MG', '30130005',
-     'Farmacêutico');
+     'Farmacêutico', 'ABCD03');
 
 
 -- 2 USUARIO
 INSERT INTO usuario
-    (nome, email, senha, cpf, fk_empresa)
+    (nome, email, senha, cpf, fk_empresa, n3)
 VALUES
-    ('Guilherme Barbosa De Albuquerque',  'guilherme.albuquerque@butanta.com.br',  'lujUpn7&230', '12345678901', 1),
-    ('Carlos Eduardo', 'carlos.eduardo@vaccinacold.com.br',   'siMgvw@@75', '23456789012', 1),
-    ('Matheus Jacob',       'matheus.jacob@frigocargo.com.br',  'Amom3uempr3g0?', '34567890123', 2),
-    ('Leonardo Werner',       'leonardo.Werner@frigocargo.com.br',  'Leozica#333', '44567890123', 2),
-    ('Thiago Emidio',       'mariana.souza@immunocenter.com.br',  'psia893((', '54567890123', 3),
-    ('Enzo Quinalha',       'roberto.alves@immunocenter.com.br','cialounge(@8794', '65678901234', 3);
+    ('Guilherme Barbosa De Albuquerque',  'guilherme.albuquerque@butanta.com.br',  'lujUpn7&230', '12345678901', 'ABCD01', 0),
+    ('Carlos Eduardo', 'carlos.eduardo@vaccinacold.com.br',   'siMgvw@@75', '23456789012', 'ABCD01',1),
+    ('Matheus Jacob',       'matheus.jacob@frigocargo.com.br',  'Amom3uempr3g0?', '34567890123', 'ABCD02',0),
+    ('Leonardo Werner',       'leonardo.Werner@frigocargo.com.br',  'Leozica#333', '44567890123', 'ABCD02',1),
+    ('Thiago Emidio',       'mariana.souza@immunocenter.com.br',  'psia893((', '54567890123', 'ABCD03',0),
+    ('Enzo Quinalha',       'roberto.alves@immunocenter.com.br','cialounge(@8794', '65678901234', 'ABCD03',1);
 
 
 -- 3 TIPO_VACINA
@@ -314,3 +318,14 @@ LEFT JOIN usuario u
     ON u.fk_empresa = e.id_empresa
 GROUP BY e.id_empresa
 ORDER BY total_usuarios DESC;
+
+select * from usuario;
+select * from empresa;
+
+INSERT INTO leitura_temperatura (temperatura, data_hora, fk_sensor, fk_lote) VALUES
+('5.7', '2026-05-15 08:00:00', 1, 1),
+('6.7', '2026-05-15 08:05:00', 1, 1),
+('4.8', '2026-05-15 08:10:00', 1, 1),
+('5.6', '2026-05-15 08:15:00', 1, 1),
+('6.0', '2026-05-15 08:20:00', 1, 1);
+

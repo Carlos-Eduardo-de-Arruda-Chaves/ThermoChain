@@ -309,9 +309,9 @@ function entrar() {
 
 
 
-                    // =========================
+                    
                     // REDIRECIONAMENTO
-                    // =========================
+                    
 
                     if (json.n3 == 0) {
                         setTimeout(function () {
