@@ -319,11 +319,11 @@ function entrar() {
                         }, 1000); // 1000ms = 1 segundo 
                     } else if (json.n3 == 1) {
                         setTimeout(function () {
-                            window.location = "central_servico";
+                            window.location = "../HTML/central_servico.html";
                         }, 1000); // 1000ms = 1 segundo 
                     }
 
-                });
+                    });
 
 
             } else {
