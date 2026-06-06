@@ -3,8 +3,8 @@
 CREATE DATABASE Thermochain;
 USE Thermochain;
 -- CREATE USER 'thermochain'@'%' IDENTIFIED BY 'Thermo-viz#2026';
- -- GRANT ALL PRIVILEGES ON thermochain.* TO 'thermochain'@'%';
- -- FLUSH PRIVILEGES;	
+-- GRANT ALL PRIVILEGES ON thermochain.* TO 'thermochain'@'%';
+-- FLUSH PRIVILEGES;	
 
 -- TABELA: empresa
 CREATE TABLE empresa (
@@ -175,19 +175,30 @@ VALUES
     ('ImunoCenter Farmacêutica Ltda', 'ImunoCenter',
      '11223344000177', '(31) 92345-6789', 'farma@immunocenter.com.br',
      'Av. Afonso Pena', '2500', 'Bloco 23', 'Funcionários', 'Belo Horizonte', 'MG', '30130005',
-     'Farmacêutico', 'ABCD03');
+     'Farmacêutico', 'ABCD03'),
+     
+     ('ThermoChain Monitoramento Ltda', 'ThermoChain',
+     '56789543210184', '(11) 95650-1168', 'support@thermochain.atlassian.net',
+     'Rua Haddock Lobo', '595', 'Andar 1 Sala A', 'Bela Vista', 'São Paulo', 'SP', '01414905',
+     'Monitoramento', 'TERM00');
 
 
 -- 2 USUARIO
 INSERT INTO usuario
     (nome, email, senha, cpf, fk_empresa, n3)
 VALUES
-    ('Guilherme Barbosa De Albuquerque',  'guilherme.albuquerque@butanta.com.br',  'lujUpn7&230', '12345678901', 'ABCD01', 0),
-    ('Carlos Eduardo', 'carlos.eduardo@vaccinacold.com.br',   'siMgvw@@75', '23456789012', 'ABCD01',1),
-    ('Matheus Jacob',       'matheus.jacob@frigocargo.com.br',  'Amom3uempr3g0?', '34567890123', 'ABCD02',0),
-    ('Leonardo Werner',       'leonardo.Werner@frigocargo.com.br',  'Leozica#333', '44567890123', 'ABCD02',1),
-    ('Thiago Emidio',       'mariana.souza@immunocenter.com.br',  'psia893((', '54567890123', 'ABCD03',0),
-    ('Enzo Quinalha',       'roberto.alves@immunocenter.com.br','cialounge(@8794', '65678901234', 'ABCD03',1);
+    ('Guilherme Barbosa De Albuquerque',  'guilherme.albuquerque@thermochain.com.br',  'Gui!123', '12345678901', 'TERM00', 1),
+    ('Carlos Eduardo', 'carlos.eduardo@thermochain.com.br',   'Carlos!123', '12345678922', 'TERM00',1),
+    ('Matheus Jacob',       'matheus.jacob@thermochain.com.br',  'Amom3uempr3g0?', 'Jacob!123', 'TERM00',1),
+    ('Leonardo Werner',       'leonardo.Werner@thermochain.com.br',  'Leozica#333', '44567890123', 'TERM00',1),
+    ('Thiago Emidio',       'thiago.emidio@thermochain.com.br',  'Thiago!123', '54567890123', 'TERM00',1),
+    ('Enzo Quinalha',       'enzo.quinalha@thermochain.com.br','Enzo!123', '65678901234', 'TERM00',1),
+    ('Murilo Belli Aguiar','mbaguiar@butanta.com.br','Mba!123','56789034567','ABCD01',0),
+    ('Pietro Belli Aguiar','pbaguiar@butanta.com.br','Pba!123','34578932100','ABCD01',0),
+    ('Yohann de Andrade','yhnnand@frigocargo.com.br','Yda!123','87623478999','ABCD02',0),
+    ('Heitor de Paulo','heitplo@frigocargo.com.br','Hdp!123','78993402671','ABCD02',0),
+    ('Luiggi Remo Ferreira','lrferreira@immunocenter.com.br','Lrf!123','54678920192','ABCD03',0),
+    ('Sônia Regina Amaral','Sramaral@immunocenter.com.br','Sra!123','09473829342','ABCD03',0);
 
 
 -- 3 TIPO_VACINA
