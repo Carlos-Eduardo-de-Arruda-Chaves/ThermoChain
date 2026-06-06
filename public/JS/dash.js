@@ -114,7 +114,7 @@ function verificar() {
 
 
         });
-    }
+}
 
 
 function fechar(nome) {
@@ -205,8 +205,10 @@ function atualizarOpcoes() {
 
         if (ultimaTemp > 8 || ultimaTemp < 2) {
             options[i].text = `🔴 ${nomeOriginal}`;
+        } else if (ultimaTemp == 8 || ultimaTemp == 2) {
+            options[i].tempAcima = `🟡 ${nomeOriginal}`;
         } else {
-            options[i].text = nomeOriginal;
+            options[i].text = `🟢 ${nomeOriginal}`;
         }
     }
 }
