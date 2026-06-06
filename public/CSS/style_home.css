@@ -31,8 +31,11 @@ html{
     box-shadow: none;
     border: none;
     width: 70px;
-    text-align: center;
     font-weight: bold;
+}
+
+.botao_home {
+    margin-top: 0px;
 }
 
 .botao_head:hover{
