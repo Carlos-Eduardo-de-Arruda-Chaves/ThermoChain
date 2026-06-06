@@ -29,6 +29,16 @@
 
                 <select id="selectSensor" onchange="trocar()"></select>
                 <input id="inputPesquisa" placeholder="Pesquisar lote..." oninput="pesquisarLote()">
+
+                <div class="labelSensorContainer">
+                    <a class="filtros">Filtros:</a>
+                    <select name="filtros" id="filtros">
+                        <option label="Todos">Todos</option>
+                        <option label="🟢">🟢</option>
+                        <option label="🟡">🟡</option>
+                        <option label="🔴">🔴</option>
+                    </select>
+                </div>
             </div>
 
             <section class="areaTopo">

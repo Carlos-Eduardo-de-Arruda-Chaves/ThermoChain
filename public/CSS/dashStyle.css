@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+.filtros {
+    margin-right: 5px;
+}
+
 body {
     font-family: "Space Grotesk", sans-serif;
     background: #7CA7C4;
