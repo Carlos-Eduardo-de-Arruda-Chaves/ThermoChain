@@ -106,13 +106,9 @@ function verificar() {
                 }
             }
             dados_alerta = dados;
+            filtrarLotes();
             alertar();
             chamar(sessionStorage.SENSOR);
-
-
-
-
-
         });
 }
 
@@ -194,23 +190,46 @@ function alertar() {
 }
 
 function atualizarOpcoes() {
-    const select = document.getElementById("selectSensor");
-    const options = select.options;
+    filtrarLotes();
+}
 
-    for (let i = 0; i < options.length; i++) {
-        let sensor = options[i].value;
-        let registros = sensores[sensor];
-        let ultimaTemp = registros[registros.length - 1].temperatura;
-        let nomeOriginal = options[i].dataset.nomeOriginal;
+function filtrarLotes(){
+        let filtro = document.getElementById("filtros").value;
+        let select = document.getElementById("selectSensor");
+        let sensorEncontrado = false;
+        let opcoes = "";
+        let primeiraOpcao = null;
 
-        if (ultimaTemp > 8 || ultimaTemp < 2) {
-            options[i].text = `🔴 ${nomeOriginal}`;
-        } else if (ultimaTemp == 8 || ultimaTemp == 2) {
-            options[i].tempAcima = `🟡 ${nomeOriginal}`;
-        } else {
-            options[i].text = `🟢 ${nomeOriginal}`;
+        for (let i = 0; i < lotes.length; i++){
+                let sensor = lotes[i][1];
+                let registros = sensores[sensor];
+
+                let ultimaTemp = registros[registros.length - 1].temperatura;
+
+                let status = "🟢";
+
+                if (ultimaTemp > 8 || ultimaTemp < 2) {
+                        status = "🔴";
+                } else if (ultimaTemp == 8 || ultimaTemp == 2) {
+                        status = "🟡";
+                }
+
+                if (filtro == "Todos" || filtro == status) {
+                        if (primeiraOpcao == null) primeiraOpcao = sensor;
+                        if (sensor == sessionStorage.SENSOR) sensorEncontrado = true;
+                        opcoes += `<option value="${sensor}">${status} ${lotes[i][0]}</option>`;
+                }
         }
-    }
+
+        select.innerHTML = opcoes;
+
+        if (sensorEncontrado) {
+                select.value = sessionStorage.SENSOR;
+        } else {
+                select.value = primeiraOpcao;
+                sessionStorage.SENSOR = primeiraOpcao;
+                chamar(primeiraOpcao);
+        }
 }
 
 function pesquisarLote() {
@@ -317,8 +336,6 @@ function chamar(sensor) {
         fora = 0;
         dentro = 100;
     }
-
-    atualizarOpcoes();
 
     document.getElementById("txtFora").textContent = `${fora}%`;
     document.getElementById("txtDentro").textContent = `${dentro}%`;
@@ -456,9 +473,8 @@ function chamar(sensor) {
 }
 
 function trocar() {
-    let sensor = Number(document.getElementById("selectSensor").value);
-    sessionStorage.SENSOR = selectSensor.value;
+    sessionStorage.SENSOR = document.getElementById("selectSensor").value;
     verificar();
 }
 
-setInterval(verificar, 5000)
+setInterval(verificar, 5000);

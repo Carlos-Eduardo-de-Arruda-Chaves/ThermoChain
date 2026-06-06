@@ -31,12 +31,12 @@
                 <input id="inputPesquisa" placeholder="Pesquisar lote..." oninput="pesquisarLote()">
 
                 <div class="labelSensorContainer">
-                    <a class="filtros">Filtros:</a>
-                    <select name="filtros" id="filtros">
+                        <a class="filtros">Filtros:</a>
+                    <select name="filtros" id="filtros" onchange="filtrarLotes()">
                         <option label="Todos">Todos</option>
-                        <option label="🟢">🟢</option>
-                        <option label="🟡">🟡</option>
-                        <option label="🔴">🔴</option>
+                        <option label="🟢 - Normal">🟢</option>
+                        <option label="🟡 - Alerta">🟡</option>
+                        <option label="🔴 - Critico">🔴</option>
                     </select>
                 </div>
             </div>
