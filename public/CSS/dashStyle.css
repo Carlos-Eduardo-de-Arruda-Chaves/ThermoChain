@@ -7,11 +7,13 @@
 
 .filtros {
     margin-right: 5px;
+    color: #5a6a7a;
+    font-weight: 600;
 }
 
 body {
     font-family: "Space Grotesk", sans-serif;
-    background: #7CA7C4;
+    background: #e4e8ee;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -25,19 +27,21 @@ body {
     overflow: hidden;
     padding: 10px;
     box-sizing: border-box;
-    background: #7CA7C4;
+    background: #e4e8ee;
 }
 
 .painel {
     width: 100%;
     height: calc(100vh - 20px);
-    background: #fff;
+    background: #f0f3f7;
     border-radius: 16px;
     overflow: hidden;
     box-sizing: border-box;
     padding: 8px 16px;
     display: flex;
     flex-direction: column;
+    border: 1px solid #d0d8e4;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .containerTitulo {
@@ -51,7 +55,8 @@ body {
     margin: 0 auto;
     font-size: 24px;
     font-weight: 600;
-    color: #2f3d57;
+    color: #2a3a4a;
+    letter-spacing: 0.5px;
 }
 
 .linhaSensor {
@@ -63,10 +68,18 @@ body {
 }
 
 .linhaSensor select {
-    border: 1px solid #b9c9df;
+    border: 1px solid #c8d4e0;
     border-radius: 8px;
     padding: 6px 10px;
-    background: #f8fbff;
+    background: #ffffff;
+    color: #3a4a5a;
+    outline: none;
+    cursor: pointer;
+}
+
+.linhaSensor select:hover {
+    border-color: #6a8ec4;
+    background: #f4f8fc;
 }
 
 .areaTopo {
@@ -103,6 +116,7 @@ body {
     gap: 10px;
     font-weight: 600;
     font-size: 10px;
+    color: #5a6a7a;
 }
 
 .itemLegenda {
@@ -114,129 +128,160 @@ body {
 .caixaLegenda {
     width: 16px;
     height: 16px;
+    border-radius: 3px;
 }
 
 .cinza {
-    background: #d9d9d9;
+    background: #b0bcc8;
 }
 
 .azul {
-    background: #4d78f2;
+    background: #5b7fd4;
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px 18px;
-    align-content: start;
+    align-content: start;  
 }
 
 .card {
     min-height: 90px;
+    min-width: 220px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-    border-radius: 6px;
+    border-radius: 12px;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .numero {
     font-size: 42px;
-    color: #5a5a5a;
+    color: #ffffff;
+    font-weight: 700;
 }
 
 .tempo {
     font-size: 22px;
     font-weight: 600;
+    color: #ffffff;
 }
 
 .texto {
     position: absolute;
-    bottom: 6px;
-    font-size: 11px;
-    color: black;
+    bottom: 8px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
 }
 
 .vermelho {
-    background: #ffc0c0;
-}
-
-.verde {
-    background: #b8f4bc;
+    background: #dc2626;
 }
 
 .rosa {
-    background: #ffc0c0;
+    background: #FA003F;
+}
+
+.verde {
+    background: #279b51;
 }
 
 .azul2 {
-    background: #a5b8ff;
+    background: #2563eb;
 }
 
 .amarelo {
-    background: #fff49d;
+    background: #e2be08;
+}
+.amarelo .texto{
+    color: white ;
 }
 
 .cardTemp {
-    width: 80%;
-    border: 1px solid #b8d3f1;
+    width: 78%;
+    border: 1px solid #c8d4e0;
     height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    border-radius: 4px;
+    border-radius: 12px;
     margin-left: 10%;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
 .painelAlertas {
     width: 90%;
-    border: 1px solid #b8d3f1;
-    border-radius: 4px;
+    border: 1px solid #c8d4e0;
+    border-radius: 12px;
     height: 96.5%;
-    background: #f8fbff;
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
 }
 
 .painelAlertas h3 {
-    background: #b9dbff;
+    background: #dde6f0;
     padding: 8px;
     text-align: center;
-    color: #2f3d57;
+    color: #2a3a4a;
     font-size: 16px;
+    letter-spacing: 0.5px;
 }
 
 .topoTemp {
     position: absolute;
     top: 0;
     left: 0;
-    background: #b9dbff;
+    background: #dde6f0;
     padding: 4px 10px;
     font-size: 12px;
+    color: #5a6a7a;
+    border-radius: 12px 0 6px 0;
 }
 
 .valorTemp {
     font-size: 60px;
     font-weight: 700;
     margin-top: -7%;
+    color: #2a3a4a;
 }
 
 .rodapeTemp {
     position: absolute;
     bottom: 0;
     width: 96.5%;
-    background: #b9dbff;
+    background: #dde6f0;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 6px;
+    border-radius: 0 0 10px 10px;
+}
+
+.statusPequeno {
+    font-size: 11px;
+    color: #5a6a7a;
 }
 
 .statusTexto {
     font-weight: 700;
+    color: #2a3a4a;
+    font-size: 12px;
 }
 
 .cardLocalizacaoContainer {
@@ -254,29 +299,39 @@ body {
     align-items: center;
     width: 40%;
     min-height: 120px;
-    background: #f8fbff;
+    background: #ffffff;
     border-radius: 28px;
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.08),
-        0 4px 10px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
     font-size: 20px;
     font-weight: 600;
-    border: #2f3d57 solid 2px;
+    border: 2px solid #c8d4e0;
+    color: #2a3a4a;
 }
 
 .labelSensorContainer {
     display: flex;
     align-items: center;
+    color: #5a6a7a;
+    font-weight: 600;
 }
 
 #inputPesquisa {
-    border: 1px solid #b9c9df;
+    border: 1px solid #c8d4e0;
     border-radius: 8px;
     padding: 6px 10px;
-    background: #f8fbff;
+    background: #ffffff;
     outline: none;
     width: 180px;
+    color: #2a3a4a;
+}
+
+#inputPesquisa::placeholder {
+    color: #9aaabb;
+}
+
+#inputPesquisa:hover {
+    border-color: #6a8ec4;
 }
 
 .cardBaixo {
@@ -309,6 +364,9 @@ body {
     transform: translateX(-50%);
     margin: 0;
     white-space: nowrap;
+    color: #5a6a7a;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 }
 
 #graficoLinha {
@@ -334,6 +392,14 @@ body {
     cursor: pointer;
     position: absolute;
     left: 0;
+    opacity: 0.8;
+    transition: 0.1s;
+}
+
+.setaPainel:hover {
+    opacity: 1;
+    height: 32px;
+    width: 32px;
 }
 
 #containerAlertas {
@@ -351,17 +417,15 @@ body {
 .alertaLote {
     width: 100%;
     min-height: 80px;
-    background: #ffffff;
+    background: #f4f7fb;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
     padding: 12px 14px;
     border-radius: 16px;
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.08),
-        0 4px 10px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e4edf7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #d0dae6;
 }
 
 .fecharAlerta {
@@ -372,18 +436,22 @@ body {
     background: transparent;
     font-size: 18px;
     cursor: pointer;
-    color: #6b7280;
+    color: #9aaabb;
+}
+
+.fecharAlerta:hover {
+    color: #3a4a5a;
 }
 
 .textoAlerta h2 {
     font-size: 14px;
-    color: #2f3d57;
+    color: #2a3a4a;
     margin-bottom: 4px;
 }
 
 .textoAlerta p {
     font-size: 12px;
-    color: #5a5a5a;
+    color: #6a7a8a;
 }
 
 .gifAlerta {
