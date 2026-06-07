@@ -32,6 +32,9 @@ html{
     border: none;
     width: 70px;
     font-weight: bold;
+    height: 20px;
+    border: none;
+    border-radius: 10%;
 }
 
 .botao_home {
