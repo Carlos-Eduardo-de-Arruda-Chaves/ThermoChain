@@ -248,9 +248,11 @@ VALUES
     (6, 1, '2025-05-01 08:00:00', NULL);           -- Lote Influenza também no sensor 1
 
 
--- SELECTs
+-- VIEWS 
 
 -- 1 Todos os lotes com o nome da vacina e status
+
+CREATE VIEW lotes_vacina_status AS
 SELECT
     lv.codigo AS lote,
     tv.nome AS vacina,
@@ -265,6 +267,8 @@ ORDER BY lv.data_validade;
 
 
 -- 2 Leituras com alerta ou crítico, mostrando vacina e sensor
+
+CREATE VIEW leituras_alerta_critico AS 
 SELECT
     lt.data_hora,
     lt.temperatura,
@@ -283,6 +287,8 @@ ORDER BY lt.data_hora DESC;
 
 
 -- 3 Resumo de leituras por lote (min, max, média e total de alertas)
+
+CREATE VIEW resumo_leituras AS
 SELECT
     lt.data_hora,
     lt.temperatura,
@@ -301,6 +307,8 @@ ORDER BY lt.data_hora DESC;
 
 
 -- 4 Lotes atualmente monitorados (alocações sem fim)
+
+CREATE VIEW lotes_monitorados AS
 SELECT
     al.id_alocacao,
     lv.codigo AS lote,
@@ -320,6 +328,8 @@ ORDER BY al.inicio_monitoramento;
 
 
 -- 5 Usuários por empresa com total de usuários
+ 
+CREATE VIEW total_user_empresas AS
 SELECT
     e.razao_social AS empresa,
     e.segmento,
@@ -333,6 +343,28 @@ ORDER BY total_usuarios DESC;
 select * from usuario;
 select * from empresa;
 
+
+-- SELECTS
+-- 1 Todos os lotes com o nome da vacina e status
+
+SELECT * FROM lotes_vacina_status;
+
+-- 2 Leituras com alerta ou crítico, mostrando vacina e sensor
+
+SELECT * FROM leituras_alerta_critico;
+
+-- 3 Resumo de leituras por lote (min, max, média e total de alertas)
+
+SELECT * FROM resumo_leituras;
+
+-- 4 Lotes atualmente monitorados (alocações sem fim)
+
+SELECT * FROM lotes_monitorados;
+
+-- 5 Usuários por empresa com total de usuários
+ 
+SELECT * FROM total_user_empresas;
+
 INSERT INTO leitura_temperatura (temperatura, data_hora, fk_sensor, fk_lote) VALUES
 ('5.7', '2026-05-15 08:00:00', 1, 1),
 ('6.7', '2026-05-15 08:05:00', 1, 1),
@@ -340,3 +372,24 @@ INSERT INTO leitura_temperatura (temperatura, data_hora, fk_sensor, fk_lote) VAL
 ('5.6', '2026-05-15 08:15:00', 1, 1),
 ('6.0', '2026-05-15 08:20:00', 1, 1);
 
+
+CREATE VIEW vw_monitoramento_vacina AS
+SELECT 
+    e.cod_empresa AS fk_empresa,
+    l.temperatura, 
+    DATE_FORMAT(l.data_hora, '%Y-%m-%d %H:%i:%s') AS data_hora,
+    l.fk_sensor, 
+    l.fk_lote, 
+    lv.codigo, 
+    s.local_instalacao, 
+    lv.quantidade 
+FROM leitura_temperatura l 
+JOIN lote_vacina lv ON lv.id_lote = l.fk_lote 
+JOIN alocacao_lote al ON al.fk_lote = lv.id_lote 
+JOIN sensor s ON s.id_sensor = al.fk_sensor 
+JOIN tipo_vacina tp ON tp.id_vacina = lv.fk_vacina 
+JOIN empresa e ON e.id_empresa = tp.fk_empresa;
+
+CREATE VIEW vw_usuario_login AS 
+SELECT id_usuario, nome, email, fk_empresa, n3, senha 
+FROM usuario;
