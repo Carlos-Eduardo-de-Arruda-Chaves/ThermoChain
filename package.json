@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-      "start": "cmd /c start node BobIA/main.js && node app.js",
-    "dev": "cmd /c start nodemon BobIA/main.js && nodemon app.js"
+      "start": "node app.js",
+    "dev": "nodemon --exec node app.js"
   },
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
   "license": "MIT",

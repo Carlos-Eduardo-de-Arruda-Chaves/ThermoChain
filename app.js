@@ -12,12 +12,15 @@ var cors = require("cors");
 var path = require("path");
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
+const { GoogleGenAI } = require("@google/genai");
 
 var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
+
+const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +31,31 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
+
+app.post("/perguntar", async (req, res) => {
+    const pergunta = req.body.pergunta;
+
+    if (!pergunta) {
+        return res.status(400).json({
+            erro: "A pergunta é obrigatória"
+        });
+    }
+
+    try {
+        const resposta = await gerarResposta(pergunta);
+
+        res.json({
+            resultado: resposta
+        });
+
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({
+            erro: "Erro ao gerar resposta"
+        });
+    }
+});
 
 app.listen(PORTA_APP, function () {
     console.log(`
@@ -45,3 +73,17 @@ app.listen(PORTA_APP, function () {
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
+
+async function gerarResposta(mensagem) {
+    try {
+        const resultado = await chatIA.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: `Em um parágrafo responda: ${mensagem}`
+        });
+
+        return resultado.text;
+    } catch (erro) {
+        console.error(erro);
+        throw erro;
+    }
+}
