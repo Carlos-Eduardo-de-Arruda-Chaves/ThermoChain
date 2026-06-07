@@ -9,12 +9,23 @@ body {
     width: 80%;
     margin: 50px auto;
     text-align: center;
+    background-color: #7eb4ed;
+    width: 80vh;
+    height: 60vh;
+    border:#1F2A44 solid 2px;
+   
 }
 
 h1 {
     color: #1F2A44;
 }
-
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
 textarea[type="text"] {
     padding: 8px;
     font-size: 16px;
@@ -38,7 +49,7 @@ button {
 }
 
 button:hover {
-    background-color: #EFB661;
+    background-color: #2445d8;
 }
 
 #loadingMessage {
@@ -62,7 +73,7 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
     background-color: #D0D3D4;
-    border: 1px solid #63666A;
+    border: 1px solid #2d5d9b;
     text-align: left;
     display: none;
 }

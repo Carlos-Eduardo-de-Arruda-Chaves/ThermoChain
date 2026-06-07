@@ -4,12 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon --exec node app.js"
+      "start": "cmd /c start node BobIA/main.js && node app.js",
+    "dev": "cmd /c start nodemon BobIA/main.js && nodemon app.js"
   },
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
   "license": "MIT",
   "dependencies": {
+    "@google/genai": "^0.14.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ejs": "^5.0.2",

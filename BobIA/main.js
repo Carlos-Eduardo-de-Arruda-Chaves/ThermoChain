@@ -4,7 +4,8 @@ const express = require("express");
 const path = require("path");
 
 // carregando as variáveis de ambiente do projeto do arquivo .env
-require("dotenv").config();
+// O __dirname garante que ele sempre vai me buscar o .env na própria pasta do BobIA
+require("dotenv").config({ path: __dirname + "/.env" });
 
 // configurando o servidor express
 const app = express();
