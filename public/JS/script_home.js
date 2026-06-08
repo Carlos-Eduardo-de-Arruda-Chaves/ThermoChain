@@ -3,8 +3,10 @@
         if(document.getElementById('checkbox_publica').checked == false){
             document.getElementById('checkbox_publica').checked = true;
             document.getElementById('checkbox_privado').checked = false;
+            privada = false
         } else {
             document.getElementById('checkbox_publica').checked = false;
+            privada = false
         }
     }
 
@@ -13,18 +15,22 @@
         if(document.getElementById('checkbox_privado').checked == false){
             document.getElementById('checkbox_privado').checked = true;
             document.getElementById('checkbox_publica').checked = false;
+            privada = true
         } else {
             document.getElementById('checkbox_privado').checked = false;
+            privada = true
         }
     }
 
     // Função para simulador financeiro da página Home
+    var privada = false
     function simular(){
         // Recuperando valores do html inseridos pelo usuário
         let doses = Number(id_doses.value);
         let doses_perdidas = Number(id_doses_perdidas.value);
         let doses_por_lote = Number(id_doses_por_lote.value);
         let valor_vacina = Number(id_valor_unitario.value);
+        if(privada) valor_vacina = valor_vacina * 1.2
         
         // Fazendo as contas para retornar o resultado para o usuário
         let porcentagem_perdida = (doses_perdidas / doses) * 100
