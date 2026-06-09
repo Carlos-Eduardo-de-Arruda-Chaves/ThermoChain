@@ -35,7 +35,7 @@ const serial = async (
     const portaArduino = portas.find((porta) => porta.vendorId == 2341 && porta.productId == 43);
     if (!portaArduino) {
         throw new Error('O arduino não foi encontrado em nenhuma porta serial');
-    }   
+    }
 
     // configura a porta serial com o baud rate especificado
     const arduino = new serialport.SerialPort(
@@ -58,7 +58,7 @@ const serial = async (
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorTemperatura.push(sensorTemperatura);
-      //  valoresSensorDigital.push(sensorDigital);
+        //  valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
@@ -127,7 +127,7 @@ const servidor = (
     // inicia a comunicação serial
     await serial(
         valoresSensorTemperatura
-    //    valoresSensorDigital
+        //    valoresSensorDigital
     );
 
     // inicia o servidor web

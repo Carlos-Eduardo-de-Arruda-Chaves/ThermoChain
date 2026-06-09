@@ -1,154 +1,152 @@
 .sobre-container {
-    padding: 0 50px;
+  padding: 0 50px;
 }
 
 .banner {
-    background: linear-gradient(135deg, #003d80, rgb(92, 151, 214));
-    color: white;
-    text-align: left;
-    padding: 70px;
-    border-radius: 25px;
-    margin-bottom: 50px;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #003d80, rgb(92, 151, 214));
+  color: white;
+  text-align: left;
+  padding: 70px;
+  border-radius: 25px;
+  margin-bottom: 50px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
 }
 
 .banner h1 {
-    font-size: 48px;
-    margin-bottom: 14px;
+  font-size: 48px;
+  margin-bottom: 14px;
 }
 
 .banner p {
-    font-size: 22px;
-    color: rgba(255, 255, 255, 0.85);
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .mvv {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 60px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 60px;
 }
 
 .card-sobre {
-    flex: 1;
-    padding: 40px 36px;
-    transition: 0.4s;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  padding: 40px 36px;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: column;
 }
 
-.card-sobre:hover{
-
-border: solid 2px #1b5390;
-
+.card-sobre:hover {
+  border: solid 2px #1b5390;
 }
 
 .card-sobre h3 {
-    padding-left: 48px;
-    color: rgba(0, 86, 178, 1);
-    margin-bottom: 10px;
+  padding-left: 48px;
+  color: rgba(0, 86, 178, 1);
+  margin-bottom: 10px;
 }
 
 .card-sobre p {
-    color: rgba(71, 85, 105, 1);
-    padding-left: 48px;
-    font-size: 17px;
-    margin-top: -10px;
+  color: rgba(71, 85, 105, 1);
+  padding-left: 48px;
+  font-size: 17px;
+  margin-top: -10px;
 }
 
 .sobre {
-    display: flex;
-    margin-bottom: 40px;
+  display: flex;
+  margin-bottom: 40px;
 }
 
 .sobre div {
-    width: 70%;
-    background: linear-gradient(135deg, rgba(0, 61, 128, 1), rgb(74, 143, 218));
-    border-radius: 20px;
-    padding: 40px 60px;
+  width: 70%;
+  background: linear-gradient(135deg, rgba(0, 61, 128, 1), rgb(74, 143, 218));
+  border-radius: 20px;
+  padding: 40px 60px;
 }
 
 .sobre-direita {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .sobre-esquerda {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .sobre h2 {
-    color: white;
-    font-size: 32px;
-    margin-bottom: 15px;
+  color: white;
+  font-size: 32px;
+  margin-bottom: 15px;
 }
 
 .sobre p {
-    color: white;
-    font-size: 18px;
-    line-height: 1.6;
+  color: white;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .equipe {
-    text-align: center;
-    padding: 30px 60px 60px;
-    background-color: #F5F7F8;
+  text-align: center;
+  padding: 30px 60px 60px;
+  background-color: #f5f7f8;
 }
 
 .equipe h2 {
-    font-size: 30px;
-    margin-bottom: 30px;
-    color: rgba(0, 86, 178, 1);
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: rgba(0, 86, 178, 1);
 }
 
 .cards-equipe {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .membro {
-    background: white;
-    padding: 20px;
-    width: 200px;
-    border-radius: 15px;
-    border: 2px solid rgba(0, 86, 178, 0.1);
-    transition: 0.3s;
+  background: white;
+  padding: 20px;
+  width: 200px;
+  border-radius: 15px;
+  border: 2px solid rgba(0, 86, 178, 0.1);
+  transition: 0.3s;
 }
 
 .membro:hover {
-    transform: translateY(-10px);
-    border-color: rgba(0, 86, 178, 1);
+  transform: translateY(-10px);
+  border-color: rgba(0, 86, 178, 1);
 }
 
 .imgSobre {
-    width: 300px;
-    margin: -100px 0px 0px -150px;
+  width: 300px;
+  margin: -100px 0px 0px -150px;
 }
 
 .textoSobre {
-    margin: -25px 0px 0px -25px;
+  margin: -25px 0px 0px -25px;
 }
 
 .membro img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid rgba(0, 86, 178, 1);
-    object-fit: cover;
-    margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 86, 178, 1);
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
 .membro h3 {
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 
 .membro p {
-    color: rgba(71, 85, 105, 1);
-    font-size: 14px;
+  color: rgba(71, 85, 105, 1);
+  font-size: 14px;
 }
 
 .cabecalho {
-    justify-content: space-between;
-    gap: unset;
+  justify-content: space-between;
+  gap: unset;
 }

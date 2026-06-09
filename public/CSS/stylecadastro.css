@@ -5,8 +5,6 @@
   margin: 0;
 }
 
-
-
 html,
 body {
   width: 100%;
@@ -23,7 +21,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 
 .backg {
   width: 100%;
@@ -77,7 +74,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 
   box-shadow: 0px 25px 50px #00000040;
 }
@@ -161,8 +157,8 @@ body {
   z-index: 2;
 }
 
-.cpf{
-   pointer-events: none;
+.cpf {
+  pointer-events: none;
   position: absolute;
   right: -9px;
   width: 20px;

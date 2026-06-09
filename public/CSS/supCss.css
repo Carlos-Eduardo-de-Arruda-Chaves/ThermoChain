@@ -1,88 +1,90 @@
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #0056b2, #68829f) no-repeat top center fixed;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #0056b2, #68829f) no-repeat top
+    center fixed;
+  margin: 0;
+  padding: 0;
 }
 
 #container {
-    width: 80%;
-    margin: 50px auto;
-    text-align: center;
-    background-color: #7eb4ed;
-    width: 80vh;
-    height: 60vh;
-    border:#1F2A44 solid 2px;
-   
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+  background-color: #7eb4ed;
+  width: 80vh;
+  height: 60vh;
+  border: #1f2a44 solid 2px;
 }
 
 h1 {
-    color: #1F2A44;
+  color: #1f2a44;
 }
-.titulo{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 30px;
+.titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 30px;
 }
 textarea[type="text"] {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 400px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 400px;
 }
 
 select,
 button {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button {
-    border: #7eb4ed;
-    background-color: #0056B2;
-    color: #FFFFFF;
-    border: none;
+  border: #7eb4ed;
+  background-color: #0056b2;
+  color: #ffffff;
+  border: none;
 }
 
 button:hover {
-    background-color: #2445d8;
+  background-color: #2445d8;
 }
 
 #loadingMessage {
-    display: none;
-    margin: 15px auto;
-    padding: 10px;
-    color: #333;
-    background-color: rgba(255,255,255,0.85);
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: fit-content;
+  display: none;
+  margin: 15px auto;
+  padding: 10px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: fit-content;
 }
 
 .spinner {
-    display: inline-block;
-    margin-left: 8px;
+  display: inline-block;
+  margin-left: 8px;
 }
 
 #resposta {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #D0D3D4;
-    border: 1px solid #2d5d9b;
-    text-align: left;
-    display: none;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #d0d3d4;
+  border: 1px solid #2d5d9b;
+  text-align: left;
+  display: none;
 }
 
 .chevron {
   width: 40px;
   height: 40px;
   justify-content: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 60px;
   padding: 20px;
 }

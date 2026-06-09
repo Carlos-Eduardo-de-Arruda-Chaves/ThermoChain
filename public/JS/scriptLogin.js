@@ -309,9 +309,9 @@ function entrar() {
 
 
 
-                    
+
                     // REDIRECIONAMENTO
-                    
+
 
                     if (json.n3 == 0) {
                         setTimeout(function () {
@@ -323,7 +323,7 @@ function entrar() {
                         }, 1000); // 1000ms = 1 segundo 
                     }
 
-                    });
+                });
 
 
             } else {
