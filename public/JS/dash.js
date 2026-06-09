@@ -193,43 +193,43 @@ function atualizarOpcoes() {
     filtrarLotes();
 }
 
-function filtrarLotes(){
-        let filtro = document.getElementById("filtros").value;
-        let select = document.getElementById("selectSensor");
-        let sensorEncontrado = false;
-        let opcoes = "";
-        let primeiraOpcao = null;
+function filtrarLotes() {
+    let filtro = document.getElementById("filtros").value;
+    let select = document.getElementById("selectSensor");
+    let sensorEncontrado = false;
+    let opcoes = "";
+    let primeiraOpcao = null;
 
-        for (let i = 0; i < lotes.length; i++){
-                let sensor = lotes[i][1];
-                let registros = sensores[sensor];
+    for (let i = 0; i < lotes.length; i++) {
+        let sensor = lotes[i][1];
+        let registros = sensores[sensor];
 
-                let ultimaTemp = registros[registros.length - 1].temperatura;
+        let ultimaTemp = registros[registros.length - 1].temperatura;
 
-                let status = "🟢";
+        let status = "🟢";
 
-                if (ultimaTemp > 8 || ultimaTemp < 2) {
-                        status = "🔴";
-                } else if (ultimaTemp == 8 || ultimaTemp == 2) {
-                        status = "🟡";
-                }
-
-                if (filtro == "Todos" || filtro == status) {
-                        if (primeiraOpcao == null) primeiraOpcao = sensor;
-                        if (sensor == sessionStorage.SENSOR) sensorEncontrado = true;
-                        opcoes += `<option value="${sensor}">${status} ${lotes[i][0]}</option>`;
-                }
+        if (ultimaTemp > 8 || ultimaTemp < 2) {
+            status = "🔴";
+        } else if (ultimaTemp == 8 || ultimaTemp == 2) {
+            status = "🟡";
         }
 
-        select.innerHTML = opcoes;
-
-        if (sensorEncontrado) {
-                select.value = sessionStorage.SENSOR;
-        } else {
-                select.value = primeiraOpcao;
-                sessionStorage.SENSOR = primeiraOpcao;
-                chamar(primeiraOpcao);
+        if (filtro == "Todos" || filtro == status) {
+            if (primeiraOpcao == null) primeiraOpcao = sensor;
+            if (sensor == sessionStorage.SENSOR) sensorEncontrado = true;
+            opcoes += `<option value="${sensor}">${status} ${lotes[i][0]}</option>`;
         }
+    }
+
+    select.innerHTML = opcoes;
+
+    if (sensorEncontrado) {
+        select.value = sessionStorage.SENSOR;
+    } else {
+        select.value = primeiraOpcao;
+        sessionStorage.SENSOR = primeiraOpcao;
+        chamar(primeiraOpcao);
+    }
 }
 
 function pesquisarLote() {
@@ -350,16 +350,24 @@ function chamar(sensor) {
         statusEl.style.color = "black";
     }
 
+
+    // só definiçao basica de constantes para usa a cor e ficar mais facil de identificar no codigo 
+    const ROXO = '#3b1f5e';
+    const VERDE = '#2e7d4f';
+    const LARANJA = '#c85000';
+    const VERMELHO = '#aa1111';
+
+    // mudando o elemento html
     document.getElementById("valor2").textContent = kpis[1];
     document.getElementById("valor3").textContent = kpis[2];
     document.getElementById("valor4").textContent = kpis[3];
     document.getElementById("valor5").textContent = kpis[4];
     document.getElementById("valor6").textContent = kpis[5];
     document.getElementById("cardLocalizacaoValue").textContent = kpis[6];
-    document.getElementById("cardRisco").style.background = `${valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? '#ffc0c0' : '#a5b8ff'}`;
-    document.getElementById("cardMedio").style.background = `${Number(kpis[2]) != 0 ? '#ffc0c0' : '#a5b8ff'}`;
-    document.getElementById("cardOcorrencia").style.background = `${Number(kpis[3]) != 0 ? '#ffc0c0' : '#a5b8ff'}`;
-    document.getElementById("cardTempo").style.background = `${kpis[4] != "00:00:00" ? '#ffc0c0' : '#a5b8ff'}`;
+    document.getElementById("cardRisco").style.background = valores[valores.length - 1] > 8 || valores[valores.length - 1] < 2 ? VERMELHO : VERDE;
+    document.getElementById("cardMedio").style.background = Number(kpis[2]) !== 0 ? LARANJA : VERDE;
+    document.getElementById("cardOcorrencia").style.background = Number(kpis[3]) !== 0 ? VERMELHO : VERDE;
+    document.getElementById("cardTempo").style.background = kpis[4] !== "00:00:00" ? LARANJA : VERDE;
 
     let min = 0;
     console.log(valores, 'carlos');
