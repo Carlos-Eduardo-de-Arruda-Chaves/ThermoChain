@@ -32,9 +32,15 @@
 .card-sobre {
     flex: 1;
     padding: 40px 36px;
-    transition: 0.3s;
+    transition: 0.4s;
     display: flex;
     flex-direction: column;
+}
+
+.card-sobre:hover{
+
+border: solid 2px #1b5390;
+
 }
 
 .card-sobre h3 {

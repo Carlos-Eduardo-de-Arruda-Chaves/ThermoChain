@@ -77,6 +77,48 @@ body {
     cursor: pointer;
 }
 
+.suporteEmergencia {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+    right: 0;
+    margin-top: -10px;
+}
+
+.suporteEmergencia img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: -25px;
+    margin-bottom: -5px;
+}
+
+.textoSuporte {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 12px;
+}
+
+.textoSuporte span {
+    color: #5a6a7a;
+    font-weight: 600;
+}
+
+.textoSuporte a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.textoSuporte a:hover {
+    text-decoration: underline;
+    color: #1d4ed8;
+}
+
 .linhaSensor select:hover {
     border-color: #6a8ec4;
     background: #f4f8fc;
