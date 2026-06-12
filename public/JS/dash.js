@@ -339,7 +339,7 @@ function chamar(sensor) {
 
     document.getElementById("txtFora").textContent = `${fora}%`;
     document.getElementById("txtDentro").textContent = `${dentro}%`;
-    document.getElementById("tempAtual").textContent = tempAtual;
+    document.getElementById("tempAtual").textContent = `${tempAtual}°C`;
     let statusEl = document.getElementById("statusText");
 
     statusEl.textContent = status;
